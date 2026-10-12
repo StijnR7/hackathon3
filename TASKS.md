@@ -1,4 +1,4 @@
-# Taken
+﻿# Taken
 
 Claim een taak door je naam erachter te zetten en te pushen **vóór** je begint.
 
@@ -11,6 +11,7 @@ Claim een taak door je naam erachter te zetten en te pushen **vóór** je begint
 - [ ] Remotes afspreken in `src/shared/Remotes.luau`
 
 ## Bezig
+- [ ] Enge lobby (map + sfeer + flikkerende lampen) — @andy
 
 ## Klaar
 - [x] Rojo-projectstructuur — @andy
