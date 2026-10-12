@@ -10,3 +10,5 @@ ServerPackages/
 Thumbs.db
 .vscode/
 .idea/
+# Blender backups
+*.blend1
