@@ -5,13 +5,16 @@ local function flicker(part)
 	local light = part:FindFirstChildOfClass("PointLight")
 	if not light then return end
 	local base = light.Brightness
+	local baseTransparency = part.Transparency
 	local rng = Random.new()
 	while part.Parent do
 		task.wait(rng:NextNumber(0.5, 4))
 		for _ = 1, rng:NextInteger(1, 4) do
 			light.Brightness = base * rng:NextNumber(0, 0.3)
+			part.Transparency = math.max(baseTransparency, 0.6)
 			task.wait(rng:NextNumber(0.03, 0.12))
 			light.Brightness = base
+			part.Transparency = baseTransparency
 			task.wait(rng:NextNumber(0.03, 0.15))
 		end
 	end
