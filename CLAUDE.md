@@ -18,6 +18,7 @@ Twee mensen werken hier tegelijk aan, elk met een eigen Claude Code-sessie. Houd
 - `src/client/` → StarterPlayerScripts.Client (client scripts, `*.client.luau`)
 - `src/shared/` → ReplicatedStorage.Shared (ModuleScripts, `*.luau`)
 - Code staat alleen in deze bestanden, nooit direct in Studio aanpassen.
+- Gedeelde Team Create-place `hackathon3`: alleen voor map/models. Scripts test je met Rojo in een eigen lokale Baseplate; in de gedeelde place alleen `main` syncen (zie Afspraken in `LOG.md`).
 
 ## Werkwijze
 - Werk op je eigen branch (`andy` of `stijn`), nooit direct op `main`.
