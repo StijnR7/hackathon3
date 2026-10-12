@@ -3,11 +3,7 @@
 Roblox game by Stijn and Andy.
 
 ## Workflow
-- `main` – stable, working version
-- `stijn` – Stijn's branch
-- `andy` – Andy's branch
-
-Work on your own branch, then merge into `main` via a pull request.
+We werken allebei direct op `main` (geen pull requests). Altijd eerst `git pull origin main`, dan committen en pushen.
 
 ## Setup
 1. Installeer [Rokit](https://github.com/rojo-rbx/rokit) en run `rokit install` in deze map (installeert Rojo).

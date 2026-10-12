@@ -18,12 +18,13 @@ Twee mensen werken hier tegelijk aan, elk met een eigen Claude Code-sessie. Houd
 - `src/client/` → StarterPlayerScripts.Client (client scripts, `*.client.luau`)
 - `src/shared/` → ReplicatedStorage.Shared (ModuleScripts, `*.luau`)
 - Code staat alleen in deze bestanden, nooit direct in Studio aanpassen.
+- Gedeelde Team Create-place `hackathon3`: alleen voor map/models. Scripts test je met Rojo in een eigen lokale Baseplate; in de gedeelde place alleen `main` syncen (zie Afspraken in `LOG.md`).
 
 ## Werkwijze
-- Werk op je eigen branch (`andy` of `stijn`), nooit direct op `main`.
-- Begin altijd met `git pull origin main` op je branch.
+- Iedereen werkt direct op `main`, geen pull requests (we zijn met z'n tweeën).
+- Begin altijd met `git pull origin main`, en pull opnieuw vlak vóór je pusht.
 - Kijk in `TASKS.md` vóór je begint. Pak alleen taken die aan jouw persoon hangen of vrij zijn, en claim ze eerst (commit + push).
-- Kleine commits, vaak een pull request naar `main`.
+- Kleine commits en vaak pushen, dan blijven merge-conflicten klein.
 
 ## Eigenaarschap
 - Raak alleen bestanden aan in de mappen/systemen van jouw persoon (zie `TASKS.md`).

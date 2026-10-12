@@ -13,3 +13,5 @@ Thumbs.db
 # Blender backups
 *.blend1
 *.fbm/
+# Gegenereerde Blender-export (opnieuw te maken met tools/blender/lobby_models.py)
+tools/blender/out/

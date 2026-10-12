@@ -3,7 +3,9 @@ local RunService = game:GetService("RunService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local NAMES = {
-	-- "ExampleEvent",
+	"QueueState", -- server → client: lijst met alle queues
+	"QueueAction", -- client → server: "Sync" | "Leave" | "SetMax" | "Start" | "Cancel"
+	"QueueNotice", -- server → client: korte melding (string)
 }
 
 local folder

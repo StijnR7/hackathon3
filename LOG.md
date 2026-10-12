@@ -4,10 +4,24 @@ Gedeeld logboek tussen Andy en Stijn (en hun Claude-sessies). Nieuwste bovenaan.
 
 ## Open vragen
 - **@andy**: De Crawler doodt een speler nu direct (Health = 0) en spawnt bij een part `CrawlerSpawn`. Past dat bij jouw gameplay/map, of wil je een andere afhandeling (bv. een event)?
-- **@stijn**: Wil je PR #1 (`andy` → `main`) reviewen en mergen? Daarna `git pull origin main` op je `stijn`-branch.
-- **@beiden**: Wat voor spel maken we? Daarna verdelen we de taken in `TASKS.md`.
+- **@beiden**: Wat is de core loop van de horrorgame? De lobby stuurt groepen van 1–4 naar de game-place (waar de Crawler rondloopt?). Wie maakt de game-place?
+- **@stijn**: Mag de lobby in de gedeelde place? Dan run ik `tools/build_lobby.luau` daar (verandert Lighting, spawn, baseplate en terrain).
+
+## Afspraken
+- **Geen pull requests meer**: we zijn met z'n tweeën, dus we pushen direct naar `main`. Altijd eerst `git pull origin main`, dan pas pushen.
+- **Team Create + Rojo**: in de gedeelde place `hackathon3` (Team Create) bouwen we samen map/models. Scripts test ieder met Rojo in een eigen lokale Baseplate. In de gedeelde place wordt alleen `main` via Rojo gesynct, door één persoon tegelijk.
 
 ## Updates
+- **2026-10-12 – Andy**: Workflow aangepast: geen PR's meer, iedereen pusht direct naar `main` (zie Afspraken + `CLAUDE.md`). Lobby + queues staan nu op `main`.
+- **2026-10-12 – Andy**: Lobby v2 + queuesysteem.
+  - **Modellen**: `tools/blender/lobby_models.py` maakt 17 modellen in Blender (bomen, graven, crypte, lantaarns, hek, poort, rotsen, doodskist). Al geüpload; mesh-ids staan in `tools/build_lobby.luau`. Opnieuw maken: `blender --background --python tools/blender/lobby_models.py -- tools/blender/out` (met `LOBBY_ONLY=Crypt` voor één model), daarna importeren via Studio → Import 3D en de nieuwe id in de builder zetten.
+  - **Lobby bouwen**: `tools/build_lobby.luau` in de command bar → terrain, kerkhof, plein met hangboom, 3 crypten.
+  - **Queues**: elke crypte is een queue (`Workspace.Lobby.Queues.QueueN`, tag `Queue`). Eerste speler = host, kiest 1–4 spelers en drukt Start → 5s countdown → teleport naar `GameConfig.GamePlaceId` (reserved server). Staat nu op 0 → spelers krijgen "The game isn't ready yet". Server: `QueueService.server.luau`, client: `QueueUI.client.luau`. Nieuwe remotes: `QueueState`, `QueueAction`, `QueueNotice`.
+  - **Geluid**: ids in `src/shared/SoundIds.luau`, afgespeeld door `LobbyAmbience.client.luau` (en hartslag/klok in de queue-UI).
+  - **Intro**: `LobbyIntro.client.luau`, titel uit `GameConfig.GameName`.
+  - Getest met 2 spelers (Studio server + 2 clients): joinen, host-rol, groepsgrootte, countdown en terugzetten werken.
 - **2026-10-12 – Stijn**: Crawler werkt. Model in `src/shared/Monsters/Crawler.rbxm` (via Rojo in ReplicatedStorage). `src/server/CrawlerAI.server.luau` spawnt hem bij een part `CrawlerSpawn` in Workspace (anders op 0,5,-40). Hij kruipt over vloer, muren en plafond naar de dichtstbijzijnde speler, springt naar spelers die hij niet kan bereiken, valt van het plafond en doodt bij aanraking. `src/client/CrawlerAnimator.client.luau` doet de procedurele IK-animatie. Instellingen staan in `src/shared/CrawlerConfig.luau` (nieuw bestand). Er zijn nog geen Remotes nodig.
 - **2026-10-12 – Stijn**: Rojo getest op mijn branch met een lokale Baseplate (niet de Team Create-place): `[Server] started` + `[Client] started` werken. Monster "Crawler" (Blender, rig met 40 botten, 4,2 m / ~15 studs) toegevoegd in `assets/monster/`. `.mcp.json` voor de Roblox Studio MCP toegevoegd. Volgende stap: Crawler importeren + IK-animatie + achtervolg-AI.
+- **2026-10-12 – Andy**: Spel wordt een **horrorgame**. Enge lobby gemaakt (eerste versie, vervangen door lobby v2). `src/server/LobbyFlicker.server.luau` laat lampen met tag `Flicker` flikkeren.
+- **2026-10-12 – Andy**: Andy zit in de gedeelde Team Create-place `hackathon3`. Afspraak over Team Create + Rojo toegevoegd (zie Afspraken).
 - **2026-10-12 – Andy**: Rojo-setup staat en werkt (getest in Studio: server + client scripts draaien). Rojo naar 7.7.0 gezet. Setup-stappen staan in `CLAUDE.md`. `LOG.md` toegevoegd om te communiceren.
