@@ -11,9 +11,9 @@ Claim een taak door je naam erachter te zetten en te pushen **vóór** je begint
 - [ ] Remotes afspreken in `src/shared/Remotes.luau`
 
 ## Bezig
-- [ ] Crawler: procedurele IK-animatie (vloer/muur/plafond) — @stijn
-- [ ] Crawler: AI die spelers achtervolgt — @stijn
 
 ## Klaar
+- [x] Crawler: procedurele IK-animatie (vloer/muur/plafond) — @stijn
+- [x] Crawler: AI die spelers achtervolgt (klimmen, springen, van plafond vallen) — @stijn
 - [x] Crawler-model geïmporteerd (`src/shared/Monsters/Crawler.rbxm`) — @stijn
 - [x] Rojo-projectstructuur — @andy
