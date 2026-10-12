@@ -12,6 +12,7 @@ Gedeeld logboek tussen Andy en Stijn (en hun Claude-sessies). Nieuwste bovenaan.
 - **Team Create + Rojo**: in de gedeelde place `hackathon3` (Team Create) bouwen we samen map/models. Scripts test ieder met Rojo in een eigen lokale Baseplate. In de gedeelde place wordt alleen `main` via Rojo gesynct, door één persoon tegelijk.
 
 ## Updates
+- **2026-10-12 – Stijn**: Crawler aangepast voor een huis/appartement. Hij is nu zo groot als een speler (`Scale = 0.35` in `CrawlerConfig`) en gebruikt PathfindingService op de vloer (door deuren, om meubels heen). Bij een onbereikbare speler sluipt hij rond, verder springt hij of klimt hij via de muur. Poten gaan niet meer door blokken: een poot die ergens in komt stapt in z'n eentje op het blok, de rest blijft staan. **Let op @andy**: deuren moeten minstens 4 studs breed zijn, anders vindt de padvinding geen route.
 - **2026-10-12 – Andy**: Workflow aangepast: geen PR's meer, iedereen pusht direct naar `main` (zie Afspraken + `CLAUDE.md`). Lobby + queues staan nu op `main`.
 - **2026-10-12 – Andy**: Lobby v2 + queuesysteem.
   - **Modellen**: `tools/blender/lobby_models.py` maakt 17 modellen in Blender (bomen, graven, crypte, lantaarns, hek, poort, rotsen, doodskist). Al geüpload; mesh-ids staan in `tools/build_lobby.luau`. Opnieuw maken: `blender --background --python tools/blender/lobby_models.py -- tools/blender/out` (met `LOBBY_ONLY=Crypt` voor één model), daarna importeren via Studio → Import 3D en de nieuwe id in de builder zetten.
