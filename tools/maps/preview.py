@@ -191,6 +191,8 @@ if MODE in ("shots", "all"):
     except Exception:
         pass
     shots = {
+        "overview": ([60, 95, 75], [0, 0, -18]),
+        "overview2": ([-70, 80, -95], [0, 0, -15]),
         "reception": ([0, 5.5, 36], [0, 4, 8]),
         "corridor": ([0, 5.5, 6], [0, 4, -60]),
         "cross": ([-55, 5.5, -25], [40, 4, -25]),
@@ -199,5 +201,9 @@ if MODE in ("shots", "all"):
         "ward": ([-33, 6, -45], [-60, 3, -45]),
     }
     for name, (loc, tgt) in shots.items():
-        scene.camera = camera(name, loc, tgt)
+        for ob in scene.objects:
+            if ob.get("plan_hide"):
+                ob.hide_render = name.startswith("overview")
+        world.node_tree.nodes["Background"].inputs[1].default_value = 25 if name.startswith("overview") else 1
+        scene.camera = camera(name, loc, tgt, 24 if name.startswith("overview") else 18)
         render(f"shot_{name}.png")
