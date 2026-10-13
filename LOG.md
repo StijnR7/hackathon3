@@ -12,6 +12,7 @@ Gedeeld logboek tussen Andy en Stijn (en hun Claude-sessies). Nieuwste bovenaan.
 - **Team Create + Rojo**: in de gedeelde place `hackathon3` (Team Create) bouwen we samen map/models. Scripts test ieder met Rojo in een eigen lokale Baseplate. In de gedeelde place wordt alleen `main` via Rojo gesynct, door één persoon tegelijk.
 
 ## Updates
+- **2026-10-13 – Stijn**: Spiegels (`src/client/Mirror.client.luau`, instellingen in `src/shared/MirrorConfig.luau`). **@andy**: zet in de map een part neer met de tag `Mirror`; de voorkant (Front face) wordt de spiegel. Spelers zien zichzelf (en de kamer achter zich), maar met een enge grijns i.p.v. hun gezicht. Zet er gerust een lijst omheen.
 - **2026-10-13 – Andy**: Eerste game-map: **verlaten ziekenhuis** + lobby/game gesplitst.
   - **Twee Rojo-projecten**: `default.project.json` = game (jouw Crawler + de map), `lobby.project.json` = lobby. Mijn lobby-scripts staan nu in `src/lobby/`, `Flicker` in `src/common/server/`. Jouw bestanden heb ik niet verplaatst.
   - **Map**: `maps/Hospital.model.json` (gegenereerd door `tools/maps/hospital.py`) wordt door Rojo direct in Workspace gezet. Receptie (voordeur vastgeketend), hoofdgang + dwarsgang, kamers 101–104, verpleegpost, toiletten, zaal B (6 bedden), OK, **mortuarium met `CrawlerSpawn`**, archief, opslag, kantoor, ingestort trappenhuis. Flikkerende tl-lampen, noodlampjes, maanlicht door dichtgetimmerde ramen, ingestorte plafondtegels, bloed en teksten op de muren.
