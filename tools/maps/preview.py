@@ -66,6 +66,7 @@ def material(color, mat, transparency):
 
 
 lights = []
+BOUNDS = [1e9, -1e9, 1e9, -1e9]  # min x, max x, min z, max z (Roblox)
 
 
 def walk(node, parent_name=""):
@@ -84,6 +85,9 @@ def walk(node, parent_name=""):
             m3 = P @ rot @ Matrix.Diagonal((size[0], size[1], size[2]))
             ob.matrix_world = Matrix.Translation(to_b(pos)) @ m3.to_4x4()
             ob["plan_hide"] = name in HIDE_IN_PLAN
+            if name not in ("Ground",):
+                BOUNDS[0], BOUNDS[1] = min(BOUNDS[0], pos[0]), max(BOUNDS[1], pos[0])
+                BOUNDS[2], BOUNDS[3] = min(BOUNDS[2], pos[2]), max(BOUNDS[3], pos[2])
             scene.collection.objects.link(ob)
             ob.material_slots[0].link = "OBJECT"
             ob.material_slots[0].material = material(props.get("Color", [0.5, 0.5, 0.5]), props.get("Material", "SmoothPlastic"), transparency)
@@ -169,13 +173,15 @@ if MODE in ("plan", "all"):
             ob.hide_render = True
     cd = bpy.data.cameras.new("plan")
     cd.type = "ORTHO"
-    cd.ortho_scale = 130
+    span = max(BOUNDS[1] - BOUNDS[0], BOUNDS[3] - BOUNDS[2]) + 10
+    cd.ortho_scale = span
     cam = bpy.data.objects.new("plan", cd)
     scene.collection.objects.link(cam)
-    cam.location = to_b([0, 80, -15])
+    cam.location = to_b([(BOUNDS[0] + BOUNDS[1]) / 2, 120, (BOUNDS[2] + BOUNDS[3]) / 2])
     cam.rotation_euler = (0, 0, 0)
     scene.camera = cam
-    scene.render.resolution_x, scene.render.resolution_y = 1400, 1300
+    w_, h_ = BOUNDS[1] - BOUNDS[0] + 10, BOUNDS[3] - BOUNDS[2] + 10
+    scene.render.resolution_x, scene.render.resolution_y = (1800, int(1800 * h_ / w_)) if w_ >= h_ else (int(1800 * w_ / h_), 1800)
     render("plan.png")
     for ob in scene.objects:
         if ob.get("plan_hide"):
@@ -200,6 +206,10 @@ if MODE in ("shots", "all"):
         "surgery": ([-7, 6.5, -33], [-22, 2.5, -56]),
         "ward": ([-33, 6, -45], [-60, 3, -45]),
     }
+    shots_file = SRC.replace(".model.json", ".shots.json")
+    if os.path.exists(shots_file):
+        with open(shots_file, encoding="utf8") as f:
+            shots = json.load(f)
     for name, (loc, tgt) in shots.items():
         for ob in scene.objects:
             if ob.get("plan_hide"):

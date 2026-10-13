@@ -10,11 +10,11 @@ Claim een taak door je naam erachter te zetten en te pushen **vóór** je begint
 - [ ] Definitieve gamenaam (nu werktitel `THE CRYPTS` in `GameConfig.GameName`)
 
 ## Bezig
-- [ ] Map veel groter maken (vleugels, binnenplaatsen, meer kamersoorten) — @andy (`tools/maps/hospital.py`; Stijns markers blijven: FuseSpawn, FuseBox, ExitZone, Mirror, CrawlerSpawn, voordeur)
 - [ ] MVP-ronde: 3 zekeringen zoeken → stroomkast bij receptie → voordeur open → ontsnappen; gepakt = dood + meekijken; einde → terug naar lobby — @stijn (`src/server/Round.server.luau`, `src/client/RoundUI.client.luau`, `src/shared/RoundConfig.luau`, markers in `tools/maps/hospital.py`)
 - [ ] Publiceren: lobby = startplace van de bestaande experience, game = tweede place, place-ids in `GameConfig` — @stijn
 
 ## Klaar
+- [x] Ziekenhuis-map veel groter: 90 kamers, 17 soorten, 2 binnenplaatsen — @andy
 - [x] Spiegel: elk part met tag `Mirror` toont je reflectie (met de kamer erachter), maar met een enge grijns — @stijn
 - [x] Lobby en game gesplitst in twee Rojo-projecten — @andy
 - [x] Map 1: verlaten ziekenhuis (+ zaklamp, geluid) — @andy

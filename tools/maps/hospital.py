@@ -1,6 +1,12 @@
 # Genereert de map "verlaten ziekenhuis" als Rojo model-bestand (maps/Hospital.model.json).
 # Gebruik: python tools/maps/hospital.py
 # Alles is Parts (geen uploads nodig), dus Rojo kan het direct in Workspace syncen.
+#
+# Opbouw: een netwerk van gangen; langs elke gang liggen "stroken" die automatisch in kamers worden
+# verdeeld. Elke kamersoort heeft een eigen inrichting (fill_*). Twee binnenplaatsen liggen buiten.
+# De receptie (voordeur, stroomkast, uitgang, spawn) staat vast op dezelfde plek: Round.server.luau
+# (Stijn) gebruikt de namen/tags EntranceDoor, EntranceGlass, Chain, Padlock, FuseBox, FuseSpawn, ExitZone,
+# Mirror en CrawlerSpawn.
 import json
 import math
 import os
@@ -15,7 +21,7 @@ OUT = os.path.join(ROOT, "maps", "Hospital.model.json")
 
 # ---------------------------------------------------------------- helpers
 def rgb(r, g, b):
-    return [round(r / 255, 4), round(g / 255, 4), round(b / 255, 4)]
+    return [round(min(255, max(0, r)) / 255, 4), round(min(255, max(0, g)) / 255, 4), round(min(255, max(0, b)) / 255, 4)]
 
 
 def matmul(a, b):
@@ -40,9 +46,14 @@ def cframe(pos, m=None):
     return {"CFrame": {"position": [round(p, 4) for p in pos], "orientation": [[round(c, 5) for c in row] for row in m]}}
 
 
+def tint(col, lo=0.85, hi=1.05):
+    f = R.uniform(lo, hi)
+    return tuple(int(c * f) for c in col)
+
+
 class Group:
-    def __init__(self, name, class_name="Folder"):
-        self.node = {"name": name, "className": class_name, "children": []} if name != "Hospital" else {"className": class_name, "children": []}
+    def __init__(self, name, class_name="Folder", top=False):
+        self.node = {"className": class_name, "children": []} if top else {"name": name, "className": class_name, "children": []}
 
     def add(self, node):
         self.node["children"].append(node)
@@ -61,7 +72,7 @@ def part(group, name, size, pos, color, material="SmoothPlastic", m=None, shape=
          collide=True, shadow=True, tags=None, children=None, cls="Part", extra=None):
     props = {
         "Anchored": True,
-        "Size": [round(s, 4) for s in size],
+        "Size": [round(max(s, 0.05), 4) for s in size],
         "CFrame": cframe(pos, m),
         "Color": rgb(*color),
         "Material": material,
@@ -88,15 +99,14 @@ def part(group, name, size, pos, color, material="SmoothPlastic", m=None, shape=
     return group.add(node)
 
 
-def light(kind, color, brightness, rng, extra=None):
+def light(kind, color, brightness, rng, extra=None, shadows=True):
     COUNT["lights"] += 1
-    props = {"Color": rgb(*color), "Brightness": brightness, "Range": rng, "Shadows": True}
+    props = {"Color": rgb(*color), "Brightness": brightness, "Range": rng, "Shadows": shadows}
     props.update(extra or {})
     return {"name": kind, "className": kind, "properties": props}
 
 
 def local(origin, m, offset):
-    """Wereldpositie van `offset` t.o.v. (origin, rotatie m)."""
     o = apply(m, offset)
     return [origin[0] + o[0], origin[1] + o[1], origin[2] + o[2]]
 
@@ -138,51 +148,110 @@ FABRIC_DIRTY = (140, 132, 110)
 CURTAIN = (100, 140, 128)
 BLOOD = (70, 8, 8)
 BRICK = (90, 60, 50)
+SHEET = (195, 192, 180)
+FRAME = (60, 75, 70)
+
+WRITINGS = ["THEY NEVER LEFT", "RUN", "HELP US", "IT HEARS YOU", "DON'T LOOK UP", "IT CRAWLS", "TURN BACK",
+            "IT'S IN THE WALLS", "COUNT THE BODIES", "SHE WATCHES", "NO WAY OUT", "WE TRIED TO STOP IT", "HIDE",
+            "DON'T LET IT SEE YOU", "WHERE DID THEY TAKE US", "LIGHTS OFF = DEAD"]
 
 # ---------------------------------------------------------------- plattegrond
-# (naam, x1, z1, x2, z2, soort). Latere gebieden overschrijven eerdere.
-AREAS = [
+# Gangen en vaste ruimtes: (naam, x1, z1, x2, z2, soort)
+FIXED = [
     ("reception", -25, 10, 25, 40, "hall"),
-    ("cross", -60, -30, 60, -20, "corridor"),
-    ("main", -5, -70, 5, 10, "corridor"),
-    ("room101", -25, -5, -5, 10, "patient"),
-    ("room102", -25, -20, -5, -5, "patient"),
-    ("nurse", 5, -5, 25, 10, "nurse"),
-    ("bath", 5, -20, 25, -5, "bath"),
-    ("surgery", -30, -70, -5, -30, "surgery"),
-    ("morgue", 5, -70, 30, -30, "morgue"),
-    ("ward", -60, -60, -30, -30, "ward"),
-    ("records", 30, -60, 60, -30, "records"),
-    ("room103", -60, -20, -42, 0, "patient"),
-    ("storage", -42, -20, -25, 0, "storage"),
-    ("office", 25, -20, 42, 0, "office"),
-    ("room104", 42, -20, 60, 0, "patient"),
+    ("crossA", -130, -30, 130, -20, "corridor"),
+    ("crossB", -130, -110, 130, -100, "corridor"),
+    ("crossC", -70, -160, 70, -150, "corridor"),
+    ("sideW", -130, -110, -120, -20, "corridor"),
+    ("sideE", 120, -110, 130, -20, "corridor"),
+    ("main", -5, -160, 5, 10, "corridor"),
+    ("yardW", -102, -82, -23, -48, "yard"),
+    ("yardE", 23, -82, 102, -48, "yard"),
 ]
+CORRIDORS = {"reception", "crossA", "crossB", "crossC", "sideW", "sideE", "main"}
+OPEN = {frozenset(p) for p in [("reception", "main"), ("main", "crossA"), ("main", "crossB"), ("main", "crossC"),
+                               ("crossA", "sideW"), ("crossA", "sideE"), ("crossB", "sideW"), ("crossB", "sideE")]}
+
+# Kamersoorten: (min breedte, max breedte, gewicht)
+KINDS = {
+    "patient": (14, 18, 6),
+    "ward": (24, 30, 2),
+    "office": (12, 16, 2),
+    "bath": (16, 20, 1.5),
+    "storage": (12, 16, 2),
+    "records": (20, 26, 1),
+    "lab": (16, 22, 1.5),
+    "cell": (10, 12, 2),
+    "xray": (16, 18, 1),
+    "dayroom": (22, 28, 1),
+    "boiler": (16, 20, 0.8),
+    "collapsed": (12, 16, 1),
+    "nurse": (14, 18, 1),
+}
+
+# Stroken langs de gangen: (x1, z1, x2, z2, muur met deuren, soorten of None = willekeurig)
+STRIPS = [
+    (-23, -2, -5, 10, "x2", ["nurse"]),
+    (5, -2, 23, 10, "x1", ["nurse"]),
+    (-130, -20, -5, -2, "z1", None),
+    (5, -20, 130, -2, "z1", None),
+    (-120, -48, -5, -30, "z2", None),
+    (5, -48, 120, -30, "z2", None),
+    (-120, -100, -5, -82, "z1", None),
+    (5, -100, 120, -82, "z1", None),
+    (-120, -82, -102, -48, "x1", None),
+    (102, -82, 120, -48, "x2", None),
+    (-23, -82, -5, -48, "x2", None),
+    (5, -82, 23, -48, "x1", None),
+    (-148, -110, -130, -20, "x2", None),
+    (130, -110, 148, -20, "x1", None),
+    (-130, -130, -5, -110, "z2", None),
+    (5, -130, 130, -110, "z2", None),
+    (-70, -150, -5, -130, "z1", None),
+    (5, -150, 70, -130, "z1", None),
+    (-70, -185, -5, -160, "z2", ["chapel", "surgery", "cafeteria"]),
+    (5, -185, 70, -160, "z2", ["morgue", "lab", "surgery"]),
+]
+SPECIAL_W = {"chapel": 26, "surgery": 22, "cafeteria": 0, "morgue": 26}
+
+rooms = []  # dicts: name, x1,z1,x2,z2, wall, kind
+for si, (x1, z1, x2, z2, wall, forced) in enumerate(STRIPS):
+    along_x = wall in ("z1", "z2")
+    a0, a1 = (x1, x2) if along_x else (z1, z2)
+    length = a1 - a0
+    pos = a0
+    k = 0
+    while a1 - pos >= 10:
+        if forced:
+            kind = forced[k % len(forced)]
+            if kind in SPECIAL_W and SPECIAL_W[kind]:
+                w = SPECIAL_W[kind]
+            elif kind == "cafeteria":
+                w = a1 - pos
+            else:
+                w = R.randint(*KINDS.get(kind, (16, 20, 1))[:2])
+        else:
+            kind = R.choices(list(KINDS), weights=[v[2] for v in KINDS.values()])[0]
+            w = R.randint(KINDS[kind][0], KINDS[kind][1])
+        if a1 - (pos + w) < 10:
+            w = a1 - pos
+        if along_x:
+            rect = (pos, z1, pos + w, z2)
+        else:
+            rect = (x1, pos, x2, pos + w)
+        rooms.append({"name": f"r{si}_{k}", "rect": rect, "wall": wall, "kind": kind})
+        pos += w
+        k += 1
+
+AREAS = [(n, x1, z1, x2, z2, kind) for n, x1, z1, x2, z2, kind in FIXED[:1] + FIXED[1:]]
+AREAS += [(r["name"], *r["rect"], r["kind"]) for r in rooms]
+# volgorde: kamers eerst, dan gangen (gangen winnen bij overlap), receptie en binnenplaatsen
+order = [a for a in AREAS if a[0] not in CORRIDORS and a[5] != "yard"] + [a for a in AREAS if a[5] == "yard"] + \
+        [a for a in AREAS if a[0] in CORRIDORS]
 KIND = {a[0]: a[5] for a in AREAS}
-OPEN = {frozenset(("reception", "main")), frozenset(("main", "cross"))}
-CORRIDORS = {"main", "cross", "reception"}
 
-# deuren: (x, z, as, breedte, bord). as "z" = muur loopt langs Z (x vast), "x" = muur loopt langs X (z vast)
-DOORS = [
-    (-5, 2, "z", 6, "101"),
-    (-5, -12, "z", 6, "102"),
-    (5, 2, "z", 6, "NURSES"),
-    (5, -12, "z", 6, "WC"),
-    (-5, -50, "z", 7, "SURGERY"),
-    (-18, -30, "x", 8, "OR 1"),
-    (5, -58, "z", 7, "MORGUE"),
-    (-45, -30, "x", 7, "WARD B"),
-    (45, -30, "x", 7, "RECORDS"),
-    (-51, -20, "x", 6, "103"),
-    (-33, -20, "x", 6, "STORAGE"),
-    (51, -20, "x", 6, "104"),
-    (33, -20, "x", 6, "OFFICE"),
-    (15, 10, "x", 6, None),  # loket van de verpleegpost
-]
-
-X0, X1, Z0, Z1 = -61, 61, -71, 41
 grid = {}
-for name, x1, z1, x2, z2, _ in AREAS:
+for name, x1, z1, x2, z2, _ in order:
     for x in range(x1, x2):
         for z in range(z1, z2):
             grid[(x, z)] = name
@@ -190,6 +259,51 @@ for name, x1, z1, x2, z2, _ in AREAS:
 
 def label(x, z):
     return grid.get((x, z))
+
+
+# deuren: (x, z, as, breedte, bordtekst)
+DOORS = []
+SIGN_NAMES = {"patient": None, "ward": "WARD", "office": "OFFICE", "bath": "WC", "storage": "STORAGE", "records": "RECORDS",
+              "lab": "LAB", "cell": "ISOLATION", "xray": "X-RAY", "dayroom": "DAY ROOM", "boiler": "BOILER", "collapsed": None,
+              "nurse": "NURSES", "chapel": "CHAPEL", "surgery": "SURGERY", "cafeteria": "CAFETERIA", "morgue": "MORGUE"}
+room_no = 100
+for r in rooms:
+    x1, z1, x2, z2 = r["rect"]
+    w = 8 if (x2 - x1 if r["wall"] in ("z1", "z2") else z2 - z1) >= 24 else 6
+    if r["wall"] == "z1":
+        d = ((x1 + x2) // 2, z1, "x")
+    elif r["wall"] == "z2":
+        d = ((x1 + x2) // 2, z2, "x")
+    elif r["wall"] == "x1":
+        d = (x1, (z1 + z2) // 2, "z")
+    else:
+        d = (x2, (z1 + z2) // 2, "z")
+    room_no += 1
+    sign = SIGN_NAMES.get(r["kind"]) or str(room_no)
+    if r["kind"] == "collapsed":
+        sign = None
+    r["door"] = d
+    DOORS.append((d[0], d[1], d[2], w, sign))
+# loket verpleegpost naar de receptie
+DOORS.append((15, 10, "x", 6, None))
+
+# binnenplaatsen: één kamer in de strook ernaast krijgt een achterdeur naar buiten
+for yard in ("yardW", "yardE"):
+    _, yx1, yz1, yx2, yz2, _ = next(a for a in FIXED if a[0] == yard)
+    for r in rooms:
+        x1, z1, x2, z2 = r["rect"]
+        if r["wall"] == "z2" and z1 == yz2 and x1 >= yx1 + 6 and x2 <= yx2 - 6 and r["kind"] not in ("collapsed", "cell"):
+            DOORS.append(((x1 + x2) // 2, z1, "x", 6, None))
+            r["yard_door"] = True
+            r["kind"] = "passage"
+            break
+    for r in rooms:
+        x1, z1, x2, z2 = r["rect"]
+        if r["wall"] == "z1" and z2 == yz1 and x1 >= yx1 + 6 and x2 <= yx2 - 6 and r["kind"] not in ("collapsed", "cell"):
+            DOORS.append(((x1 + x2) // 2, z2, "x", 6, None))
+            r["yard_door"] = True
+            r["kind"] = "passage"
+            break
 
 
 def in_door(line_pos, along, axis):
@@ -208,10 +322,15 @@ def needs_wall(a, b):
         return False
     if a and b and frozenset((a, b)) in OPEN:
         return False
+    if (a is None or KIND.get(a) == "yard") and (b is None or KIND.get(b) == "yard"):
+        return False
     return True
 
 
-# randen verzamelen: muren langs Z op x = vast, muren langs X op z = vast
+xs = [k[0] for k in grid]
+zs = [k[1] for k in grid]
+X0, X1, Z0, Z1 = min(xs) - 1, max(xs) + 2, min(zs) - 1, max(zs) + 2
+
 segments = []  # (axis, line, start, end, sideA, sideB)
 for x in range(X0, X1 + 1):
     run = None
@@ -219,29 +338,29 @@ for x in range(X0, X1 + 1):
         a, b = label(x - 1, z), label(x, z)
         wall = needs_wall(a, b) and not in_door(x, z, "z")
         key = (a, b) if wall else None
-        if run and (not wall or run[3] != key):
-            segments.append(("z", x, run[0], run[1], run[3][0], run[3][1]))
+        if run and (not wall or run[2] != key):
+            segments.append(("z", x, run[0], run[1], run[2][0], run[2][1]))
             run = None
         if wall:
-            run = [run[0], z + 1, None, key] if run else [z, z + 1, None, key]
+            run = [run[0], z + 1, key] if run else [z, z + 1, key]
     if run:
-        segments.append(("z", x, run[0], run[1], run[3][0], run[3][1]))
+        segments.append(("z", x, run[0], run[1], run[2][0], run[2][1]))
 for z in range(Z0, Z1 + 1):
     run = None
     for x in range(X0, X1 + 1):
         a, b = label(x, z - 1), label(x, z)
         wall = needs_wall(a, b) and not in_door(z, x, "x")
         key = (a, b) if wall else None
-        if run and (not wall or run[3] != key):
-            segments.append(("x", z, run[0], run[1], run[3][0], run[3][1]))
+        if run and (not wall or run[2] != key):
+            segments.append(("x", z, run[0], run[1], run[2][0], run[2][1]))
             run = None
         if wall:
-            run = [run[0], x + 1, None, key] if run else [x, x + 1, None, key]
+            run = [run[0], x + 1, key] if run else [x, x + 1, key]
     if run:
-        segments.append(("x", z, run[0], run[1], run[3][0], run[3][1]))
+        segments.append(("x", z, run[0], run[1], run[2][0], run[2][1]))
 
 # ---------------------------------------------------------------- bouwen
-root = Group("Hospital", "Model")
+root = Group("Hospital", "Model", top=True)
 structure = root.sub("Structure")
 walls = structure.sub("Walls")
 floors = structure.sub("Floors")
@@ -252,7 +371,12 @@ decor = root.sub("Decor")
 markers = root.sub("Markers")
 
 WAINSCOT = {"corridor": TILE_GREEN, "hall": TILE_GREEN, "patient": TILE_WHITE, "nurse": TILE_WHITE, "bath": TILE_WHITE,
-            "surgery": TILE_WHITE, "morgue": (130, 140, 140), "ward": TILE_WHITE, "records": None, "storage": None, "office": None}
+            "surgery": TILE_WHITE, "morgue": (130, 140, 140), "ward": TILE_WHITE, "lab": TILE_WHITE, "xray": TILE_WHITE,
+            "cafeteria": TILE_GREEN, "dayroom": (120, 130, 150)}
+
+
+def outside(lab):
+    return lab is None or KIND.get(lab) == "yard"
 
 
 def wall_piece(axis, line, a, b, y0, y1, material="Plaster", color=PLASTER, name="Wall", ext=0.5):
@@ -266,14 +390,12 @@ def wall_piece(axis, line, a, b, y0, y1, material="Plaster", color=PLASTER, name
 
 
 for axis, line, a, b, sa, sb in segments:
-    tint = R.uniform(0.85, 1.05)
-    col = tuple(min(255, int(c * tint)) for c in (PLASTER if R.random() < 0.6 else PLASTER_DIRTY))
+    col = tint(PLASTER if R.random() < 0.6 else PLASTER_DIRTY)
     wall_piece(axis, line, a, b, 0, H, color=col)
     length = b - a
     mid = (a + b) / 2
     for side, lab in ((-1, sa), (1, sb)):
-        if lab is None:
-            # buitenkant: bakstenen schil
+        if outside(lab):
             if axis == "z":
                 part(walls, "Brick", [0.3, H + 2, length + 1.6], [line + side * 0.65, H / 2 + 1, mid], BRICK, "Brick")
             else:
@@ -281,108 +403,104 @@ for axis, line, a, b, sa, sb in segments:
             continue
         kind = KIND[lab]
         tile = WAINSCOT.get(kind)
+        if kind == "cell":
+            # gecapitonneerde muren
+            off = line + side * 0.8
+            if axis == "z":
+                part(walls, "Padding", [0.6, H - 1, length], [off, (H - 1) / 2, mid], (200, 195, 180), "Fabric")
+            else:
+                part(walls, "Padding", [length, H - 1, 0.6], [mid, (H - 1) / 2, off], (200, 195, 180), "Fabric")
+            continue
         if tile and length > 0.6:
-            t = tuple(int(c * R.uniform(0.9, 1.05)) for c in tile)
             off = line + side * 0.58
             if axis == "z":
-                part(walls, "Wainscot", [0.16, 4.2, length], [off, 2.1, mid], t, "CeramicTiles", shadow=False)
+                part(walls, "Wainscot", [0.16, 4.2, length], [off, 2.1, mid], tint(tile, 0.9, 1.05), "CeramicTiles", shadow=False)
             else:
-                part(walls, "Wainscot", [length, 4.2, 0.16], [mid, 2.1, off], t, "CeramicTiles", shadow=False)
-        if lab in ("main", "cross") and length > 2:
+                part(walls, "Wainscot", [length, 4.2, 0.16], [mid, 2.1, off], tint(tile, 0.9, 1.05), "CeramicTiles", shadow=False)
+        if lab in CORRIDORS and lab != "reception" and length > 2:
             off = line + side * 0.85
             if axis == "z":
                 part(walls, "Handrail", [0.3, 0.3, length - 0.6], [off, 3.4, mid], METAL, "Metal", shadow=False)
             else:
                 part(walls, "Handrail", [length - 0.6, 0.3, 0.3], [mid, 3.4, off], METAL, "Metal", shadow=False)
 
-# deurposten, bovenstuk, deuren en bordjes
+# deurposten, bovenstuk, bordjes, deurbladen
 for dx, dz, ax, w, sign in DOORS:
     if ax == "z":
         wall_piece("z", dx, dz - w / 2, dz + w / 2, DOOR_H, H, color=PLASTER_DIRTY, name="DoorHeader", ext=0)
         for s in (-1, 1):
-            part(walls, "DoorFrame", [1.3, DOOR_H, 0.35], [dx, DOOR_H / 2, dz + s * (w / 2 - 0.17)], (60, 75, 70), "Metal")
-        part(walls, "DoorFrame", [1.3, 0.35, w], [dx, DOOR_H - 0.17, dz], (60, 75, 70), "Metal")
-        sides = [(dx - 1, dz), (dx, dz)]
+            part(walls, "DoorFrame", [1.3, DOOR_H, 0.35], [dx, DOOR_H / 2, dz + s * (w / 2 - 0.17)], FRAME, "Metal")
+        part(walls, "DoorFrame", [1.3, 0.35, w], [dx, DOOR_H - 0.17, dz], FRAME, "Metal")
+        cells = [(dx - 1, dz), (dx, dz)]
+        U, N = (0, 1), (1, 0)
     else:
         wall_piece("x", dz, dx - w / 2, dx + w / 2, DOOR_H, H, color=PLASTER_DIRTY, name="DoorHeader", ext=0)
         for s in (-1, 1):
-            part(walls, "DoorFrame", [0.35, DOOR_H, 1.3], [dx + s * (w / 2 - 0.17), DOOR_H / 2, dz], (60, 75, 70), "Metal")
-        part(walls, "DoorFrame", [w, 0.35, 1.3], [dx, DOOR_H - 0.17, dz], (60, 75, 70), "Metal")
-        sides = [(dx, dz - 1), (dx, dz)]
-    labs = [label(*c) for c in sides]
+            part(walls, "DoorFrame", [0.35, DOOR_H, 1.3], [dx + s * (w / 2 - 0.17), DOOR_H / 2, dz], FRAME, "Metal")
+        part(walls, "DoorFrame", [w, 0.35, 1.3], [dx, DOOR_H - 0.17, dz], FRAME, "Metal")
+        cells = [(dx, dz - 1), (dx, dz)]
+        U, N = (1, 0), (0, 1)
+    labs = [label(*c) for c in cells]
+    # kamerkant = de kant die geen gang is (bij binnenplaatsdeur: de binnenkant)
+    if labs[1] in CORRIDORS or outside(labs[1]):
+        room_s = -1
+    else:
+        room_s = 1
+    In = (N[0] * room_s, N[1] * room_s)
     if sign:
-        # bordje aan de gangkant
-        for i, lab in enumerate(labs):
-            if lab in CORRIDORS:
-                s = -1 if i == 0 else 1
-                if ax == "z":
-                    pos = [dx + s * 0.7, DOOR_H + 1.6, dz]
-                    m = rot(yaw=90 if s < 0 else -90)
-                else:
-                    pos = [dx, DOOR_H + 1.6, dz + s * 0.7]
-                    m = rot(yaw=180 if s > 0 else 0)
-                part(decor, "RoomSign", [4, 1.2, 0.15], pos, (35, 60, 55), "SmoothPlastic", m=m,
-                     children=[text_gui(sign, "Front", (200, 205, 190), "SpecialElite", 1)])
-    # deurblad: open, half open of eruit gevallen
-    leaf_w = w / (2 if w >= 7 else 1)
+        p = [dx - In[0] * 0.7, DOOR_H + 1.6, dz - In[1] * 0.7]
+        yaw = math.degrees(math.atan2(In[0], In[1]))
+        part(decor, "RoomSign", [4, 1.2, 0.15], p, (35, 60, 55), "SmoothPlastic", m=rot(yaw=yaw),
+             children=[text_gui(sign, "Front", (200, 205, 190), "SpecialElite", 1)])
+    leaf_w = w / 2 if w >= 8 else w
     roll = R.random()
-    room_side = 1 if labs[1] not in CORRIDORS else -1
-    if roll < 0.75:
-        hinge_s = R.choice((-1, 1))
-        angle = R.uniform(60, 105)
-        if ax == "z":
-            # blad staat vanaf het scharnier schuin de kamer in
-            hinge = [dx + room_side * 0.4, 0, dz + hinge_s * (w / 2 - 0.3)]
-            dirx, dirz = room_side * math.sin(math.radians(angle)), -hinge_s * math.cos(math.radians(angle))
-            cx, cz = hinge[0] + dirx * leaf_w / 2, hinge[2] + dirz * leaf_w / 2
-            yaw = math.degrees(math.atan2(dirx, dirz))
-        else:
-            hinge = [dx + hinge_s * (w / 2 - 0.3), 0, dz + room_side * 0.4]
-            dirx, dirz = -hinge_s * math.cos(math.radians(angle)), room_side * math.sin(math.radians(angle))
-            cx, cz = hinge[0] + dirx * leaf_w / 2, hinge[2] + dirz * leaf_w / 2
-            yaw = math.degrees(math.atan2(dirx, dirz))
-        part(props, "DoorLeaf", [0.3, DOOR_H - 0.4, leaf_w - 0.2], [cx, (DOOR_H - 0.4) / 2, cz],
-                    (88, 108, 100), "Metal", m=rot(yaw=yaw))
-    elif roll < 0.9:
-        # deur ligt op de grond
-        if ax == "z":
-            pos = [dx + room_side * (DOOR_H / 2 + 1), 0.3, dz + R.uniform(-1, 1)]
-        else:
-            pos = [dx + R.uniform(-1, 1), 0.3, dz + room_side * (DOOR_H / 2 + 1)]
-        part(props, "DoorLeafFallen", [DOOR_H - 0.4, 0.3, leaf_w - 0.2], pos, (88, 108, 100), "Metal", m=rot(yaw=R.uniform(0, 360), roll=R.uniform(-4, 4)))
+    if roll < 0.7:
+        s = R.choice((-1, 1))
+        ang = math.radians(R.uniform(60, 105))
+        jx, jz = dx + U[0] * s * (w / 2 - 0.3) + In[0] * 0.4, dz + U[1] * s * (w / 2 - 0.3) + In[1] * 0.4
+        d = (-s * U[0] * math.cos(ang) + In[0] * math.sin(ang), -s * U[1] * math.cos(ang) + In[1] * math.sin(ang))
+        part(props, "DoorLeaf", [0.3, DOOR_H - 0.4, leaf_w - 0.2], [jx + d[0] * leaf_w / 2, (DOOR_H - 0.4) / 2, jz + d[1] * leaf_w / 2],
+             (88, 108, 100), "Metal", m=rot(yaw=math.degrees(math.atan2(d[0], d[1]))))
+    elif roll < 0.85:
+        part(props, "DoorLeafFallen", [DOOR_H - 0.4, 0.3, leaf_w - 0.2],
+             [dx + In[0] * (DOOR_H / 2 + 1) + R.uniform(-1, 1) * U[0], 0.3, dz + In[1] * (DOOR_H / 2 + 1) + R.uniform(-1, 1) * U[1]],
+             (88, 108, 100), "Metal", m=rot(yaw=R.uniform(0, 360), roll=R.uniform(-4, 4)))
 
-# vloeren en plafonds per gebied
+# vloeren, plafonds, dak (per gebied)
 FLOOR_COLOR = {"corridor": FLOOR_CORRIDOR, "hall": (105, 102, 95), "patient": FLOOR_ROOM, "nurse": FLOOR_ROOM, "bath": TILE_WHITE,
-               "surgery": (150, 160, 158), "morgue": FLOOR_DARK, "ward": FLOOR_ROOM, "records": (95, 88, 80), "storage": (90, 88, 82), "office": (95, 80, 65)}
-FLOOR_MAT = {"records": "Concrete", "storage": "Concrete", "office": "WoodPlanks", "hall": "Marble"}
+               "surgery": (150, 160, 158), "morgue": FLOOR_DARK, "ward": FLOOR_ROOM, "records": (95, 88, 80), "storage": (90, 88, 82),
+               "office": (95, 80, 65), "lab": (140, 145, 140), "cell": (170, 165, 150), "xray": (120, 125, 125), "dayroom": (100, 85, 70),
+               "boiler": (70, 66, 60), "collapsed": (100, 98, 92), "chapel": (85, 65, 50), "cafeteria": (120, 115, 100), "yard": (45, 50, 35)}
+FLOOR_MAT = {"records": "Concrete", "storage": "Concrete", "office": "WoodPlanks", "hall": "Marble", "boiler": "Concrete",
+             "collapsed": "Concrete", "chapel": "WoodPlanks", "dayroom": "WoodPlanks", "cell": "Fabric", "yard": "Ground"}
 holes = []
 for name, x1, z1, x2, z2, kind in AREAS:
-    if name in ("cross",):
-        # alleen de stukken buiten de hoofdgang
+    # stukken waar een gang overheen ligt overslaan (gangen hebben voorrang)
+    rects = [(x1, z1, x2, z2)]
+    if name in ("crossA", "crossB", "crossC"):
         rects = [(x1, z1, -5, z2), (5, z1, x2, z2)]
-    else:
-        rects = [(x1, z1, x2, z2)]
+        if name in ("crossA", "crossB"):
+            rects = [(-120, z1, -5, z2), (5, z1, 120, z2)]
+    if name in ("sideW", "sideE"):
+        pass
     for rx1, rz1, rx2, rz2 in rects:
         w, d = rx2 - rx1, rz2 - rz1
         cx, cz = (rx1 + rx2) / 2, (rz1 + rz2) / 2
-        part(floors, "Floor_" + name, [w, 1, d], [cx, -0.5, cz], FLOOR_COLOR[kind], FLOOR_MAT.get(kind, "CeramicTiles"))
-        # plafond in tegels van ~10 studs; sommige zijn ingestort
+        part(floors, "Floor", [w, 1, d], [cx, -0.5, cz], tint(FLOOR_COLOR[kind], 0.9, 1.05), FLOOR_MAT.get(kind, "CeramicTiles"))
+        if kind == "yard":
+            continue
         nx, nz = max(1, round(w / 10)), max(1, round(d / 10))
         tw, td = w / nx, d / nz
         for i in range(nx):
             for j in range(nz):
                 tx, tz = rx1 + tw * (i + 0.5), rz1 + td * (j + 0.5)
-                if R.random() < 0.12 and name not in ("reception",):
+                if R.random() < (0.35 if kind == "collapsed" else 0.1) and name != "reception":
                     holes.append((tx, tz, tw, td))
                     continue
-                c = tuple(int(v * R.uniform(0.8, 1.0)) for v in (140, 140, 132))
-                part(ceilings, "CeilingTile", [tw, 0.6, td], [tx, H + 0.3, tz], c, "Plaster")
-# dicht "plenum" boven het systeemplafond
-part(ceilings, "Plenum", [X1 - X0 + 4, 1, Z1 - Z0 + 4], [0, H + 6.5, (Z0 + Z1) / 2], (40, 40, 40), "Concrete")
-part(ceilings, "Roof", [X1 - X0 + 6, 1, Z1 - Z0 + 6], [0, H + 8, (Z0 + Z1) / 2], (35, 35, 35), "Concrete")
-part(floors, "Ground", [400, 2, 400], [0, -2, -15], (40, 38, 34), "Ground")
+                part(ceilings, "CeilingTile", [tw, 0.6, td], [tx, H + 0.3, tz], tint((140, 140, 132), 0.8, 1.0), "Plaster")
+        part(ceilings, "Plenum", [w + 1, 1, d + 1], [cx, H + 6.5, cz], (40, 40, 40), "Concrete")
+part(floors, "Ground", [700, 2, 600], [0, -2, -70], (40, 38, 34), "Ground")
 
-# ingestorte plafondtegels: puin + hangende tegel + kabels
 for tx, tz, tw, td in holes:
     for _ in range(R.randint(3, 6)):
         s = [R.uniform(1.5, 4), R.uniform(0.2, 0.5), R.uniform(1.5, 4)]
@@ -400,95 +518,97 @@ FLICKER = ["Flicker"]
 
 
 def fluorescent(x, z, along_x=True, state=None):
-    state = state or R.choices(["on", "flicker", "dead"], weights=[3, 4, 3])[0]
+    state = state or R.choices(["on", "flicker", "dead"], weights=[3, 4, 3.5])[0]
     size = [5, 0.35, 1.4] if along_x else [1.4, 0.35, 5]
     part(lights_g, "LightHousing", [size[0] + 0.4, 0.3, size[2] + 0.4], [x, H - 0.15, z], (110, 112, 105), "Metal")
     if state == "dead":
-        # soms half naar beneden gevallen
         if R.random() < 0.35:
-            part(lights_g, "LightFallen", size, [x, H - 2.2, z], (60, 62, 58), "Glass", m=rot(roll=R.choice((-35, 35)) if along_x else 0, pitch=0 if along_x else R.choice((-35, 35))), collide=False)
+            part(lights_g, "LightFallen", size, [x, H - 2.2, z], (60, 62, 58), "Glass",
+                 m=rot(roll=R.choice((-35, 35)) if along_x else 0, pitch=0 if along_x else R.choice((-35, 35))), collide=False)
         else:
             part(lights_g, "LightDead", size, [x, H - 0.45, z], (60, 62, 58), "Glass", collide=False)
         return
-    part(lights_g, "Fluorescent", size, [x, H - 0.45, z], (215, 235, 225), "Neon", transparency=0.1, collide=False, shadow=False,
-         tags=FLICKER if state == "flicker" else None,
-         children=[light("SurfaceLight", (205, 240, 220), 1.4 if state == "on" else 1.8, 20, {"Face": "Bottom", "Angle": 120})] if state else None)
+    kids = [light("SurfaceLight", (205, 240, 220), 1.4 if state == "on" else 1.8, 20, {"Face": "Bottom", "Angle": 120}, shadows=R.random() < 0.4)]
     if state == "flicker":
-        # Flicker.server zoekt een PointLight; geef er een zwakke bij
-        lights_g.node["children"][-1]["children"].append(light("PointLight", (200, 235, 215), 0.3, 8))
+        kids.append(light("PointLight", (200, 235, 215), 0.3, 8, shadows=False))
+    part(lights_g, "Fluorescent", size, [x, H - 0.45, z], (215, 235, 225), "Neon", transparency=0.1, collide=False, shadow=False,
+         tags=FLICKER if state == "flicker" else None, children=kids)
 
 
 def emergency(x, y, z):
     part(lights_g, "EmergencyLight", [1.2, 0.5, 0.5], [x, y, z], (200, 20, 20), "Neon", collide=False, shadow=False,
-         tags=FLICKER if R.random() < 0.4 else None, children=[light("PointLight", (255, 30, 20), 0.9, 14)])
+         tags=FLICKER if R.random() < 0.4 else None, children=[light("PointLight", (255, 30, 20), 0.9, 14, shadows=False)])
 
 
-# gangen: lampen om de ~11 studs
-for z in range(-64, 8, 11):
-    fluorescent(0, z, along_x=False)
-for x in list(range(-55, -6, 11)) + list(range(10, 60, 11)):
-    fluorescent(x, -25, along_x=True)
-# hal: een paar, de meeste kapot
+for name, x1, z1, x2, z2, kind in FIXED:
+    if kind != "corridor":
+        continue
+    if x2 - x1 > z2 - z1:
+        for x in range(x1 + 6, x2 - 3, 12):
+            if not -6 < x < 6:
+                fluorescent(x, (z1 + z2) / 2, True)
+    else:
+        for z in range(z1 + 6, z2 - 3, 12):
+            fluorescent((x1 + x2) / 2, z, False)
 for x, z in ((-12, 18), (12, 18), (-12, 32), (12, 32), (0, 25)):
     fluorescent(x, z, True, R.choice(["dead", "flicker", "dead"]))
-# kamers
-for name, x1, z1, x2, z2, kind in AREAS:
-    if kind in ("corridor", "hall"):
-        continue
+for r in rooms:
+    x1, z1, x2, z2 = r["rect"]
     w, d = x2 - x1, z2 - z1
-    n = max(1, round(w * d / 220))
+    n = max(1, round(w * d / 260))
     for i in range(n):
         if w >= d:
             fluorescent(x1 + w * (i + 0.5) / n, (z1 + z2) / 2, True)
         else:
             fluorescent((x1 + x2) / 2, z1 + d * (i + 0.5) / n, False)
-# noodlampjes boven een paar deuren
 for dx, dz, ax, w, sign in DOORS:
-    if sign and R.random() < 0.5:
-        labs = [label(dx - 1, dz), label(dx, dz)] if ax == "z" else [label(dx, dz - 1), label(dx, dz)]
-        s = -1 if labs[0] in CORRIDORS else 1
+    if sign and R.random() < 0.3:
         if ax == "z":
+            s = -1 if label(dx - 1, dz) in CORRIDORS else 1
             emergency(dx + s * 0.8, H - 1.2, dz + w / 2 + 1)
         else:
+            s = -1 if label(dx, dz - 1) in CORRIDORS else 1
             emergency(dx + w / 2 + 1, H - 1.2, dz + s * 0.8)
 
 # ---------------------------------------------------------------- ramen (dichtgetimmerd, maanlicht)
+NO_WINDOWS = {"morgue", "cell", "boiler", "surgery"}
 for axis, line, a, b, sa, sb in segments:
-    if sa is not None and sb is not None:
+    if outside(sa) == outside(sb):
         continue
-    if (sa or sb) == "morgue":  # daar staat de muur met lijkenladen
+    inside = sb if outside(sa) else sa
+    if KIND.get(inside) in NO_WINDOWS:
         continue
-    s_in = -1 if sa is not None else 1  # richting naar binnen
+    s_in = 1 if outside(sa) else -1
     length = b - a
     if length < 8:
         continue
-    n = int((length - 4) // 13)
+    n = int((length - 4) // 14)
     for i in range(n):
         t = a + 4 + (length - 8) * (i + 0.5) / max(n, 1)
         if axis == "z":
             pos = [line + s_in * 0.62, 7.5, t]
-            yaw = 90
+            m = rot(yaw=90)
         else:
             pos = [t, 7.5, line + s_in * 0.62]
-            yaw = 0
-        m = rot(yaw=yaw)
+            m = rot(yaw=0)
         part(decor, "WindowGlass", [5, 5, 0.1], pos, (25, 30, 38), "Glass", m=m, transparency=0.2, collide=False)
         part(decor, "WindowFrame", [5.6, 0.4, 0.3], local(pos, m, [0, 2.7, 0]), (60, 60, 55), "Metal", m=m)
         part(decor, "WindowFrame", [5.6, 0.4, 0.3], local(pos, m, [0, -2.7, 0]), (60, 60, 55), "Metal", m=m)
-        for k in range(R.randint(2, 4)):
+        for _ in range(R.randint(2, 4)):
             part(decor, "Board", [6.2, 0.7, 0.25], local(pos, m, [0, R.uniform(-2, 2), 0.25 * s_in]),
                  (85, 66, 50), "WoodPlanks", m=matmul(m, rot(roll=R.uniform(-18, 18))))
-        if R.random() < 0.55:
-            # maanlicht dat door de planken valt
+        if R.random() < 0.35:
             lp = [pos[0] + (s_in * 0.6 if axis == "z" else 0), 8.5, pos[2] + (s_in * 0.6 if axis == "x" else 0)]
-            face = "Right" if (axis == "z" and s_in > 0) else "Left" if axis == "z" else ("Back" if s_in > 0 else "Front")
+            face = ("Right" if s_in > 0 else "Left") if axis == "z" else ("Back" if s_in > 0 else "Front")
             part(lights_g, "MoonLight", [1, 1, 1], lp, (0, 0, 0), transparency=1, collide=False, shadow=False,
-                 children=[light("SpotLight", (120, 140, 200), 1.6, 26, {"Face": face, "Angle": 50})])
+                 children=[light("SpotLight", (120, 140, 200), 1.6, 26, {"Face": face, "Angle": 50}, shadows=False)])
 
-# ---------------------------------------------------------------- props
+
+# ---------------------------------------------------------------- props (bouwstenen)
 def bed(g, x, z, yaw, wrecked=False, body=False):
     m = rot(yaw=yaw, roll=R.uniform(-6, 6) if wrecked else 0)
     base = [x, 0, z]
+
     def p(name, size, off, col, mat="Metal", **kw):
         return part(g, name, size, local(base, m, off), col, mat, m=m, **kw)
     p("BedFrame", [3.4, 0.35, 7.2], [0, 2.1, 0], METAL)
@@ -501,50 +621,46 @@ def bed(g, x, z, yaw, wrecked=False, body=False):
     p("Rail", [0.12, 0.12, 3.5], [1.65, 3.3, -1], METAL)
     if R.random() < 0.6:
         p("Pillow", [2.2, 0.5, 1.2], [0, 3.1, -2.6], FABRIC, "Fabric")
-    if body or R.random() < 0.25:
-        # iets onder het laken...
-        p("SheetBody", [1.6, 0.8, 5.2], [0, 3.2, 0.4], (190, 185, 170), "Fabric")
-        p("SheetHead", [1.1, 0.8, 1.1], [0, 3.25, -2.3], (190, 185, 170), "Fabric")
+    if body or R.random() < 0.2:
+        p("SheetBody", [1.6, 0.8, 5.2], [0, 3.2, 0.4], SHEET, "Fabric")
+        p("SheetHead", [1.1, 0.8, 1.1], [0, 3.25, -2.3], SHEET, "Fabric")
     if R.random() < 0.3:
         p("BloodStain", [1.6, 0.05, 1.8], [R.uniform(-0.6, 0.6), 2.92, R.uniform(-1, 1)], BLOOD, "SmoothPlastic", collide=False, shadow=False)
+    if R.random() < 0.15:
+        p("Restraint", [3.6, 0.2, 0.3], [0, 2.95, 1], (90, 70, 50), "Leather", collide=False)
+        p("Restraint", [3.6, 0.2, 0.3], [0, 2.95, -1.2], (90, 70, 50), "Leather", collide=False)
 
 
 def iv_stand(g, x, z):
-    tilt = R.uniform(-4, 4)
-    m = rot(roll=tilt)
     part(g, "IVBase", [1.6, 0.2, 1.6], [x, 0.15, z], METAL_DARK, "Metal")
-    part(g, "IVPole", [0.15, 6.5, 0.15], [x, 3.4, z], METAL, "Metal", m=m)
+    part(g, "IVPole", [0.15, 6.5, 0.15], [x, 3.4, z], METAL, "Metal", m=rot(roll=R.uniform(-4, 4)))
     part(g, "IVHook", [1.4, 0.12, 0.12], [x, 6.6, z], METAL, "Metal")
     part(g, "IVBag", [0.6, 1, 0.25], [x + 0.6, 5.9, z], (200, 190, 120), "Glass", transparency=0.3, collide=False)
 
 
-def curtain(g, x, z, length, along_x, color=CURTAIN):
-    if along_x:
-        part(g, "CurtainRail", [length, 0.15, 0.15], [x, H - 0.8, z], METAL, "Metal", collide=False)
-        n = R.randint(2, 4)
-        for i in range(n):
-            w = length / n * R.uniform(0.6, 0.95)
-            part(g, "Curtain", [w, 8.5, 0.1], [x - length / 2 + length * (i + 0.5) / n, H - 5.2, z + R.uniform(-0.2, 0.2)],
-                 tuple(int(c * R.uniform(0.8, 1.0)) for c in color), "Fabric", m=rot(yaw=R.uniform(-8, 8)), collide=False)
-    else:
-        part(g, "CurtainRail", [0.15, 0.15, length], [x, H - 0.8, z], METAL, "Metal", collide=False)
-        n = R.randint(2, 4)
-        for i in range(n):
-            w = length / n * R.uniform(0.6, 0.95)
-            part(g, "Curtain", [0.1, 8.5, w], [x + R.uniform(-0.2, 0.2), H - 5.2, z - length / 2 + length * (i + 0.5) / n],
-                 tuple(int(c * R.uniform(0.8, 1.0)) for c in color), "Fabric", m=rot(yaw=R.uniform(-8, 8)), collide=False)
+def curtain_line(g, p1, p2, color=CURTAIN):
+    dx, dz = p2[0] - p1[0], p2[1] - p1[1]
+    L = math.hypot(dx, dz)
+    yaw = math.degrees(math.atan2(dx, dz))
+    m = rot(yaw=yaw)
+    mid = [(p1[0] + p2[0]) / 2, H - 0.8, (p1[1] + p2[1]) / 2]
+    part(g, "CurtainRail", [0.15, 0.15, L], mid, METAL, "Metal", m=m, collide=False)
+    n = R.randint(2, 4)
+    for i in range(n):
+        t = (i + 0.5) / n
+        w = L / n * R.uniform(0.6, 0.95)
+        c = [p1[0] + dx * t, H - 5.2, p1[1] + dz * t]
+        part(g, "Curtain", [0.1, 8.5, w], c, tint(color, 0.8, 1.0), "Fabric", m=matmul(m, rot(yaw=R.uniform(-8, 8))), collide=False)
 
 
 def wheelchair(g, x, z, yaw, tipped=False):
     m = rot(yaw=yaw, roll=80 if tipped else 0)
     base = [x, 1.4 if tipped else 0, z]
-    def p(name, size, off, col, mat="Metal", **kw):
-        return part(g, name, size, local(base, m, off), col, mat, m=m, **kw)
-    p("WCSeat", [2, 0.25, 2], [0, 1.8, 0], (40, 40, 45), "Fabric")
-    p("WCBack", [2, 2, 0.2], [0, 2.9, 1], (40, 40, 45), "Fabric")
+    part(g, "WCSeat", [2, 0.25, 2], local(base, m, [0, 1.8, 0]), (40, 40, 45), "Fabric", m=m)
+    part(g, "WCBack", [2, 2, 0.2], local(base, m, [0, 2.9, 1]), (40, 40, 45), "Fabric", m=m)
     for s in (-1.15, 1.15):
-        part(g, "WCWheel", [0.15, 2.8, 2.8], local(base, m, [s, 1.4, 0.3]), METAL_DARK, "Metal", m=matmul(m, rot()), shape="Cylinder")
-        p("WCFront", [0.15, 0.7, 0.7], [s * 0.85, 0.35, -1], METAL_DARK, shape="Cylinder")
+        part(g, "WCWheel", [0.15, 2.8, 2.8], local(base, m, [s, 1.4, 0.3]), METAL_DARK, "Metal", m=m, shape="Cylinder")
+        part(g, "WCFront", [0.15, 0.7, 0.7], local(base, m, [s * 0.85, 0.35, -1]), METAL_DARK, "Metal", m=m, shape="Cylinder")
 
 
 def cabinet(g, x, z, yaw, w=3, h=7, d=1.6, col=(130, 140, 135), open_door=False):
@@ -563,28 +679,26 @@ def papers(g, x, z, n, spread=4):
              (200, 195, 175), "SmoothPlastic", m=rot(yaw=R.uniform(0, 360)), collide=False, shadow=False)
 
 
-def blood(g, x, y, z, w, d, wall_axis=None):
-    if wall_axis is None:
-        part(g, "Blood", [w, 0.04, d], [x, 0.03, z], BLOOD, "SmoothPlastic", m=rot(yaw=R.uniform(0, 360)), collide=False, shadow=False)
-    elif wall_axis == "z":
-        part(g, "BloodWall", [0.04, d, w], [x, y, z], BLOOD, "SmoothPlastic", m=rot(pitch=R.uniform(-20, 20)), collide=False, shadow=False)
-    else:
-        part(g, "BloodWall", [w, d, 0.04], [x, y, z], BLOOD, "SmoothPlastic", m=rot(roll=R.uniform(-20, 20)), collide=False, shadow=False)
+def blood(g, x, z, w, d):
+    part(g, "Blood", [w, 0.04, d], [x, 0.03, z], BLOOD, "SmoothPlastic", m=rot(yaw=R.uniform(0, 360)), collide=False, shadow=False)
 
 
-def writing(g, text, pos, yaw, w=10, h=3):
-    part(g, "WallWriting", [w, h, 0.05], pos, (0, 0, 0), transparency=1, m=rot(yaw=yaw), collide=False, shadow=False,
-         children=[text_gui(text, "Back", (110, 8, 8), "Creepster", 1)])
-
-
-def chair(g, x, z, yaw, fallen=False):
+def chair(g, x, z, yaw, fallen=False, col=(60, 90, 110)):
     m = rot(yaw=yaw, roll=90 if fallen else 0)
     base = [x, 1.0 if fallen else 0, z]
-    col = (60, 90, 110)
     part(g, "ChairSeat", [1.8, 0.25, 1.8], local(base, m, [0, 1.8, 0]), col, "Plastic", m=m)
     part(g, "ChairBack", [1.8, 1.8, 0.2], local(base, m, [0, 2.8, 0.8]), col, "Plastic", m=m)
     for sx in (-0.8, 0.8):
         part(g, "ChairLeg", [0.12, 1.8, 0.12], local(base, m, [sx, 0.9, 0]), METAL_DARK, "Metal", m=m)
+
+
+def table(g, x, z, yaw, w=6, d=3, col=(110, 100, 85), mat="Wood"):
+    m = rot(yaw=yaw)
+    base = [x, 0, z]
+    part(g, "Table", [w, 0.3, d], local(base, m, [0, 3, 0]), col, mat, m=m)
+    for sx in (-w / 2 + 0.3, w / 2 - 0.3):
+        for sz in (-d / 2 + 0.3, d / 2 - 0.3):
+            part(g, "TableLeg", [0.25, 3, 0.25], local(base, m, [sx, 1.5, sz]), METAL_DARK, "Metal", m=m)
 
 
 def debris(g, x, z, n, spread=3):
@@ -601,14 +715,373 @@ def gurney(g, x, z, yaw, body=True):
     for sx in (-1.1, 1.1):
         for sz in (-2.8, 2.8):
             part(g, "GurneyLeg", [0.15, 2.6, 0.15], local(base, m, [sx, 1.4, sz]), METAL_DARK, "Metal", m=m)
-            part(g, "Caster", [0.3, 0.4, 0.4], local(base, m, [sx, 0.2, sz]), (25, 25, 25), "Rubber", m=m, shape="Cylinder")
     if body:
-        part(g, "SheetBody", [1.6, 0.9, 4.8], local(base, m, [0, 3.4, 0.4]), (195, 192, 180), "Fabric", m=m)
-        part(g, "SheetHead", [1.1, 0.9, 1.1], local(base, m, [0, 3.45, -2.4]), (195, 192, 180), "Fabric", m=m)
-        part(g, "Toe", [1.5, 0.05, 0.8], local(base, m, [0, 3.0, 3.2]), (180, 175, 160), "SmoothPlastic", m=m, collide=False)
+        part(g, "SheetBody", [1.6, 0.9, 4.8], local(base, m, [0, 3.4, 0.4]), SHEET, "Fabric", m=m)
+        part(g, "SheetHead", [1.1, 0.9, 1.1], local(base, m, [0, 3.45, -2.4]), SHEET, "Fabric", m=m)
 
 
-# --- receptie
+def tree(g, x, z, h):
+    part(g, "Trunk", [1.4, h, 1.4], [x, h / 2 - 0.3, z], (40, 32, 26), "Wood", m=rot(roll=R.uniform(-6, 6), pitch=R.uniform(-6, 6)))
+    for _ in range(R.randint(4, 7)):
+        L = R.uniform(3, 7)
+        y = R.uniform(h * 0.45, h * 0.95)
+        a = R.uniform(0, 360)
+        tilt = R.uniform(35, 70)
+        m = rot(yaw=a, roll=tilt)
+        part(g, "Branch", [0.45, L, 0.45], local([x, y, z], m, [0, L / 2, 0]), (40, 32, 26), "Wood", m=m, collide=False)
+
+
+# ---------------------------------------------------------------- kamers inrichten
+class Room:
+    """Lokaal assenstelsel: u langs de deurmuur (0..W), v de kamer in (0..D). Deur op u = W/2."""
+
+    def __init__(self, r):
+        x1, z1, x2, z2 = r["rect"]
+        wall = r["wall"]
+        if wall == "z1":
+            self.o, self.U, self.In, self.W, self.D = (x1, z1), (1, 0), (0, 1), x2 - x1, z2 - z1
+        elif wall == "z2":
+            self.o, self.U, self.In, self.W, self.D = (x1, z2), (1, 0), (0, -1), x2 - x1, z2 - z1
+        elif wall == "x1":
+            self.o, self.U, self.In, self.W, self.D = (x1, z1), (0, 1), (1, 0), z2 - z1, x2 - x1
+        else:
+            self.o, self.U, self.In, self.W, self.D = (x2, z1), (0, 1), (-1, 0), z2 - z1, x2 - x1
+        self.r = r
+        self.g = props.sub(r["kind"] + "_" + r["name"])
+        # yaw waarbij lokaal -Z naar de achtermuur wijst
+        self.back = math.degrees(math.atan2(-self.In[0], -self.In[1]))
+        self.face_door = self.back + 180
+        self.left = math.degrees(math.atan2(self.U[0], self.U[1]))  # -Z naar u = 0
+        self.right = self.left + 180  # -Z naar u = W
+
+    def p(self, u, v):
+        return (self.o[0] + self.U[0] * u + self.In[0] * v, self.o[1] + self.U[1] * u + self.In[1] * v)
+
+    def wall_text(self, text, v_back=True):
+        u = R.uniform(self.W * 0.25, self.W * 0.75)
+        x, z = self.p(u, self.D - 0.6)
+        part(decor, "WallWriting", [min(12, self.W - 3), 2.8, 0.05], [x, R.uniform(6, 9), z], (0, 0, 0), transparency=1,
+             m=rot(yaw=self.back), collide=False, shadow=False, children=[text_gui(text, "Back", (110, 8, 8), "Creepster", 1)])
+
+
+def fill_patient(rm):
+    n = 1 if rm.W < 16 else 2
+    for i in range(n):
+        u = rm.W * (i + 0.5) / n
+        x, z = rm.p(u, rm.D - 4.3)
+        bed(rm.g, x, z, rm.back, wrecked=R.random() < 0.5)
+        ix, iz = rm.p(u + 2.6, rm.D - 2)
+        iv_stand(rm.g, ix, iz)
+    if n == 2:
+        curtain_line(rm.g, rm.p(rm.W / 2, rm.D - 9), rm.p(rm.W / 2, rm.D - 0.5))
+    x, z = rm.p(1.4, 3)
+    cabinet(rm.g, x, z, rm.left + 180, 2.5, 4, 1.4, (150, 150, 140), open_door=R.random() < 0.5)
+    if R.random() < 0.4:
+        x, z = rm.p(R.uniform(3, rm.W - 3), R.uniform(5, rm.D - 9))
+        wheelchair(rm.g, x, z, R.uniform(0, 360), tipped=R.random() < 0.4)
+
+
+def fill_ward(rm):
+    for v in range(6, int(rm.D) - 3, 8):
+        for side in (0, 1):
+            u = 4.2 if side == 0 else rm.W - 4.2
+            x, z = rm.p(u, v)
+            bed(rm.g, x, z, rm.left if side == 0 else rm.right, wrecked=R.random() < 0.4, body=R.random() < 0.25)
+            curtain_line(rm.g, rm.p(0.5 if side == 0 else rm.W - 0.5, v + 4), rm.p(8 if side == 0 else rm.W - 8, v + 4))
+    if R.random() < 0.6:
+        x, z = rm.p(rm.W / 2, rm.D / 2)
+        wheelchair(rm.g, x, z, R.uniform(0, 360))
+
+
+def fill_office(rm):
+    x, z = rm.p(rm.W / 2, rm.D * 0.6)
+    table(rm.g, x, z, rm.back, 6, 3, (80, 60, 45))
+    cx, cz = rm.p(rm.W / 2, rm.D * 0.6 + 2.5)
+    chair(rm.g, cx, cz, rm.back + 180, fallen=R.random() < 0.5, col=(50, 40, 35))
+    for k in range(int(rm.W // 4)):
+        x, z = rm.p(2 + k * 3.4, rm.D - 1)
+        if 2 + k * 3.4 < rm.W - 1.5:
+            cabinet(rm.g, x, z, rm.face_door, 3, R.choice((6, 7)), 1.6, open_door=R.random() < 0.3)
+    x, z = rm.p(rm.W / 2 + 2, rm.D * 0.6)
+    part(rm.g, "DeskLamp", [0.6, 1.4, 0.6], [x, 3.9, z], (40, 40, 40), "Metal", tags=FLICKER if R.random() < 0.6 else None,
+         children=[light("PointLight", (255, 200, 120), 0.7, 12, shadows=False)] if R.random() < 0.6 else None)
+
+
+def fill_nurse(rm):
+    x, z = rm.p(rm.W / 2, rm.D * 0.5)
+    m = rot(yaw=rm.back)
+    part(rm.g, "Counter", [rm.W * 0.7, 3.6, 2], [x, 1.8, z], (120, 125, 118), "Plastic", m=m)
+    part(rm.g, "CounterTop", [rm.W * 0.7 + 0.6, 0.3, 2.6], [x, 3.75, z], (90, 95, 90), "Plastic", m=m)
+    for k in range(3):
+        cx, cz = rm.p(2 + k * 3.2, rm.D - 1)
+        cabinet(rm.g, cx, cz, rm.face_door, 2.8, 6, 1.6, open_door=k == 1)
+    cx, cz = rm.p(rm.W / 2, rm.D * 0.5 + 2.5)
+    chair(rm.g, cx, cz, rm.back, fallen=True)
+
+
+def fill_bath(rm):
+    n = max(2, int((rm.W - 2) // 4.2))
+    for i in range(n):
+        u = 1.5 + 4.2 * (i + 0.5)
+        if u > rm.W - 1:
+            break
+        x, z = rm.p(u - 2.1, rm.D - 3)
+        part(rm.g, "StallWall", [0.2, 7, 6], [x, 3.6, z], (110, 120, 115), "Plastic", m=rot(yaw=rm.back))
+        x, z = rm.p(u, rm.D - 1.2)
+        part(rm.g, "Toilet", [1.6, 1.6, 2.2], [x, 0.8, z], (190, 190, 185), "Marble", m=rot(yaw=rm.back))
+        if R.random() < 0.7:
+            x, z = rm.p(u, rm.D - 6.1)
+            part(rm.g, "StallDoor", [3.6, 6, 0.15], [x, 3.4, z], (110, 120, 115), "Plastic", m=rot(yaw=rm.back + R.uniform(-70, 0)))
+    for k in range(int((rm.D - 8) // 5)):
+        v = 3 + k * 5
+        x, z = rm.p(0.9, v)
+        part(rm.g, "Sink", [1.6, 0.6, 2.2], [x, 3.2, z], (190, 190, 185), "Marble", m=rot(yaw=rm.left))
+        mx, mz = rm.p(0.56, v)
+        # Front-kant van de spiegel kijkt de kamer in (tag Mirror: Stijns spiegel-script)
+        part(rm.g, "Mirror", [2.6, 3, 0.1], [mx, 6.3, mz], (30, 35, 40) if R.random() < 0.6 else (160, 170, 175), "Glass",
+             m=rot(yaw=rm.left + 180), transparency=0.1, collide=False, tags=["Mirror"])
+
+
+def fill_storage(rm):
+    for k in range(int((rm.W - 2) // 3.2)):
+        x, z = rm.p(1.8 + k * 3.2, rm.D - 1.8)
+        part(rm.g, "Crate", [3, 3, 3], [x, 1.5, z], (110, 85, 60), "WoodPlanks", m=rot(yaw=R.uniform(-8, 8)))
+        if R.random() < 0.5:
+            part(rm.g, "Crate", [3, 3, 3], [x, 4.5, z], (110, 85, 60), "WoodPlanks", m=rot(yaw=R.uniform(-8, 8)))
+    for v in range(3, int(rm.D) - 4, 3):
+        x, z = rm.p(1, v)
+        part(rm.g, "Shelf", [1.6, 8, 2.8], [x, 4, z], (90, 92, 88), "Metal", m=rot(yaw=rm.left))
+        for lvl in range(3):
+            if R.random() < 0.7:
+                part(rm.g, "Box", [1.2, 1.2, 1.4], [x, 1.2 + lvl * 2.4, z], (150, 120, 85), "Cardboard", m=rot(yaw=R.uniform(-15, 15)))
+    if R.random() < 0.5:
+        x, z = rm.p(rm.W / 2 + 2, rm.D / 2)
+        gurney(rm.g, x, z, R.uniform(0, 360), body=False)
+
+
+def fill_records(rm):
+    for k in range(int((rm.W - 3) // 5.5)):
+        u = 3 + k * 5.5
+        x, z = rm.p(u, rm.D * 0.55)
+        part(rm.g, "Shelf", [1.6, 9, rm.D - 9], [x, 4.5, z], (90, 92, 88), "Metal", m=rot(yaw=rm.back))
+        for lvl in range(4):
+            for b in range(int((rm.D - 9) // 2)):
+                if R.random() < 0.7:
+                    bx, bz = rm.p(u, 5 + b * 2)
+                    part(rm.g, "Box", [1.4, 1.4, 1.6], [bx, 1 + lvl * 2.2 + 0.75, bz], (150, 120, 85), "Cardboard", m=rot(yaw=R.uniform(-10, 10)))
+    x, z = rm.p(rm.W / 2, rm.D / 2)
+    papers(rm.g, x, z, 18, min(rm.W, rm.D) / 2.5)
+
+
+def fill_lab(rm):
+    for side in (0, 1):
+        u = 1.5 if side == 0 else rm.W - 1.5
+        x, z = rm.p(u, rm.D * 0.55)
+        part(rm.g, "LabBench", [2.6, 3.4, rm.D - 8], [x, 1.7, z], (60, 62, 60), "Slate", m=rot(yaw=rm.back))
+        for k in range(int((rm.D - 9) // 1.6)):
+            if R.random() < 0.6:
+                jx, jz = rm.p(u + R.uniform(-0.6, 0.6), 5 + k * 1.6)
+                liquid = R.choice([(80, 200, 90), (200, 180, 60), (150, 30, 30), (90, 140, 200)])
+                part(rm.g, "Jar", [0.5, 1, 0.5], [jx, 3.9, jz], (200, 210, 200), "Glass", transparency=0.5, collide=False)
+                part(rm.g, "JarLiquid", [0.4, 0.6, 0.4], [jx, 3.75, jz], liquid, "Neon" if R.random() < 0.2 else "Glass", transparency=0.2, collide=False, shadow=False)
+    x, z = rm.p(rm.W / 2, rm.D - 2.2)
+    part(rm.g, "SpecimenTank", [4, 6, 2.6], [x, 3.5, z], (100, 200, 120), "Glass", transparency=0.55, m=rot(yaw=rm.back),
+         tags=FLICKER, children=[light("PointLight", (90, 255, 120), 0.9, 14, shadows=False)])
+    part(rm.g, "TankThing", [1.4, 3.6, 1], [x, 3.8, z], (30, 40, 30), "SmoothPlastic", m=rot(yaw=rm.back + 20, roll=8), collide=False)
+    part(rm.g, "TankBase", [4.4, 0.6, 3], [x, 0.3, z], METAL_DARK, "Metal", m=rot(yaw=rm.back))
+
+
+def fill_cell(rm):
+    x, z = rm.p(rm.W / 2, rm.D - 4)
+    bed(rm.g, x, z, rm.back, body=False)
+    cx, cz = rm.p(rm.W / 2, rm.D * 0.4)
+    chair(rm.g, cx, cz, rm.back, col=(90, 70, 50))
+    part(rm.g, "Straps", [1.9, 0.15, 1.9], [cx, 2.0, cz], (90, 70, 50), "Leather", collide=False)
+    if R.random() < 0.7:
+        rm.wall_text(R.choice(["LET ME OUT", "I CAN HEAR IT", "IT KNOWS MY NAME", "NOT CRAZY"]))
+
+
+def fill_xray(rm):
+    x, z = rm.p(rm.W / 2, rm.D * 0.55)
+    m = rot(yaw=rm.back)
+    part(rm.g, "XrayTable", [3, 0.4, 7], [x, 3, z], (180, 185, 185), "SmoothPlastic", m=m)
+    part(rm.g, "XrayBase", [2, 2.8, 4], [x, 1.4, z], METAL_DARK, "Metal", m=m)
+    ax_, az_ = rm.p(rm.W / 2 + 3, rm.D * 0.55)
+    part(rm.g, "XrayColumn", [1, 10, 1], [ax_, 5, az_], (190, 190, 190), "Metal")
+    part(rm.g, "XrayHead", [2, 1.6, 2.4], [x, 8.5, z], (200, 200, 195), "SmoothPlastic", m=m)
+    px, pz = rm.p(1.2, rm.D - 3)
+    part(rm.g, "Lightbox", [0.3, 3, 5], [px, 6, pz], (200, 220, 230), "Neon", m=rot(yaw=rm.left + 90), tags=FLICKER,
+         children=[light("PointLight", (200, 225, 255), 0.6, 10, shadows=False)], collide=False)
+
+
+def fill_dayroom(rm):
+    for k in range(2):
+        x, z = rm.p(rm.W * (0.3 + 0.4 * k), rm.D * 0.55)
+        table(rm.g, x, z, rm.back, 5, 3)
+        for s in (-1, 1):
+            cx, cz = rm.p(rm.W * (0.3 + 0.4 * k) + s * 1.5, rm.D * 0.55 + 2.4)
+            chair(rm.g, cx, cz, rm.back + 180, fallen=R.random() < 0.3)
+    x, z = rm.p(rm.W / 2, rm.D - 1.5)
+    part(rm.g, "TVStand", [4, 3, 1.8], [x, 1.5, z], WOOD, "WoodPlanks", m=rot(yaw=rm.back))
+    part(rm.g, "TV", [3, 2.4, 1.6], [x, 4.2, z], (30, 30, 30), "SmoothPlastic", m=rot(yaw=rm.back))
+    sx, sz = rm.p(rm.W / 2, rm.D - 2.32)
+    part(rm.g, "TVStatic", [2.4, 1.8, 0.05], [sx, 4.2, sz], (180, 185, 190), "Neon", m=rot(yaw=rm.back), tags=FLICKER, collide=False,
+         children=[light("PointLight", (180, 200, 255), 0.6, 12, shadows=False)])
+    rx, rz = rm.p(2.5, 3)
+    part(rm.g, "RockingChair", [2, 3, 2.2], [rx, 1.5, rz], WOOD, "Wood", m=rot(yaw=rm.face_door + 30, pitch=-6))
+
+
+def fill_boiler(rm):
+    for k in range(2):
+        x, z = rm.p(rm.W * (0.3 + 0.4 * k), rm.D - 4)
+        part(rm.g, "Boiler", [7, 5, 5], [x, 4, z], RUST, "CorrodedMetal", m=rot(yaw=rm.back, roll=90), shape="Cylinder")
+        part(rm.g, "BoilerPipe", [0.8, H - 7, 0.8], [x, 7 + (H - 7) / 2, z], RUST, "CorrodedMetal")
+        vx, vz = rm.p(rm.W * (0.3 + 0.4 * k), rm.D - 6.6)
+        part(rm.g, "Valve", [0.2, 1.4, 1.4], [vx, 4, vz], (150, 20, 20), "Metal", m=rot(yaw=rm.back + 90), shape="Cylinder")
+    x, z = rm.p(rm.W / 2, rm.D / 2)
+    part(rm.g, "BoilerGlow", [1, 1, 1], [x, 3, z], (0, 0, 0), transparency=1, collide=False, tags=FLICKER,
+         children=[light("PointLight", (255, 80, 30), 1.4, 20)])
+    for k in range(3):
+        px, pz = rm.p(R.uniform(2, rm.W - 2), rm.D / 2)
+        part(rm.g, "Pipe", [rm.D, 0.6, 0.6], [px, H - 1.5 - k * 0.8, pz], RUST, "CorrodedMetal", m=rot(yaw=rm.back + 90), shape="Cylinder", collide=False)
+
+
+def fill_collapsed(rm):
+    x, z = rm.p(rm.W / 2, rm.D / 2)
+    debris(rm.g, x, z, 25, min(rm.W, rm.D) / 2.5)
+    for _ in range(3):
+        part(rm.g, "Slab", [R.uniform(4, 7), 0.8, R.uniform(3, 5)], [x + R.uniform(-3, 3), R.uniform(0.6, 2.5), z + R.uniform(-3, 3)], (110, 108, 100), "Concrete",
+             m=rot(yaw=R.uniform(0, 360), roll=R.uniform(-25, 25), pitch=R.uniform(-15, 15)))
+
+
+def fill_chapel(rm):
+    for row in range(int((rm.D - 10) // 3.5)):
+        for side in (-1, 1):
+            x, z = rm.p(rm.W / 2 + side * 5, 4 + row * 3.5)
+            if R.random() < 0.85:
+                m = rot(yaw=rm.back + R.uniform(-6, 6))
+                part(rm.g, "Pew", [7, 0.4, 1.6], [x, 1.8, z], WOOD, "Wood", m=m)
+                part(rm.g, "PewBack", [7, 2, 0.3], local([x, 0, z], m, [0, 2.8, 0.7]), WOOD, "Wood", m=m)
+            else:
+                part(rm.g, "PewFallen", [7, 0.4, 1.6], [x, 0.3, z], WOOD, "Wood", m=rot(yaw=rm.back + R.uniform(-30, 30), roll=80))
+    x, z = rm.p(rm.W / 2, rm.D - 3)
+    part(rm.g, "Altar", [6, 3.5, 2.5], [x, 1.75, z], (90, 70, 55), "Wood", m=rot(yaw=rm.back))
+    cx, cz = rm.p(rm.W / 2, rm.D - 0.8)
+    part(rm.g, "Cross", [0.6, 7, 0.4], [cx, 8.5, cz], (60, 45, 35), "Wood", m=rot(yaw=rm.back, roll=180 if R.random() < 0.5 else 0))
+    part(rm.g, "CrossBar", [3.6, 0.6, 0.4], [cx, 10 if R.random() < 0.5 else 7, cz], (60, 45, 35), "Wood", m=rot(yaw=rm.back))
+    for k in range(6):
+        kx, kz = rm.p(rm.W / 2 - 2.5 + k, rm.D - 3)
+        part(rm.g, "Candle", [0.3, R.uniform(0.6, 1.2), 0.3], [kx, 3.9, kz], (220, 210, 185), "SmoothPlastic", collide=False)
+        if k % 2 == 0:
+            part(rm.g, "Flame", [0.15, 0.3, 0.15], [kx, 4.7, kz], (255, 170, 80), "Neon", collide=False, shadow=False, tags=FLICKER,
+                 children=[light("PointLight", (255, 140, 60), 0.8, 12, shadows=False)])
+    rm.wall_text(R.choice(["GOD ISN'T HERE", "PRAY", "HE DOESN'T LISTEN"]))
+
+
+def fill_cafeteria(rm):
+    for row in range(int((rm.D - 8) // 6)):
+        for col in range(int((rm.W - 4) // 10)):
+            x, z = rm.p(5 + col * 10 + 2, 5 + row * 6)
+            if R.random() < 0.85:
+                table(rm.g, x, z, rm.back, 7, 2.6, (150, 150, 140), "Plastic")
+                for s in (-1, 1):
+                    bx, bz = rm.p(5 + col * 10 + 2, 5 + row * 6 + s * 2)
+                    part(rm.g, "Bench", [7, 0.3, 1], [bx, 1.8, bz], (120, 60, 50), "Plastic", m=rot(yaw=rm.back),
+                         )
+            else:
+                part(rm.g, "TableFallen", [7, 0.3, 2.6], [x, 1.3, z], (150, 150, 140), "Plastic", m=rot(yaw=rm.back + R.uniform(60, 120), roll=75))
+    x, z = rm.p(rm.W / 2, rm.D - 2)
+    part(rm.g, "ServingCounter", [rm.W * 0.6, 3.6, 2.2], [x, 1.8, z], METAL, "Metal", m=rot(yaw=rm.back))
+    for _ in range(10):
+        tx, tz = rm.p(R.uniform(3, rm.W - 3), R.uniform(3, rm.D - 5))
+        part(rm.g, "Tray", [1.6, 0.1, 1.1], [tx, 0.05, tz], (150, 120, 90), "Plastic", m=rot(yaw=R.uniform(0, 360)), collide=False)
+
+
+def fill_surgery(rm):
+    x, z = rm.p(rm.W / 2, rm.D * 0.55)
+    m = rot(yaw=rm.back)
+    part(rm.g, "OpTable", [3.2, 0.5, 7.5], [x, 3.2, z], (170, 175, 175), "Metal", m=m)
+    part(rm.g, "OpTableBase", [1.5, 3, 2.5], [x, 1.5, z], METAL_DARK, "Metal", m=m)
+    part(rm.g, "OpBody", [1.7, 0.9, 5.2], [x, 3.9, z], SHEET, "Fabric", m=m)
+    part(rm.g, "BloodPool", [2.6, 0.05, 3], [x, 3.47, z], BLOOD, "SmoothPlastic", m=m, collide=False, shadow=False)
+    part(rm.g, "SurgeryLampArm", [0.4, 4, 0.4], [x, H - 2, z], METAL, "Metal")
+    part(rm.g, "SurgeryLamp", [1, 4.5, 4.5], [x, H - 4.2, z], (220, 225, 220), "Metal", m=rot(roll=90 + 12), shape="Cylinder",
+         tags=FLICKER, children=[light("SpotLight", (230, 245, 255), 3, 22, {"Face": "Left", "Angle": 50}), light("PointLight", (230, 245, 255), 0.5, 10, shadows=False)])
+    tx, tz = rm.p(rm.W / 2 + 5, rm.D * 0.55)
+    part(rm.g, "TrayCart", [3, 0.2, 2], [tx, 3.4, tz], METAL, "Metal")
+    for _ in range(4):
+        part(rm.g, "Tool", [0.1, 0.05, 1.2], [tx + R.uniform(-1, 1), 3.55, tz + R.uniform(-0.6, 0.6)], (200, 200, 205), "Metal",
+             m=rot(yaw=R.uniform(0, 180)), collide=False)
+    mx, mz = rm.p(rm.W / 2 - 5, rm.D * 0.55)
+    part(rm.g, "Monitor", [2.5, 2, 1.5], [mx, 5.5, mz], (30, 30, 32), "SmoothPlastic")
+    part(rm.g, "MonitorScreen", [2.1, 1.5, 0.05], [mx, 5.6, mz - 0.78], (20, 120, 40), "Neon", tags=FLICKER, collide=False,
+         children=[light("PointLight", (40, 255, 90), 0.4, 6, shadows=False)])
+    part(rm.g, "MonitorPole", [0.2, 4.5, 0.2], [mx, 2.25, mz], METAL, "Metal")
+    for k in range(3):
+        ox, oz = rm.p(1.5 + k * 1.1, rm.D - 1.5)
+        part(rm.g, "OxygenTank", [0.9, 4, 0.9], [ox, 2, oz], (40, 110, 60), "Metal")
+    rm.wall_text("NO ANESTHESIA")
+
+
+def fill_morgue(rm):
+    for row in range(3):
+        for col in range(int((rm.W - 2) // 3.6)):
+            x, z = rm.p(2.8 + col * 3.6, rm.D - 0.7)
+            y = 1.8 + row * 3.4
+            part(rm.g, "BodyDrawer", [3.2, 3, 0.2], [x, y, z], (150, 155, 155), "Metal", m=rot(yaw=rm.back))
+            if R.random() < 0.12:
+                ox, oz = rm.p(2.8 + col * 3.6, rm.D - 4)
+                part(rm.g, "DrawerOut", [3, 0.3, 6], [ox, y - 0.9, oz], (150, 155, 155), "Metal", m=rot(yaw=rm.back))
+                part(rm.g, "SheetBody", [1.5, 0.8, 4.8], [ox, y - 0.4, oz], SHEET, "Fabric", m=rot(yaw=rm.back))
+    for k in range(3):
+        x, z = rm.p(R.uniform(5, rm.W - 5), R.uniform(5, rm.D - 9))
+        gurney(rm.g, x, z, R.uniform(0, 360), body=k < 2)
+    x, z = rm.p(rm.W / 2, 4)
+    part(rm.g, "MorgueLight", [1, 1, 1], [x, H - 1.5, z], (0, 0, 0), transparency=1, collide=False, tags=FLICKER,
+         children=[light("PointLight", (140, 170, 255), 1.2, 22)])
+    rm.wall_text("IT CRAWLS")
+
+
+def fill_passage(rm):
+    # doorgang naar de binnenplaats: midden vrij houden
+    for side in (0, 1):
+        u = 1.2 if side == 0 else rm.W - 1.2
+        for k in range(int((rm.D - 4) // 3)):
+            x, z = rm.p(u, 2.5 + k * 3)
+            cabinet(rm.g, x, z, rm.left + 180 if side == 0 else rm.right + 180, 2.6, 7, 1.4, (95, 110, 105), open_door=R.random() < 0.3)
+    x, z = rm.p(rm.W / 2, rm.D - 1.2)
+    part(rm.g, "CourtyardSign", [5, 1.2, 0.15], [x, DOOR_H + 1.6, z], (35, 60, 55), "SmoothPlastic", m=rot(yaw=rm.face_door),
+         children=[text_gui("COURTYARD", "Front", (200, 205, 190), "SpecialElite", 1)])
+
+
+FILL = {"passage": fill_passage, "patient": fill_patient, "ward": fill_ward, "office": fill_office, "nurse": fill_nurse, "bath": fill_bath,
+        "storage": fill_storage, "records": fill_records, "lab": fill_lab, "cell": fill_cell, "xray": fill_xray,
+        "dayroom": fill_dayroom, "boiler": fill_boiler, "collapsed": fill_collapsed, "chapel": fill_chapel,
+        "cafeteria": fill_cafeteria, "surgery": fill_surgery, "morgue": fill_morgue}
+
+fuse_spots = []
+crawler_spawn = None
+for r in rooms:
+    rm = Room(r)
+    FILL[r["kind"]](rm)
+    # rommel
+    cx, cz = rm.p(rm.W / 2, rm.D / 2)
+    if R.random() < 0.6:
+        papers(rm.g, cx, cz, R.randint(3, 8), min(rm.W, rm.D) / 3)
+    if R.random() < 0.45:
+        bx, bz = rm.p(R.uniform(3, rm.W - 3), R.uniform(4, rm.D - 3))
+        blood(decor, bx, bz, R.uniform(1.5, 3), R.uniform(2, 5))
+    if R.random() < 0.12 and r["kind"] not in ("chapel", "surgery", "morgue", "cell"):
+        rm.wall_text(R.choice(WRITINGS))
+    # zekering-plek: in ~60% van de kamers, langs een zijmuur halverwege
+    if r["kind"] not in ("cell", "collapsed") and R.random() < 0.6:
+        u = R.choice((1.6, rm.W - 1.6))
+        fx, fz = rm.p(u, max(4.5, rm.D * 0.35))
+        fuse_spots.append((fx, fz))
+    if r["kind"] == "morgue" and crawler_spawn is None:
+        crawler_spawn = rm.p(rm.W / 2, rm.D / 2)
+
+# ---------------------------------------------------------------- receptie (vaste plek)
 rec = props.sub("Reception")
 part(rec, "Desk", [16, 3.6, 2], [0, 1.8, 18], WOOD, "WoodPlanks")
 part(rec, "DeskTop", [16.6, 0.3, 2.6], [0, 3.75, 18], (60, 50, 42), "Wood")
@@ -626,9 +1099,8 @@ for row, z in enumerate((27, 31)):
             chair(rec, x, z, 180, fallen=R.random() < 0.2)
 part(rec, "Column", [2.5, H, 2.5], [-12, H / 2, 25], PLASTER, "Plaster")
 part(rec, "Column", [2.5, H, 2.5], [12, H / 2, 25], PLASTER, "Plaster")
-# voordeur: dicht en vastgeketend
 for s in (-1, 1):
-    part(rec, "EntranceDoor", [5, 10, 0.4], [s * 2.6, 5, 39.3], (60, 75, 70), "Metal")
+    part(rec, "EntranceDoor", [5, 10, 0.4], [s * 2.6, 5, 39.3], FRAME, "Metal")
     part(rec, "EntranceGlass", [3.4, 4, 0.1], [s * 2.6, 6.5, 39.05], (30, 35, 40), "Glass", transparency=0.3)
 for i in range(12):
     t = i / 11
@@ -636,231 +1108,118 @@ for i in range(12):
          m=rot(roll=(i % 2) * 90 + R.uniform(-15, 15)), collide=False)
 part(rec, "Padlock", [0.7, 0.9, 0.35], [0, 4, 38.8], (100, 90, 50), "Metal")
 part(rec, "ExitSign", [3, 1, 0.3], [0, 11.5, 39.3], (120, 10, 10), "Neon", tags=FLICKER,
-     children=[light("PointLight", (255, 40, 30), 0.8, 12), text_gui("EXIT", "Front", (255, 220, 220), "SpecialElite", 0)])
+     children=[light("PointLight", (255, 40, 30), 0.8, 12, shadows=False), text_gui("EXIT", "Front", (255, 220, 220), "SpecialElite", 0)])
 part(rec, "HospitalSign", [14, 2.2, 0.3], [0, 11.2, 10.8], (30, 40, 38), "SmoothPlastic",
      children=[text_gui("ST. MERCY HOSPITAL", "Back", (170, 175, 160), "SpecialElite", 1)])
-writing(decor, "THEY NEVER LEFT", [-20, 8, 39.4], 180, 12, 3)
-blood(decor, -6, 0, 26, 3, 5)
-blood(decor, -5, 0, 20, 1.5, 6)
+part(decor, "WallWriting", [12, 3, 0.05], [-20, 8, 39.4], (0, 0, 0), transparency=1, m=rot(yaw=180), collide=False, shadow=False,
+     children=[text_gui("THEY NEVER LEFT", "Back", (110, 8, 8), "Creepster", 1)])
+blood(decor, -6, 26, 3, 5)
+blood(decor, -5, 20, 1.5, 6)
 wheelchair(rec, 18, 30, 210, tipped=True)
 
-# --- patiÃ«ntenkamers
-for name, x1, z1, x2, z2, kind in AREAS:
-    if kind != "patient":
-        continue
-    g = props.sub(name)
+# ---------------------------------------------------------------- binnenplaatsen
+for yard in ("yardW", "yardE"):
+    _, x1, z1, x2, z2, _ = next(a for a in FIXED if a[0] == yard)
+    g = props.sub(yard)
     cx, cz = (x1 + x2) / 2, (z1 + z2) / 2
-    w, d = x2 - x1, z2 - z1
-    if w > d:
-        for i, bx in enumerate((x1 + w * 0.3, x1 + w * 0.7)):
-            bed(g, bx, z1 + 4.5, 0 if z1 > -20 else 0, wrecked=R.random() < 0.5)
-            iv_stand(g, bx + 2.6, z1 + 3)
-        curtain(g, cx, z1 + 9, w - 4, True)
+    part(g, "FountainBase", [1.5, 10, 10], [cx, 0.75, cz], (110, 110, 105), "Concrete", shape="Cylinder", m=rot(roll=90))
+    part(g, "FountainWater", [0.2, 8.6, 8.6], [cx, 1.4, cz], (35, 45, 30), "Glass", shape="Cylinder", m=rot(roll=90), transparency=0.2, collide=False)
+    part(g, "FountainPillar", [5, 1.2, 1.2], [cx, 3.5, cz], (110, 110, 105), "Concrete", shape="Cylinder", m=rot(roll=90))
+    part(g, "Statue", [1.6, 3.4, 1.2], [cx, 7.6, cz], (95, 95, 92), "Concrete", m=rot(yaw=R.uniform(0, 360), roll=12))
+    part(g, "StatueHead", [1, 1, 1], [cx + 1.2, 0.5, cz + 2], (95, 95, 92), "Concrete", shape="Ball")
+    for _ in range(9):
+        tx, tz = R.uniform(x1 + 4, x2 - 4), R.uniform(z1 + 4, z2 - 4)
+        if abs(tx - cx) < 9 and abs(tz - cz) < 9:
+            continue
+        tree(g, tx, tz, R.uniform(10, 16))
+    for k in range(4):
+        bx = cx + (-1) ** k * R.uniform(12, 20)
+        bz = cz + (1 if k < 2 else -1) * 9
+        part(g, "Bench", [6, 0.4, 1.8], [bx, 1.8, bz], WOOD, "WoodPlanks", m=rot(yaw=R.uniform(-10, 10)))
+        part(g, "BenchBack", [6, 1.8, 0.3], [bx, 2.9, bz + 0.8], WOOD, "WoodPlanks", m=rot(yaw=R.uniform(-10, 10)))
+    wheelchair(g, cx + 6, cz - 6, R.uniform(0, 360))
+    fog = part(g, "YardFog", [x2 - x1, 1, z2 - z1], [cx, 1, cz], (0, 0, 0), transparency=1, collide=False, shadow=False)
+    fog["children"] = [{
+        "name": "Fog", "className": "ParticleEmitter",
+        "properties": {
+            "Texture": "rbxasset://textures/particles/smoke_main.dds",
+            "Rate": 14, "Lifetime": {"NumberRange": [9, 14]}, "Speed": {"NumberRange": [0.4, 0.9]},
+            "Size": {"NumberSequence": {"keypoints": [{"time": 0, "value": 14, "envelope": 0}, {"time": 1, "value": 16, "envelope": 0}]}},
+            "Transparency": {"NumberSequence": {"keypoints": [{"time": 0, "value": 1, "envelope": 0}, {"time": 0.5, "value": 0.84, "envelope": 0}, {"time": 1, "value": 1, "envelope": 0}]}},
+            "Color": {"ColorSequence": {"keypoints": [{"time": 0, "color": [0.45, 0.47, 0.5]}, {"time": 1, "color": [0.45, 0.47, 0.5]}]}},
+            "SpreadAngle": [180, 0], "LightEmission": 0,
+        },
+    }]
+    part(lights_g, "YardMoon", [1, 1, 1], [cx, 40, cz], (0, 0, 0), transparency=1, collide=False, shadow=False,
+         children=[light("SpotLight", (110, 130, 190), 1.3, 60, {"Face": "Bottom", "Angle": 70})])
+
+# ---------------------------------------------------------------- gangen aankleden
+corr = props.sub("Corridors")
+corridor_rects = [a for a in FIXED if a[5] == "corridor"]
+for name, x1, z1, x2, z2, _ in corridor_rects:
+    along_x = x2 - x1 > z2 - z1
+    length = (x2 - x1) if along_x else (z2 - z1)
+    for _ in range(int(length // 18)):
+        t = R.uniform(0.1, 0.9)
+        side = R.choice((-1, 1))
+        if along_x:
+            x, z = x1 + (x2 - x1) * t, (z1 + z2) / 2 + side * 3.4
+            yaw = 90 + R.uniform(-10, 10)
+        else:
+            x, z = (x1 + x2) / 2 + side * 3.4, z1 + (z2 - z1) * t
+            yaw = R.uniform(-10, 10)
+        roll = R.random()
+        if roll < 0.35:
+            gurney(corr, x, z, yaw, body=R.random() < 0.4)
+        elif roll < 0.55:
+            wheelchair(corr, x, z, R.uniform(0, 360), tipped=R.random() < 0.3)
+        elif roll < 0.75:
+            papers(corr, x, z, R.randint(3, 8), 2.5)
+        else:
+            blood(decor, x, z, R.uniform(0.8, 1.8), R.uniform(2, 4))
+    # leidingen langs het plafond
+    if along_x:
+        part(decor, "Pipe", [x2 - x1, 0.6, 0.6], [(x1 + x2) / 2, H - 1.0, z1 + 1.3], (70, 75, 72), "Metal", collide=False, shape="Cylinder")
     else:
-        for i, bz in enumerate((z1 + d * 0.3, z1 + d * 0.7)):
-            bed(g, x1 + 4.5, bz, 90, wrecked=R.random() < 0.5)
-            iv_stand(g, x1 + 3, bz + 2.8)
-        curtain(g, x1 + 9, cz, d - 4, False)
-    cabinet(g, x2 - 1.5, z2 - 2.5, 90, 2.5, 4, 1.4, (150, 150, 140), open_door=R.random() < 0.5)
-    if R.random() < 0.5:
-        wheelchair(g, cx + R.uniform(-2, 2), cz + R.uniform(-2, 2), R.uniform(0, 360), tipped=R.random() < 0.4)
-    papers(g, cx, cz, 6, 4)
-    if R.random() < 0.6:
-        blood(decor, cx + R.uniform(-3, 3), 0, cz + R.uniform(-3, 3), R.uniform(1.5, 3), R.uniform(2, 5))
+        part(decor, "Pipe", [z2 - z1, 0.6, 0.6], [x1 + 1.3, H - 1.0, (z1 + z2) / 2], RUST, "Metal", collide=False, shape="Cylinder", m=rot(yaw=90))
+# muurteksten in de gangen
+for text, pos, yaw in (("RUN", [-4.4, 7, -40], -90), ("HELP US", [40, 7, -29.4], 180), ("IT'S IN THE WALLS", [-60, 7, -100.6], 0),
+                       ("TURN BACK", [4.4, 7, -140], 90), ("SHE WATCHES", [125, 7, -60], 0)):
+    m = rot(yaw=yaw)
+    part(decor, "WallWriting", [10, 3, 0.05], pos, (0, 0, 0), transparency=1, m=m, collide=False, shadow=False,
+         children=[text_gui(text, "Back", (110, 8, 8), "Creepster", 1)])
+# sleepspoor van bloed van het plein naar het mortuarium
+for k in range(14):
+    blood(decor, R.uniform(-1, 1) + 1.5, -110 - k * 3, 0.9, 2.2)
+# ingestorte trappenhuizen aan het eind van gang C
+for sx in (-1, 1):
+    g = props.sub("CollapsedStairs")
+    x = sx * 66
+    debris(g, x, -155, 26, 3.5)
+    for k in range(5):
+        part(g, "Slab", [R.uniform(4, 7), 0.8, R.uniform(3, 5)], [x + R.uniform(-2, 2), 1 + k * 1.3, -155 + R.uniform(-2, 2)], (110, 108, 100),
+             "Concrete", m=rot(yaw=R.uniform(-30, 30), roll=R.uniform(-25, 25), pitch=R.uniform(-15, 15)))
+    part(g, "Rebar", [0.15, 6, 0.15], [x + 1, 5, -155], RUST, "Metal", m=rot(roll=35))
 
-# --- verpleegpost
-g = props.sub("NurseStation")
-part(g, "Counter", [12, 3.6, 2], [15, 1.8, 6.5], (120, 125, 118), "Plastic")
-part(g, "CounterTop", [12.6, 0.3, 2.6], [15, 3.75, 6.5], (90, 95, 90), "Plastic")
-for x in (8, 11):
-    cabinet(g, x, -3.5, 180, 2.8, 6, 1.6)
-cabinet(g, 23.5, -1, 90, 2.8, 6, 1.6, open_door=True)
-papers(g, 15, 0, 18, 6)
-chair(g, 13, 3, 20, fallen=True)
-writing(decor, "DON'T LOOK UP", [24.4, 7, 2], -90, 9, 2.5)
-
-# --- toiletten
-g = props.sub("Bathroom")
-for i in range(4):
-    x = 8 + i * 4.2
-    part(g, "StallWall", [0.2, 7, 6], [x - 2.1, 3.6, -16.5], (110, 120, 115), "Plastic")
-    if R.random() < 0.7:
-        part(g, "StallDoor", [3.6, 6, 0.15], [x, 3.4, -13.4], (110, 120, 115), "Plastic", m=rot(yaw=R.uniform(-70, 0)))
-    part(g, "Toilet", [1.6, 1.6, 2.2], [x, 0.8, -18.4], (190, 190, 185), "Marble")
-part(g, "StallWall", [0.2, 7, 6], [8 + 4 * 4.2 - 2.1, 3.6, -16.5], (110, 120, 115), "Plastic")
-for i in range(3):
-    x = 9 + i * 5
-    part(g, "Sink", [2.2, 0.6, 1.6], [x, 3.2, -5.9], (190, 190, 185), "Marble")
-    part(g, "Mirror", [2.6, 3, 0.1], [x, 6.3, -5.55], (30, 35, 40) if R.random() < 0.6 else (160, 170, 175), "Glass", transparency=0.1, collide=False,
-         tags=["Mirror"])  # tag: src/client/Mirror.client.luau maakt er een spiegel van
-blood(decor, 14, 0, -9, 2, 4)
-writing(decor, "IT HEARS YOU", [14, 9.5, -5.45], 180, 10, 2.5)
-
-# --- ok (operatiekamer)
-g = props.sub("Surgery")
-part(g, "OpTable", [3.2, 0.5, 7.5], [-17, 3.2, -50], (170, 175, 175), "Metal")
-part(g, "OpTableBase", [1.5, 3, 2.5], [-17, 1.5, -50], METAL_DARK, "Metal")
-part(g, "OpBody", [1.7, 0.9, 5.2], [-17, 3.9, -49.6], (195, 192, 180), "Fabric")
-blood(g, -17, 3.47, -51, 2.6, 3)
-blood(decor, -16, 0, -47, 3, 4)
-part(g, "SurgeryLampArm", [0.4, 4, 0.4], [-17, H - 2, -50], METAL, "Metal")
-part(g, "SurgeryLamp", [1, 4.5, 4.5], [-17, H - 4.2, -50], (220, 225, 220), "Metal", m=rot(roll=90 + 12), shape="Cylinder",
-     tags=FLICKER, children=[light("SpotLight", (230, 245, 255), 3, 22, {"Face": "Left", "Angle": 50}), light("PointLight", (230, 245, 255), 0.5, 10)])
-for k in range(2):
-    x = -24 + k * 13
-    part(g, "TrayCart", [3, 0.2, 2], [x, 3.4, -44], METAL, "Metal")
-    part(g, "TrayCartShelf", [2.8, 0.15, 1.8], [x, 1.0, -44], METAL, "Metal")
-    for sx in (-1.3, 1.3):
-        for sz in (-0.8, 0.8):
-            part(g, "TrayCartLeg", [0.12, 3.3, 0.12], [x + sx, 1.65, -44 + sz], METAL_DARK, "Metal")
-    for _ in range(4):
-        part(g, "Tool", [0.1, 0.05, 1.2], [x + R.uniform(-1, 1), 3.55, -44 + R.uniform(-0.6, 0.6)], (200, 200, 205), "Metal", m=rot(yaw=R.uniform(0, 180)), collide=False)
-for k in range(3):
-    part(g, "OxygenTank", [0.9, 4, 0.9], [-28 + k * 1.1, 2, -67.5], (40, 110, 60), "Metal", shape=None, m=rot(roll=R.choice((0, 0, 75))))
-part(g, "Monitor", [2.5, 2, 1.5], [-11, 5.5, -50], (30, 30, 32), "SmoothPlastic")
-part(g, "MonitorScreen", [2.1, 1.5, 0.05], [-11, 5.6, -50.78], (20, 120, 40), "Neon", tags=FLICKER, collide=False,
-     children=[light("PointLight", (40, 255, 90), 0.4, 6)])
-part(g, "MonitorPole", [0.2, 4.5, 0.2], [-11, 2.25, -50], METAL, "Metal")
-curtain(g, -17, -40, 18, True, (110, 140, 150))
-writing(decor, "NO ANESTHESIA", [-29.4, 8, -55], 90, 12, 3)
-
-# --- mortuarium (hier spawnt de Crawler)
-g = props.sub("Morgue")
-for row in range(3):
-    for col in range(6):
-        x = 8 + col * 3.6
-        y = 1.8 + row * 3.4
-        part(g, "BodyDrawer", [3.2, 3, 0.2], [x, y, -69.4], (150, 155, 155), "Metal")
-        part(g, "DrawerHandle", [1, 0.25, 0.25], [x, y + 0.6, -69.2], METAL_DARK, "Metal")
-        if (row, col) in ((0, 2), (1, 4)):
-            part(g, "DrawerOut", [3, 0.3, 6], [x, y - 0.9, -66], (150, 155, 155), "Metal")
-            part(g, "SheetBody", [1.5, 0.8, 4.8], [x, y - 0.4, -66], (195, 192, 180), "Fabric")
-part(g, "DrawerWall", [23, 11, 1.2], [17, 5.5, -69.9], (110, 115, 115), "Metal")
-gurney(g, 14, -50, 15)
-gurney(g, 23, -44, -30)
-gurney(g, 10, -38, 80, body=False)
-part(g, "AutopsyTable", [3.2, 0.4, 7], [20, 3.2, -56], (170, 175, 175), "Metal")
-part(g, "AutopsyBase", [1.5, 3, 2], [20, 1.5, -56], METAL_DARK, "Metal")
-part(g, "Drain", [1.2, 0.05, 1.2], [20, 0.03, -56], (20, 20, 20), "Metal", collide=False)
-blood(decor, 20, 0, -54, 2.5, 6)
-blood(decor, 17, 0, -48, 1.5, 7)
-part(g, "MorgueLight", [1, 1, 1], [17, H - 1.5, -55], (0, 0, 0), transparency=1, collide=False, tags=FLICKER,
-     children=[light("PointLight", (140, 170, 255), 1.2, 22)])
-part(markers, "CrawlerSpawn", [4, 1, 4], [17, 0.5, -62], (255, 0, 0), transparency=1, collide=False)
-writing(decor, "IT CRAWLS", [29.4, 8, -50], -90, 10, 3)
-
-# --- zaal met 6 bedden
-g = props.sub("Ward")
-for i in range(3):
-    for side in (-1, 1):
-        x = -55 + i * 9.5
-        z = -45 + side * 10
-        bed(g, x, z, 0 if side < 0 else 180, wrecked=R.random() < 0.4, body=R.random() < 0.3)
-        if R.random() < 0.6:
-            iv_stand(g, x + 2.6, z + side * -1)
-        curtain(g, x + 4.6, z, 8, False)
-wheelchair(g, -40, -45, 130)
-papers(g, -45, -45, 8, 8)
-blood(decor, -48, 0, -44, 2, 6)
-
-# --- archief
-g = props.sub("Records")
-for i in range(4):
-    x = 35 + i * 6.5
-    for k in range(3):
-        z = -55 + k * 7
-        part(g, "Shelf", [1.6, 9, 6], [x, 4.5, z], (90, 92, 88), "Metal", transparency=0)
-        for lvl in range(4):
-            for b in range(3):
-                if R.random() < 0.75:
-                    part(g, "Box", [1.4, 1.4, 1.6], [x, 1 + lvl * 2.2 + 0.75, z - 2 + b * 2], (150, 120, 85), "Cardboard",
-                         m=rot(yaw=R.uniform(-10, 10)))
-    if R.random() < 0.5:
-        for _ in range(4):
-            part(g, "BoxFallen", [1.4, 1.4, 1.6], [x + R.uniform(1.5, 3), 0.7, -48 + R.uniform(-6, 6)], (150, 120, 85), "Cardboard",
-                 m=rot(yaw=R.uniform(0, 360), roll=R.uniform(-20, 20)))
-papers(g, 45, -40, 30, 10)
-
-# --- opslag
-g = props.sub("Storage")
-for i in range(5):
-    part(g, "Crate", [3, 3, 3], [-39 + i * 3.2, 1.5, -2.5], (110, 85, 60), "WoodPlanks", m=rot(yaw=R.uniform(-8, 8)))
-for i in range(3):
-    part(g, "Crate", [3, 3, 3], [-38 + i * 3.4, 4.5, -2.5], (110, 85, 60), "WoodPlanks", m=rot(yaw=R.uniform(-8, 8)))
-cabinet(g, -27, -15, -90, 3, 7, 1.6, open_door=True)
-gurney(g, -34, -12, 40, body=False)
-wheelchair(g, -38, -8, 200)
-
-# --- kantoor
-g = props.sub("Office")
-part(g, "Desk", [7, 0.4, 3.5], [33, 3.3, -8], (80, 60, 45), "Wood")
-part(g, "DeskBody", [6.6, 3.1, 3.2], [33, 1.55, -8], (70, 52, 40), "WoodPlanks")
-chair(g, 33, -5, 0, fallen=True)
-cabinet(g, 27, -17, 0, 3, 6, 1.6)
-cabinet(g, 30.5, -17, 0, 3, 6, 1.6, open_door=True)
-papers(g, 33, -10, 20, 5)
-part(g, "DeskLamp", [0.6, 1.4, 0.6], [35, 4.2, -8.5], (40, 40, 40), "Metal", tags=FLICKER,
-     children=[light("PointLight", (255, 200, 120), 0.7, 12)])
-writing(decor, "WE TRIED TO STOP IT", [33, 8, -19.4], 0, 14, 3)
-
-# --- trappenhuis: ingestort einde van de hoofdgang
-g = props.sub("CollapsedStairs")
-debris(g, 0, -66, 30, 4)
-for k in range(5):
-    part(g, "Slab", [R.uniform(4, 8), 0.8, R.uniform(3, 5)], [R.uniform(-3, 3), 1 + k * 1.3, -67 + R.uniform(-1, 1)], (110, 108, 100), "Concrete",
-         m=rot(yaw=R.uniform(-30, 30), roll=R.uniform(-25, 25), pitch=R.uniform(-15, 15)))
-part(g, "Rebar", [0.15, 6, 0.15], [1, 5, -66], RUST, "Metal", m=rot(roll=35))
-part(g, "Rebar", [0.15, 5, 0.15], [-1.5, 6, -67], RUST, "Metal", m=rot(roll=-20, pitch=25))
-
-# --- leidingen langs de gangplafonds
-for x, z1, z2 in ((-3.8, -70, 10),):
-    part(decor, "Pipe", [z2 - z1, 0.8, 0.8], [x, H - 1.1, (z1 + z2) / 2], RUST, "Metal", collide=False, shape="Cylinder", m=rot(yaw=90))
-part(decor, "Pipe", [120, 0.6, 0.6], [0, H - 1.0, -21.2], (70, 75, 72), "Metal", collide=False, shape="Cylinder")
-part(decor, "Pipe", [120, 0.4, 0.4], [0, H - 1.7, -21.2], RUST, "Metal", collide=False, shape="Cylinder")
-
-# --- losse rommel in de gangen
-for _ in range(14):
-    x, z = (R.uniform(-3.5, 3.5), R.uniform(-60, 8)) if R.random() < 0.5 else (R.uniform(-55, 55), R.uniform(-28.5, -21.5))
-    papers(decor, x, z, R.randint(2, 6), 2)
-for _ in range(6):
-    blood(decor, R.uniform(-3, 3), 0, R.uniform(-60, 5), R.uniform(0.6, 1.6), R.uniform(1, 3))
-gurney(props, 2.5, -40, 175, body=R.random() < 0.5)
-wheelchair(props, -40, -24, 75)
-writing(decor, "RUN", [-4.4, 7, -36], 90, 6, 3)
-writing(decor, "HELP US", [40, 7, -29.4], 0, 9, 2.5)
-# sleepspoor van bloed richting mortuarium
-for k in range(10):
-    blood(decor, R.uniform(-1, 1) + 0.4 * k / 10, 0, -30 - k * 2.6, 0.9, 2.2)
-
-# ---------------------------------------------------------------- ronde (Stijn): zekeringen, stroomkast, uitgang
-# Gebruikt door src/server/Round.server.luau. Geen R-aanroepen hier, zodat de willekeurige
-# inrichting van de rest van de map hetzelfde blijft.
-FUSE_SPAWNS = [
-    (52, -55), (-27, -66), (-57, -57), (-28, -3), (38, -3), (27, -34),
-    (-57, -3), (57, -17), (20, 2), (23, -10), (-22, 8), (-22, -17),
-]
-for x, z in FUSE_SPAWNS:
+# ---------------------------------------------------------------- ronde-markers (Round.server.luau, Stijn)
+for x, z in fuse_spots:
     part(markers, "FuseSpawn", [1, 1, 1], [x, 0.6, z], (255, 200, 0), transparency=1, collide=False, tags=["FuseSpawn"])
 g = props.sub("FuseBox")
 part(g, "FuseBox", [3, 4, 0.8], [-9, 4.5, 39.0], METAL_DARK, "Metal", tags=["FuseBox"],
      children=[text_gui("POWER", "Front", (200, 190, 120), "SpecialElite", 1)])
 part(g, "FuseBoxConduit", [0.4, H - 6.5, 0.4], [-9, 6.5 + (H - 6.5) / 2, 39.2], RUST, "Metal")
-# uitgang: wie hier staat als de voordeur open is, is ontsnapt
 part(markers, "ExitZone", [10, 10, 3], [0, 5, 37.5], (0, 255, 0), transparency=1, collide=False, tags=["ExitZone"])
-
-# ---------------------------------------------------------------- spawn
-spawn_props = {
-    "Anchored": True,
-    "Size": [8, 1, 6],
-    "CFrame": cframe([0, 0.5, 34], rot(yaw=0)),
-    "Transparency": 1,
-    "CanCollide": False,
-    "Duration": 0,
-    "Neutral": True,
-}
-markers.add({"name": "SpawnLocation", "className": "SpawnLocation", "properties": spawn_props})
+cs = crawler_spawn or (17, -62)
+part(markers, "CrawlerSpawn", [4, 1, 4], [cs[0], 0.5, cs[1]], (255, 0, 0), transparency=1, collide=False)
+markers.add({"name": "SpawnLocation", "className": "SpawnLocation", "properties": {
+    "Anchored": True, "Size": [8, 1, 6], "CFrame": cframe([0, 0.5, 34]), "Transparency": 1,
+    "CanCollide": False, "Duration": 0, "Neutral": True}})
 
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 with open(OUT, "w", encoding="utf8") as f:
     json.dump(root.node, f, separators=(",", ":"))
-print(f"Hospital: {COUNT['parts']} parts, {COUNT['lights']} lichten, {len(segments)} muursegmenten -> {os.path.relpath(OUT, ROOT)}")
+kinds = {}
+for r in rooms:
+    kinds[r["kind"]] = kinds.get(r["kind"], 0) + 1
+print(f"Hospital: {len(rooms)} kamers {kinds}")
+print(f"  {COUNT['parts']} parts, {COUNT['lights']} lichten, {len(fuse_spots)} zekering-plekken, footprint x {X0}..{X1}, z {Z0}..{Z1}")
