@@ -16,6 +16,7 @@ Claim een taak door je naam erachter te zetten en te pushen **vóór** je begint
 ## Klaar
 - [x] Lobby en game gesplitst in twee Rojo-projecten — @andy
 - [x] Map 1: verlaten ziekenhuis (+ zaklamp, geluid) — @andy
+- [x] First-person camera (soepel rondkijken), sprinten (Shift) met lichte camera-bob, ^-crosshair — @stijn
 - [x] Crawler: procedurele IK-animatie (vloer/muur/plafond) — @stijn
 - [x] Crawler: AI die spelers achtervolgt (klimmen, springen, van plafond vallen) — @stijn
 - [x] Crawler-model geïmporteerd (`src/shared/Monsters/Crawler.rbxm`) — @stijn
