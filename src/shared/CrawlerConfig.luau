@@ -13,8 +13,8 @@ return {
 	Scale = 0.35,
 
 	-- Beweging (studs / seconde)
-	WalkSpeed = 8,
-	ChaseSpeed = 17,
+	WalkSpeed = 7,
+	ChaseSpeed = 11, -- net iets langzamer dan een lopende speler (12); sprinten (20) is ontsnappen
 	TurnSpeed = 5, -- radialen per seconde
 	Gravity = 120,
 	ProbeHeight = 1, -- hoogte van de vooruit-straal boven het oppervlak
@@ -22,11 +22,17 @@ return {
 
 	-- AI
 	PathRadius = 1, -- straal voor PathfindingService; groter past niet door een deur van 4 studs
-	DetectRange = 150,
+	DetectRange = 1000, -- hele ziekenhuis; hij weet altijd waar je bent
 	CatchRange = 3.5, -- afstand van speler tot kop of lijf
 	CatchCooldown = 2,
 	CeilingDropRange = 4, -- valt van het plafond als een speler horizontaal zo dichtbij is
 	StuckTime = 3, -- seconden zonder voortgang → andere kant op / loslaten
+
+	-- Via het plafond jagen
+	CeilingMinDistance = 15, -- alleen als de speler minstens zo ver weg is
+	CeilingChance = 0.25, -- kans per seconde dat hij besluit de muur op te gaan
+	CeilingCooldown = 6, -- seconden tussen twee pogingen
+	CeilingSearch = 14, -- zo ver zoekt hij naar een muur om op te klimmen
 
 	-- Loopanimatie (gemaakt in Blender, zie tools/crawler_anim_to_rbxmx.py)
 	-- Leeg = de KeyframeSequence Shared.Monsters.CrawlerWalk gebruiken (werkt alleen in Studio).

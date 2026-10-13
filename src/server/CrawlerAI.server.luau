@@ -12,9 +12,16 @@ local template = Shared:WaitForChild("Monsters"):WaitForChild("Crawler")
 
 local PROBE_HEIGHT = Config.ProbeHeight
 
+-- bovenkant van een systeemplafondtegel: daar hoort hij nooit op te staan (verborgen ruimte erboven)
+local function isTileTop(hit: RaycastResult): boolean
+	return hit.Instance.Name == "CeilingTile" and hit.Normal.Y > 0.5
+end
+
 local rayParams = RaycastParams.new()
 rayParams.FilterType = Enum.RaycastFilterType.Exclude
 rayParams.IgnoreWater = true
+-- decoratie waar je niet tegenaan kunt lopen (leidingen, papieren, spiegels) telt niet als oppervlak
+rayParams.RespectCanCollide = true
 
 local function refreshFilter()
 	local list = CollectionService:GetTagged(Config.Tag)
@@ -180,7 +187,17 @@ function Crawler:updateFalling(dt: number)
 	self.velocity += Vector3.new(0, -Config.Gravity * dt, 0)
 	local step = self.velocity * dt
 	local hit = workspace:Raycast(self.pos, step + step.Unit * 0.5, rayParams)
-	if hit then
+	if hit and isTileTop(hit) then
+		-- door de plafondtegel heen de kamer in vallen
+		self.pos = hit.Position - Vector3.new(0, hit.Instance.Size.Y + 0.3, 0)
+		return
+	end
+	if hit and hit.Normal.Y < 0.7 then
+		-- zijkant van iets geraakt: niet vastgrijpen maar erlangs verder vallen
+		self.pos = hit.Position + hit.Normal * 0.6
+		self.velocity = Vector3.new(0, math.min(self.velocity.Y, 0), 0)
+		self.up = Vector3.yAxis
+	elseif hit then
 		self.falling = false
 		self.velocity = Vector3.zero
 		self:snapTo(hit, self.look)
@@ -234,19 +251,101 @@ function Crawler:nextWaypoint(): Vector3?
 	return nil
 end
 
+-- Vrije zichtlijn naar de speler (zelfde kamer of gang)?
+function Crawler:canSee(targetPos: Vector3): boolean
+	local eye = self.pos + self.up * 2
+	return workspace:Raycast(eye, targetPos - eye, rayParams) == nil
+end
+
+-- Af en toe besluiten via de muur en het plafond naar de speler te kruipen. Alleen als hij de speler
+-- ziet: via het plafond kan hij geen kamer uit (de muren lopen door tot het plafond).
+function Crawler:considerCeiling(targetPos: Vector3)
+	local now = os.clock()
+	if self.climbing then
+		if now - self.climbStarted > 5 then
+			self.climbing = false -- muur niet gehaald: gewoon over de vloer verder
+		end
+		return
+	end
+	if now < (self.nextCeilingTry or 0) or (targetPos - self.pos).Magnitude < Config.CeilingMinDistance then
+		return
+	end
+	self.nextCeilingTry = now + 1
+	if math.random() > Config.CeilingChance or not self:canSee(targetPos) then
+		return
+	end
+	-- dichtstbijzijnde muur, liefst in de richting van de speler
+	local toTarget = project(targetPos - self.pos, self.up)
+	toTarget = toTarget.Magnitude > 0.1 and toTarget.Unit or self.look
+	local origin = self.pos + self.up * (PROBE_HEIGHT + 0.5)
+	local best, bestScore
+	for i = 0, 7 do
+		local dir = CFrame.fromAxisAngle(self.up, i * math.pi / 4):VectorToWorldSpace(toTarget)
+		local hit = workspace:Raycast(origin, dir * Config.CeilingSearch, rayParams)
+		if hit and math.abs(hit.Normal.Y) < 0.3 then
+			local score = hit.Distance - 4 * dir:Dot(toTarget)
+			if not bestScore or score < bestScore then
+				best, bestScore = hit.Position, score
+			end
+		end
+	end
+	if best then
+		self.climbing = true
+		self.climbStarted = now
+		self.wallGoal = best
+		self.nextCeilingTry = now + Config.CeilingCooldown
+	end
+end
+
 function Crawler:updateCrawling(dt: number, targetPos: Vector3?)
 	local up = self.up
 	local desired = self.look
 	local waypoint
+	if up.Y < -0.7 then
+		self.climbing = false -- aangekomen op het plafond
+		-- hangt hij aan de plaat bóven een systeemplafond? dan door de tegel naar de onderkant ervan,
+		-- anders kruipt hij onzichtbaar door de ruimte boven de tegels
+		local tile = workspace:Raycast(self.pos, up * 8, rayParams)
+		if tile and isTileTop(tile) then
+			self.pos = tile.Position - Vector3.new(0, tile.Instance.Size.Y, 0)
+			return
+		end
+		-- speler uit het zicht (andere kamer)? loslaten en over de vloer een route zoeken
+		if targetPos and not self:canSee(targetPos) then
+			self.lostSight = self.lostSight or os.clock()
+			if os.clock() - self.lostSight > 1 then
+				self.lostSight = nil
+				self:startFalling()
+				return
+			end
+		else
+			self.lostSight = nil
+		end
+	end
 	if targetPos then
 		local rel = targetPos - self.pos
 		desired = project(rel, up)
 		if up.Y > 0.7 then
-			-- op de vloer: route via PathfindingService (deuren, om meubels heen)
-			self:updatePath(targetPos)
-			waypoint = self:nextWaypoint()
-			if waypoint then
-				desired = project(waypoint - self.pos, up)
+			self:considerCeiling(targetPos)
+			if self.climbing then
+				-- naar de gekozen muur om via het plafond verder te jagen
+				desired = project(self.wallGoal - self.pos, up)
+			else
+				-- op de vloer: route via PathfindingService (deuren, om meubels heen)
+				self:updatePath(targetPos)
+				waypoint = self:nextWaypoint()
+				if waypoint then
+					desired = project(waypoint - self.pos, up)
+				end
+			end
+		elseif up.Y < 0.7 and up.Y > -0.7 then
+			if self.climbing then
+				-- op de muur, onderweg naar het plafond: recht omhoog
+				desired = project(Vector3.yAxis, up)
+			else
+				-- zonder klimplan op een muur (bv. vanaf het plafond): loslaten, verder over de vloer
+				self:startFalling()
+				return
 			end
 		elseif rel:Dot(up) < -2 then
 			-- speler zit achter de muur/het plafond waar we op zitten: loslaten
@@ -264,15 +363,46 @@ function Crawler:updateCrawling(dt: number, targetPos: Vector3?)
 	-- muur of plafond voor de kop: er meteen op klappen, de oude "omhoog" wordt de looprichting
 	local probe = self.look * (move.Magnitude + self.front + Config.ClimbProbe)
 	local ahead = workspace:Raycast(self.pos + up * PROBE_HEIGHT, probe, rayParams)
+	if not ahead and math.abs(up.Y) < 0.7 and self.look.Y > 0.5 then
+		-- omhoog langs een muur: ook iets verder van de muur af kijken, zodat hij de onderkant van
+		-- het (tegel)plafond pakt in plaats van langs een kier de ruimte erboven in te kruipen
+		ahead = workspace:Raycast(self.pos + up * PROBE_HEIGHT * 2.5, probe, rayParams)
+	end
+	if ahead and up.Y < -0.7 and math.abs(ahead.Normal:Dot(up)) < 0.7 then
+		-- op het plafond: iets dat maar een stukje uit het plafond steekt (lamp, balk) is geen muur
+		local deeper = workspace:Raycast(self.pos + up * (PROBE_HEIGHT + 2.5), probe, rayParams)
+		if not deeper then
+			ahead = nil
+		end
+	end
 	local routeFirst = waypoint and ahead and (waypoint - self.pos).Magnitude < (ahead.Position - self.pos).Magnitude
 	if ahead and ahead.Normal:Dot(up) < 0.7 and not routeFirst then
-		self:snapTo(ahead, up)
-		return
+		if up.Y > 0.7 and not self.climbing then
+			-- op de vloer zonder klimplan: niet de muur op. Alleen stoppen (en bijdraaien) als zijn
+			-- midden er echt tegenaan loopt; een kop die een hoek raakt mag gewoon doorlopen
+			if ahead.Distance < move.Magnitude + 1 then
+				if not targetPos then
+					local turn = (math.random() < 0.5 and -1 or 1) * math.pi * (0.5 + math.random() * 0.4)
+					self.look = CFrame.fromAxisAngle(up, turn):VectorToWorldSpace(self.look)
+				end
+				return
+			end
+		else
+			self:snapTo(ahead, up)
+			return
+		end
 	end
 
 	local newPos = self.pos + move
 	local ground = workspace:Raycast(newPos + up * PROBE_HEIGHT, -up * (PROBE_HEIGHT + 3), rayParams)
-	if ground then
+	if ground and isTileTop(ground) then
+		-- toch bovenop de plafondtegels beland: erdoorheen zakken
+		self:startFalling()
+		self.pos = ground.Position - Vector3.new(0, ground.Instance.Size.Y + 0.3, 0)
+		return
+	end
+	-- alleen grond die ongeveer in hetzelfde vlak ligt (geen zijkant van een vloernaad of rand)
+	if ground and ground.Normal:Dot(up) > 0.5 then
 		self:snapTo(ground, self.look)
 		return
 	end
