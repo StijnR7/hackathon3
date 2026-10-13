@@ -26,6 +26,7 @@ local camera = workspace.CurrentCamera
 local targetYaw, targetPitch = 0, 0
 local yaw, pitch = 0, 0
 local bobTime, bobAmount = 0, 0
+local hiddenParts = {} -- delen van je eigen karakter (lichaam, haar, hoeden, gezicht)
 
 local function isSprinting(): boolean
 	for _, key in SPRINT_KEYS do
@@ -36,17 +37,30 @@ local function isSprinting(): boolean
 	return false
 end
 
--- eigen lichaam onzichtbaar, anders kijk je tegen je eigen hoofd aan
-local function hideCharacter(character: Model)
-	local function hide(part: Instance)
+-- eigen lichaam onzichtbaar (alleen voor jezelf), anders zie je je haar en lijf.
+-- De standaard camerascripts zetten dit elke frame terug, dus we zetten het elke frame opnieuw.
+local function trackCharacter(character: Model)
+	table.clear(hiddenParts)
+	local function add(part: Instance)
 		if part:IsA("BasePart") or part:IsA("Decal") then
-			part.LocalTransparencyModifier = 1
+			table.insert(hiddenParts, part)
 		end
 	end
 	for _, d in character:GetDescendants() do
-		hide(d)
+		add(d)
 	end
-	character.DescendantAdded:Connect(hide)
+	character.DescendantAdded:Connect(add)
+end
+
+local function hideCharacter()
+	for i = #hiddenParts, 1, -1 do
+		local part = hiddenParts[i]
+		if part.Parent then
+			part.LocalTransparencyModifier = 1
+		else
+			table.remove(hiddenParts, i)
+		end
+	end
 end
 
 local function onCharacter(character: Model)
@@ -58,7 +72,7 @@ local function onCharacter(character: Model)
 	local _, spawnYaw = root.CFrame:ToOrientation()
 	targetYaw, yaw = spawnYaw, spawnYaw
 	targetPitch, pitch = 0, 0
-	hideCharacter(character)
+	trackCharacter(character)
 end
 
 -- crosshair: twee schuine streepjes die samen een brede "^" vormen
@@ -96,6 +110,7 @@ RunService:BindToRenderStep("FirstPersonCamera", Enum.RenderPriority.Camera.Valu
 	if not (humanoid and root) or humanoid.Health <= 0 then
 		return
 	end
+	hideCharacter()
 
 	-- soepel achter de muis aan
 	local alpha = 1 - math.exp(-SMOOTHNESS * dt)
