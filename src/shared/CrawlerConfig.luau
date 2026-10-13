@@ -31,6 +31,6 @@ return {
 	-- Loopanimatie (gemaakt in Blender, zie tools/crawler_anim_to_rbxmx.py)
 	-- Leeg = de KeyframeSequence Shared.Monsters.CrawlerWalk gebruiken (werkt alleen in Studio).
 	-- Voor een echte server: publiceer de animatie (Animation Editor → Publish) en zet hier het id.
-	WalkAnimationId = "",
+	WalkAnimationId = "rbxassetid://101185211844544",
 	WalkStride = 3, -- studs die hij aflegt per keer dat de animatie (1 s) helemaal afspeelt
 }
