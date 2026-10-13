@@ -12,9 +12,9 @@ Claim een taak door je naam erachter te zetten en te pushen **vóór** je begint
 - [ ] Definitieve gamenaam (nu werktitel `THE CRYPTS` in `GameConfig.GameName`)
 
 ## Bezig
-- [ ] First-person camera (soepel rondkijken), sprinten met lichte camera-bob, crosshair — @stijn (`src/client/FirstPerson.client.luau`)
 
 ## Klaar
+- [x] First-person camera (soepel rondkijken), sprinten (Shift) met lichte camera-bob, ^-crosshair — @stijn
 - [x] Crawler: procedurele IK-animatie (vloer/muur/plafond) — @stijn
 - [x] Crawler: AI die spelers achtervolgt (klimmen, springen, van plafond vallen) — @stijn
 - [x] Crawler-model geïmporteerd (`src/shared/Monsters/Crawler.rbxm`) — @stijn
