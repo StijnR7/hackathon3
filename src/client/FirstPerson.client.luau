@@ -120,12 +120,16 @@ RunService:BindToRenderStep("FirstPersonCamera", Enum.RenderPriority.Camera.Valu
 	-- lichaam draait mee met de kijkrichting (alleen om de verticale as)
 	root.CFrame = CFrame.new(root.Position) * CFrame.Angles(0, yaw, 0)
 
-	-- sprinten + bob
+	-- sprinten + bob. In de lucht blijft de snelheid van het afzetten staan, zodat een sprong
+	-- je vaart houdt; pas bij de landing telt Shift weer.
+	local grounded = humanoid.FloorMaterial ~= Enum.Material.Air
 	local moving = humanoid.MoveDirection.Magnitude > 0.1
-		and humanoid.FloorMaterial ~= Enum.Material.Air
 	local sprinting = isSprinting() and moving
-	humanoid.WalkSpeed = sprinting and SPRINT_SPEED or WALK_SPEED
-	bobAmount += ((sprinting and 1 or 0) - bobAmount) * math.min(1, dt * 6)
+	if grounded then
+		humanoid.WalkSpeed = sprinting and SPRINT_SPEED or WALK_SPEED
+	end
+	local bobbing = sprinting and grounded
+	bobAmount += ((bobbing and 1 or 0) - bobAmount) * math.min(1, dt * 6)
 	if bobAmount > 0.01 then
 		bobTime += dt * BOB_FREQUENCY
 	end
