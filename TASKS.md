@@ -10,10 +10,10 @@ Claim een taak door je naam erachter te zetten en te pushen **vóór** je begint
 - [ ] Definitieve gamenaam (nu werktitel `THE CRYPTS` in `GameConfig.GameName`)
 
 ## Bezig
-- [ ] MVP-ronde: 3 zekeringen zoeken → stroomkast bij receptie → voordeur open → ontsnappen; gepakt = dood + meekijken; einde → terug naar lobby — @stijn (`src/server/Round.server.luau`, `src/client/RoundUI.client.luau`, `src/shared/RoundConfig.luau`, markers in `tools/maps/hospital.py`)
-- [ ] Publiceren: lobby = startplace van de bestaande experience, game = tweede place, place-ids in `GameConfig` — @stijn
 
 ## Klaar
+- [x] MVP-ronde: 3 zekeringen → stroomkast → voordeur open → ontsnappen; gepakt = dood + meekijken; einde → terug naar lobby — @stijn
+- [x] Gepubliceerd in experience `hackathon3`: lobby = startplace (134559509231211), game = place 124517980036287 — @stijn
 - [x] Ziekenhuis-map veel groter: 90 kamers, 17 soorten, 2 binnenplaatsen — @andy
 - [x] Spiegel: elk part met tag `Mirror` toont je reflectie (met de kamer erachter), maar met een enge grijns — @stijn
 - [x] Lobby en game gesplitst in twee Rojo-projecten — @andy

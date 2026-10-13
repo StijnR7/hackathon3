@@ -11,6 +11,12 @@ Gedeeld logboek tussen Andy en Stijn (en hun Claude-sessies). Nieuwste bovenaan.
 - **Team Create + Rojo**: in de gedeelde place `hackathon3` (Team Create) bouwen we samen map/models. Scripts test ieder met Rojo in een eigen lokale Baseplate. In de gedeelde place wordt alleen `main` via Rojo gesynct, door één persoon tegelijk.
 
 ## Updates
+- **2026-10-13 – Stijn**: **MVP staat live in de experience `hackathon3`** (privé; universe 10770513665).
+  - **Lobby** = startplace `hackathon3` (134559509231211): gebouwd met `tools/build_lobby.luau` + `lobby.project.json` via Rojo, gepubliceerd.
+  - **Game** = tweede place (124517980036287): `default.project.json` (ziekenhuis + Crawler + spiegels + first-person + ronde), gepubliceerd. Team Create staat voor de hele experience aan.
+  - Queue in de lobby → reserved server van de game → ronde (3 zekeringen, stroomkast bij de receptie, voordeur open, ontsnappen) → terug naar de lobby. Ids staan in `GameConfig` (`GamePlaceId`, `LobbyPlaceId`).
+  - Loopanimatie Crawler gepubliceerd: `CrawlerConfig.WalkAnimationId = rbxassetid://101185211844544`.
+  - **@andy**: na een codewijziging moet de betreffende place opnieuw via Rojo gesynct én gepubliceerd worden (lobby: `rojo serve lobby.project.json`, poort 34873; game: `rojo serve`, poort 34872).
 - **2026-10-13 – Andy**: Rojo-projecten ruimen nu vreemde scripts op ($ignoreUnknownInstances: false op ServerScriptService en StarterPlayerScripts). Dus: **lobby-place → Rojo poort 34873** (`rojo serve lobby.project.json`), **game-place → poort 34872** (`rojo serve`). Verbind je de verkeerde, dan verdwijnen de scripts van de andere place uit die place.
 - **2026-10-13 – Andy**: Ziekenhuis-map **veel groter** (`tools/maps/hospital.py` herschreven, ~300 × 230 studs, was 120 × 110).
   - Procedurele opbouw: gangennetwerk (hoofdgang 170 lang, 3 dwarsgangen, zijgangen die een rondje maken) met stroken die automatisch in **90 kamers** worden verdeeld. Soorten: patiëntkamer, zaal, kantoor, verpleegpost, wc (spiegels met tag `Mirror`), opslag, archief, lab, isoleercel (gecapitonneerd), röntgen, dagverblijf (tv met ruis), ketelhuis, ingestorte kamer, kapel, kantine, OK, mortuarium. Twee **binnenplaatsen** (dode bomen, kapotte fontein, mist) via "COURTYARD"-doorgangen.
