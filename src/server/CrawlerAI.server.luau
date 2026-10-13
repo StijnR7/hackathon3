@@ -116,8 +116,6 @@ function Crawler.new(spawnCFrame: CFrame)
 	self.falling = true
 	self.velocity = Vector3.zero
 	self.lastCatch = 0
-	self.bestDistance = math.huge
-	self.progressTimer = 0
 
 	body.Anchored = false
 	body.CanCollide = false
@@ -155,18 +153,39 @@ function Crawler:applyFrame(frame: CFrame)
 	self.alignRot.CFrame = bodyCFrame
 end
 
+-- Dichtstbijzijnde speler die hij kan zien (vrije zichtlijn)
 function Crawler:findTarget(): (Player?, Vector3?)
 	local best, bestPos, bestDist = nil, nil, Config.DetectRange
 	for _, player in Players:GetPlayers() do
 		local _, root = alive(player)
 		if root then
 			local dist = (root.Position - self.pos).Magnitude
-			if dist < bestDist then
+			if dist < bestDist and self:canSee(root.Position) then
 				best, bestPos, bestDist = player, root.Position, dist
 			end
 		end
 	end
 	return best, bestPos
+end
+
+-- Patrouillepunt als hij niemand ziet: willekeurige plek uit de map (FuseSpawn-markers + eigen spawn)
+function Crawler:patrolGoal(): Vector3?
+	local now = os.clock()
+	if self.patrolPoint and now - self.patrolSince > 40 then
+		self.patrolPoint = nil -- te lang onderweg: een ander punt kiezen
+	end
+	if not self.patrolPoint then
+		local points = {}
+		for _, inst in CollectionService:GetTagged("FuseSpawn") do
+			if inst:IsA("BasePart") and inst:IsDescendantOf(workspace) then
+				table.insert(points, inst.Position)
+			end
+		end
+		table.insert(points, self.spawnPos)
+		self.patrolPoint = points[math.random(#points)]
+		self.patrolSince = now
+	end
+	return self.patrolPoint
 end
 
 -- Klapt meteen op een nieuw vlak (muur, plafond, vloer)
@@ -297,7 +316,9 @@ function Crawler:considerCeiling(targetPos: Vector3)
 	end
 end
 
-function Crawler:updateCrawling(dt: number, targetPos: Vector3?)
+-- goal = waar hij heen wil; mode = "chase" (ziet je), "search" (laatst geziene plek) of "patrol"
+function Crawler:updateCrawling(dt: number, goal: Vector3?, mode: string)
+	local targetPos = goal
 	local up = self.up
 	local desired = self.look
 	local waypoint
@@ -311,7 +332,7 @@ function Crawler:updateCrawling(dt: number, targetPos: Vector3?)
 			return
 		end
 		-- speler uit het zicht (andere kamer)? loslaten en over de vloer een route zoeken
-		if targetPos and not self:canSee(targetPos) then
+		if mode ~= "chase" then
 			self.lostSight = self.lostSight or os.clock()
 			if os.clock() - self.lostSight > 1 then
 				self.lostSight = nil
@@ -326,7 +347,19 @@ function Crawler:updateCrawling(dt: number, targetPos: Vector3?)
 		local rel = targetPos - self.pos
 		desired = project(rel, up)
 		if up.Y > 0.7 then
-			self:considerCeiling(targetPos)
+			-- aangekomen bij de laatst geziene plek / het patrouillepunt
+			if desired.Magnitude < 3 then
+				if mode == "search" then
+					self.lastSeenPos = nil
+				elseif mode == "patrol" then
+					self.patrolPoint = nil
+				end
+			end
+			if mode == "chase" then
+				self:considerCeiling(targetPos)
+			else
+				self.climbing = false
+			end
 			if self.climbing then
 				-- naar de gekozen muur om via het plafond verder te jagen
 				desired = project(self.wallGoal - self.pos, up)
@@ -357,7 +390,7 @@ function Crawler:updateCrawling(dt: number, targetPos: Vector3?)
 		self.look = rotateTowards(self.look, desired.Unit, up, Config.TurnSpeed * dt)
 	end
 
-	local speed = targetPos and Config.ChaseSpeed or Config.WalkSpeed
+	local speed = mode == "patrol" and Config.WalkSpeed or Config.ChaseSpeed
 	local move = self.look * speed * dt
 
 	-- muur of plafond voor de kop: er meteen op klappen, de oude "omhoog" wordt de looprichting
@@ -417,28 +450,51 @@ function Crawler:updateCrawling(dt: number, targetPos: Vector3?)
 	self:startFalling()
 end
 
-function Crawler:checkProgress(dt: number, targetPos: Vector3?)
-	if not targetPos or self.falling then
-		self.bestDistance = math.huge
-		self.progressTimer = 0
+-- Nooit vast blijven zitten: elke seconde kijken of hij echt vooruitkomt.
+--   1e keer niet: bijdraaien en een nieuwe route laten berekenen
+--   2e keer niet: naar het volgende routepunt springen (op muur/plafond: loslaten)
+function Crawler:checkStuck(dt: number)
+	if self.falling then
+		self.stuckClock = 0
+		self.stuckRef = self.pos
 		return
 	end
-	local dist = (targetPos - self.pos).Magnitude
-	if dist < self.bestDistance - 1 then
-		self.bestDistance = dist
-		self.progressTimer = 0
+	self.stuckClock = (self.stuckClock or 0) + dt
+	if self.stuckClock < 1 then
+		return
+	end
+	local moved = (self.pos - (self.stuckRef or self.pos)).Magnitude
+	self.stuckRef = self.pos
+	self.stuckClock = 0
+	if moved > 1.5 then
+		self.stuckLevel = 0
+		return
+	end
+	self.stuckLevel = (self.stuckLevel or 0) + 1
+	self.climbing = false
+	if self.up.Y < 0.7 then
+		self:startFalling()
+		self.stuckLevel = 0
+	elseif self.stuckLevel == 1 then
+		local turn = (math.random() < 0.5 and -1 or 1) * math.pi / 2
+		self.look = CFrame.fromAxisAngle(self.up, turn):VectorToWorldSpace(self.look)
+		self.waypoints = nil
+		self.pathTime = 0
 	else
-		self.progressTimer += dt
-		if self.progressTimer > Config.StuckTime then
-			-- vast: loslaten (of op de vloer een willekeurige kant op draaien)
-			self.progressTimer = 0
-			self.bestDistance = math.huge
-			if self.up.Y < 0.7 then
-				self:startFalling()
-			else
-				self.look = CFrame.fromAxisAngle(self.up, (math.random() - 0.5) * math.pi):VectorToWorldSpace(self.look)
-			end
+		local waypoints = self.waypoints
+		local nextPoint = waypoints and waypoints[math.min(#waypoints, (self.waypointIndex or 1) + 1)]
+		local spot = nextPoint and nextPoint.Position or (self.pos - self.look * 3)
+		local ground = workspace:Raycast(spot + Vector3.new(0, 4, 0), Vector3.new(0, -10, 0), rayParams)
+		self.pos = ground and ground.Position or spot
+		self.up = Vector3.yAxis
+		self.look = tangent(self.look, self.up)
+		if waypoints then
+			self.waypointIndex = math.min(#waypoints, (self.waypointIndex or 1) + 2)
 		end
+		if self.mode == "patrol" then
+			self.patrolPoint = nil
+		end
+		self.stuckLevel = 0
 	end
 end
 
@@ -463,7 +519,21 @@ function Crawler:checkCatch(frame: CFrame)
 end
 
 function Crawler:update(dt: number)
+	local now = os.clock()
 	local target, targetPos = self:findTarget()
+	if targetPos then
+		self.lastSeenPos, self.lastSeenAt = targetPos, now
+	end
+	local goal, mode = targetPos, "chase"
+	if not goal then
+		if self.lastSeenPos and now - self.lastSeenAt < Config.SearchTime then
+			goal, mode = self.lastSeenPos, "search"
+		else
+			self.lastSeenPos = nil
+			goal, mode = self:patrolGoal(), "patrol"
+		end
+	end
+	self.mode = mode
 	self.model:SetAttribute("Chasing", target ~= nil)
 	self.model:SetAttribute("TargetUserId", target and target.UserId or 0)
 
@@ -479,10 +549,10 @@ function Crawler:update(dt: number)
 			end
 		end
 		if not self.falling then
-			self:updateCrawling(dt, targetPos)
+			self:updateCrawling(dt, goal, mode)
 		end
 	end
-	self:checkProgress(dt, targetPos)
+	self:checkStuck(dt)
 
 	if self.pos.Y < workspace.FallenPartsDestroyHeight + 50 or isNaN(self.pos) or isNaN(self.look) then
 		-- uit de wereld gevallen of kapotgerekend: terug naar het begin

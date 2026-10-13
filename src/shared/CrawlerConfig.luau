@@ -13,20 +13,20 @@ return {
 	Scale = 0.35,
 
 	-- Beweging (studs / seconde)
-	WalkSpeed = 7,
-	ChaseSpeed = 11, -- net iets langzamer dan een lopende speler (12); sprinten (20) is ontsnappen
-	TurnSpeed = 5, -- radialen per seconde
+	WalkSpeed = 6, -- rustig patrouilleren als hij niemand ziet
+	ChaseSpeed = 22, -- jagen: sneller dan sprinten (20); ontsnappen = uit zijn zicht komen
+	TurnSpeed = 8, -- radialen per seconde
 	Gravity = 120,
 	ProbeHeight = 1, -- hoogte van de vooruit-straal boven het oppervlak
 	ClimbProbe = 0.5, -- marge vóór de kop waarbinnen hij op een muur/plafond klapt
 
 	-- AI
 	PathRadius = 1, -- straal voor PathfindingService; groter past niet door een deur van 4 studs
-	DetectRange = 1000, -- hele ziekenhuis; hij weet altijd waar je bent
+	DetectRange = 1000, -- zo ver kan hij kijken (hij jaagt alleen als hij je ziet)
+	SearchTime = 6, -- seconden dat hij na het verliezen van zicht naar je laatst geziene plek rent
 	CatchRange = 3.5, -- afstand van speler tot kop of lijf
 	CatchCooldown = 2,
 	CeilingDropRange = 4, -- valt van het plafond als een speler horizontaal zo dichtbij is
-	StuckTime = 3, -- seconden zonder voortgang → andere kant op / loslaten
 
 	-- Via het plafond jagen
 	CeilingMinDistance = 15, -- alleen als de speler minstens zo ver weg is
