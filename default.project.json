@@ -6,11 +6,13 @@
       "Shared": { "$path": "src/shared" }
     },
     "ServerScriptService": {
+      "$ignoreUnknownInstances": false,
       "Server": { "$path": "src/server" },
       "Common": { "$path": "src/common/server" }
     },
     "StarterPlayer": {
       "StarterPlayerScripts": {
+        "$ignoreUnknownInstances": false,
         "Client": { "$path": "src/client" }
       }
     },

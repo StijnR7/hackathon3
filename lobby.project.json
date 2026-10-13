@@ -7,11 +7,13 @@
       "Shared": { "$path": "src/shared" }
     },
     "ServerScriptService": {
+      "$ignoreUnknownInstances": false,
       "Lobby": { "$path": "src/lobby/server" },
       "Common": { "$path": "src/common/server" }
     },
     "StarterPlayer": {
       "StarterPlayerScripts": {
+        "$ignoreUnknownInstances": false,
         "Lobby": { "$path": "src/lobby/client" }
       }
     }
