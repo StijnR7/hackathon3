@@ -1,0 +1,1004 @@
+<roblox version="4">
+<Item class="KeyframeSequence" referent="RBX1"><Properties><string name="Name">CrawlerWalk</string><bool name="Loop">true</bool><token name="Priority">1</token></Properties>
+<Item class="Keyframe" referent="RBX2"><Properties><string name="Name">Keyframe</string><float name="Time">0.000000</float></Properties>
+<Item class="Pose" referent="RBX3"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX4"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX5"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX6"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX7"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>-0.000000</R01><R02>-0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX8"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX9"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX10"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.997735</R00><R01>-0.000000</R01><R02>0.067267</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>-0.067267</R20><R21>0.000000</R21><R22>0.997735</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX11"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>-0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>0.968912</R11><R12>0.247404</R12><R20>-0.000000</R20><R21>-0.247404</R21><R22>0.968912</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX12"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX13"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>-0.000001</Y><Z>-0.000000</Z><R00>0.991182</R00><R01>-0.032166</R01><R02>0.128547</R02><R10>0.064035</R10><R11>0.965571</R11><R12>-0.252137</R12><R20>-0.116011</R20><R21>0.258145</R21><R22>0.959116</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX14"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.976526</R00><R01>-0.214140</R01><R02>-0.023252</R02><R10>0.211663</R10><R11>0.933967</R11><R12>0.287930</R12><R20>-0.039940</R20><R21>-0.286093</R21><R22>0.957369</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX15"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX16"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.995275</R00><R01>-0.031683</R01><R02>0.091781</R02><R10>0.023302</R10><R11>0.995578</R11><R12>0.090997</R12><R20>-0.094258</R20><R21>-0.088429</R21><R22>0.991613</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX17"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.998064</R00><R01>-0.061794</R01><R02>0.007020</R02><R10>0.062120</R10><R11>0.985126</R11><R12>-0.160212</R12><R20>0.002984</R20><R21>0.160338</R21><R22>0.987058</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX18"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.981895</R00><R01>-0.162881</R01><R02>-0.096701</R02><R10>0.155288</R10><R11>0.984502</R11><R12>-0.081492</R12><R20>0.108476</R20><R21>0.065000</R21><R22>0.991972</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX19"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.984492</R00><R01>-0.175127</R01><R02>0.010281</R02><R10>0.174742</R10><R11>0.973774</R11><R12>-0.145703</R12><R20>0.015505</R20><R21>0.145240</R21><R22>0.989275</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX20"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000000</Y><Z>0.000001</Z><R00>0.983963</R00><R01>-0.073095</R01><R02>-0.162706</R02><R10>0.076334</R10><R11>0.996988</R11><R12>0.013735</R12><R20>0.161212</R20><R21>-0.025935</R21><R22>0.986579</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX21"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000002</X><Y>0.000002</Y><Z>-0.000000</Z><R00>0.997097</R00><R01>-0.073654</R01><R02>-0.019324</R02><R10>0.076105</R10><R11>0.972389</R11><R12>0.220607</R12><R20>0.002542</R20><R21>-0.221437</R21><R22>0.975171</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX22"><Properties><string name="Name">Keyframe</string><float name="Time">0.041667</float></Properties>
+<Item class="Pose" referent="RBX23"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX24"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.142857</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX25"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX26"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX27"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.999879</R00><R01>-0.000000</R01><R02>0.015529</R02><R10>0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>-0.015529</R20><R21>0.000000</R21><R22>0.999879</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX28"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX29"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX30"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>0.000000</Z><R00>0.997097</R00><R01>0.000000</R01><R02>0.076137</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>-0.076137</R20><R21>0.000000</R21><R22>0.997097</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX31"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>-0.000000</R02><R10>0.000000</R10><R11>0.952334</R11><R12>0.305059</R12><R20>0.000000</R20><R21>-0.305059</R21><R22>0.952334</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX32"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX33"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.993140</R00><R01>-0.035634</R01><R02>0.111371</R02><R10>0.058931</R10><R11>0.975163</R11><R12>-0.213505</R12><R20>-0.100997</R20><R21>0.218603</R21><R22>0.970573</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX34"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000000</Y><Z>0.000001</Z><R00>0.982154</R00><R01>-0.187136</R01><R02>-0.018822</R02><R10>0.185890</R10><R11>0.950611</R11><R12>0.248562</R12><R20>-0.028622</R20><R21>-0.247625</R21><R22>0.968433</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX35"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX36"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000001</Y><Z>0.000001</Z><R00>0.993563</R00><R01>-0.014808</R01><R02>0.112312</R02><R10>0.008513</R10><R11>0.998376</R11><R12>0.056323</R12><R20>-0.112963</R20><R21>-0.055005</R21><R22>0.992075</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX37"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>-0.000001</Y><Z>-0.000002</Z><R00>0.998819</R00><R01>-0.047902</R01><R02>0.008103</R02><R10>0.048577</R10><R11>0.982282</R11><R12>-0.181001</R12><R20>0.000711</R20><R21>0.181181</R21><R22>0.983449</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX38"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.968194</R00><R01>-0.224904</R01><R02>-0.109628</R02><R10>0.212916</R10><R11>0.970735</R11><R12>-0.111092</R12><R20>0.131405</R20><R21>0.084217</R21><R22>0.987745</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX39"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>-0.000001</Z><R00>0.971766</R00><R01>-0.235364</R01><R02>0.016549</R02><R10>0.234569</R10><R11>0.956153</R11><R12>-0.175353</R12><R20>0.025448</R20><R21>0.174284</R21><R22>0.984367</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX40"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>-0.000001</Y><Z>0.000001</Z><R00>0.988653</R00><R01>-0.049142</R01><R02>-0.141950</R02><R10>0.051264</R10><R11>0.998621</R11><R12>0.011324</R12><R20>0.141198</R20><R21>-0.018472</R21><R22>0.989809</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX41"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000002</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.998014</R00><R01>-0.061677</R01><R02>-0.012840</R02><R10>0.062991</R10><R11>0.980117</R11><R12>0.188156</R12><R20>0.000980</R20><R21>-0.188591</R21><R22>0.982055</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX42"><Properties><string name="Name">Keyframe</string><float name="Time">0.083333</float></Properties>
+<Item class="Pose" referent="RBX43"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX44"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.247436</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX45"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX46"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX47"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999550</R00><R01>0.000000</R01><R02>0.029995</R02><R10>0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>-0.029995</R20><R21>0.000000</R21><R22>0.999550</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX48"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX49"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX50"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.996809</R00><R01>-0.000000</R01><R02>0.079826</R02><R10>0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>-0.079826</R20><R21>0.000000</R21><R22>0.996809</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX51"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>-0.000000</R01><R02>-0.000000</R02><R10>0.000000</R10><R11>0.938020</R11><R12>0.346580</R12><R20>-0.000000</R20><R21>-0.346580</R21><R22>0.938020</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX52"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX53"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>-0.000001</Y><Z>-0.000000</Z><R00>0.994970</R00><R01>-0.035877</R01><R02>0.093527</R02><R10>0.051726</R10><R11>0.983565</R11><R12>-0.172989</R12><R20>-0.085783</R20><R21>0.176956</R21><R22>0.980473</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX54"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000002</Z><R00>0.987077</R00><R01>-0.159568</R01><R02>-0.014745</R02><R10>0.159104</R10><R11>0.964897</R11><R12>0.208949</R12><R20>-0.019114</R20><R21>-0.208595</R21><R22>0.977815</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX55"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX56"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>0.991290</R00><R01>0.003734</R01><R02>0.131647</R02><R10>-0.007100</R10><R11>0.999659</R11><R12>0.025110</R12><R20>-0.131508</R20><R21>-0.025826</R21><R22>0.990979</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX57"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000002</Y><Z>-0.000000</Z><R00>0.999382</R00><R01>-0.033805</R01><R02>0.009674</R02><R10>0.035063</R10><R11>0.978723</R11><R12>-0.202169</R12><R20>-0.002634</R20><R21>0.202384</R21><R22>0.979303</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX58"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.951261</R00><R01>-0.283611</R01><R02>-0.121106</R02><R10>0.267431</R10><R11>0.954213</R11><R12>-0.134006</R12><R20>0.153567</R20><R21>0.095087</R21><R22>0.983553</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX59"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.955565</R00><R01>-0.293898</R01><R02>0.022800</R02><R10>0.292179</R10><R11>0.934039</R11><R12>-0.205432</R12><R20>0.039080</R20><R21>0.202965</R21><R22>0.978406</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX60"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>0.000001</Z><R00>0.992296</R00><R01>-0.029349</R01><R02>-0.120365</R02><R10>0.030547</R10><R11>0.999500</R11><R12>0.008125</R12><R20>0.120066</R20><R21>-0.011739</R21><R22>0.992696</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX61"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>-0.000001</Y><Z>-0.000000</Z><R00>0.998754</R00><R01>-0.049270</R01><R02>-0.007970</R02><R10>0.049910</R10><R11>0.986399</R11><R12>0.156605</R12><R20>0.000146</R20><R21>-0.156808</R21><R22>0.987629</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX62"><Properties><string name="Name">Keyframe</string><float name="Time">0.125000</float></Properties>
+<Item class="Pose" referent="RBX63"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX64"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.285714</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX65"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX66"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX67"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999100</R00><R01>-0.000000</R01><R02>0.042414</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>-0.042414</R20><R21>-0.000000</R21><R22>0.999100</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX68"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX69"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX70"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>0.000000</Z><R00>0.996947</R00><R01>0.000000</R01><R02>0.078085</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>-0.078085</R20><R21>-0.000000</R21><R22>0.996947</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX71"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>0.932327</R11><R12>0.361616</R12><R20>-0.000000</R20><R21>-0.361616</R21><R22>0.932327</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX72"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX73"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000002</Y><Z>-0.000000</Z><R00>0.996782</R00><R01>-0.029225</R01><R02>0.074638</R02><R10>0.038677</R10><R11>0.990953</R11><R12>-0.128516</R12><R20>-0.070207</R20><R21>0.130990</R21><R22>0.988895</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX74"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.991605</R00><R01>-0.128929</R01><R02>-0.009821</R02><R10>0.128733</R10><R11>0.977265</R11><R12>0.168464</R12><R20>-0.012122</R20><R21>-0.168314</R21><R22>0.985659</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX75"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX76"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000000</Y><Z>0.000000</Z><R00>0.992402</R00><R01>-0.028575</R01><R02>0.119670</R02><R10>0.018773</R10><R11>0.996435</R11><R12>0.082251</R12><R20>-0.121594</R20><R21>-0.079380</R21><R22>0.989401</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX77"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.996939</R00><R01>-0.077313</R01><R02>0.011628</R02><R10>0.078043</R10><R11>0.975182</R11><R12>-0.207192</R12><R20>0.004679</R20><R21>0.207466</R21><R22>0.978231</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX78"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.971023</R00><R01>-0.203334</R01><R02>-0.125577</R02><R10>0.192256</R10><R11>0.976743</R11><R12>-0.094924</R12><R20>0.141958</R20><R21>0.068031</R21><R22>0.987532</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX79"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000002</X><Y>-0.000003</Y><Z>-0.000001</Z><R00>0.973955</R00><R01>-0.226161</R01><R02>0.016205</R02><R10>0.225010</R10><R11>0.955233</R11><R12>-0.192096</R12><R20>0.027965</R20><R21>0.190740</R21><R22>0.981242</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX80"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000000</Y><Z>0.000001</Z><R00>0.995023</R00><R01>-0.017654</R01><R02>-0.098066</R02><R10>0.018406</R10><R11>0.999808</R11><R12>0.006770</R12><R20>0.097927</R20><R21>-0.008541</R21><R22>0.995157</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX81"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.999193</R00><R01>-0.039894</R01><R02>-0.004668</R02><R10>0.040164</R10><R11>0.991229</R11><R12>0.125903</R12><R20>-0.000396</R20><R21>-0.125989</R21><R22>0.992032</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX82"><Properties><string name="Name">Keyframe</string><float name="Time">0.166667</float></Properties>
+<Item class="Pose" referent="RBX83"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX84"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.247436</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX85"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX86"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX87"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.998650</R00><R01>-0.000000</R01><R02>0.051938</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>-0.051938</R20><R21>0.000000</R21><R22>0.998650</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX88"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX89"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX90"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>0.000000</Z><R00>0.997474</R00><R01>-0.000000</R01><R02>0.071032</R02><R10>0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>-0.071032</R20><R21>0.000000</R21><R22>0.997474</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX91"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>0.938020</R11><R12>0.346580</R12><R20>0.000000</R20><R21>-0.346580</R21><R22>0.938020</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX92"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX93"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.998240</R00><R01>-0.018903</R01><R02>0.056219</R02><R10>0.023290</R10><R11>0.996647</R11><R12>-0.078431</R12><R20>-0.054548</R20><R21>0.079602</R21><R22>0.995333</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX94"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>-0.000001</Y><Z>-0.000001</Z><R00>0.995527</R00><R01>-0.094325</R01><R02>-0.005448</R02><R10>0.094256</R10><R11>0.987506</R11><R12>0.126287</R12><R20>-0.006532</R20><R21>-0.126235</R21><R22>0.991979</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX95"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX96"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>-0.000001</Y><Z>0.000000</Z><R00>0.993255</R00><R01>-0.083217</R01><R02>0.080741</R02><R10>0.066158</R10><R11>0.978617</R11><R12>0.194761</R12><R20>-0.095222</R20><R21>-0.188106</R21><R22>0.977522</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX97"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000002</Y><Z>-0.000000</Z><R00>0.988720</R00><R01>-0.149106</R01><R02>0.014132</R02><R10>0.148949</R10><R11>0.968995</R11><R12>-0.197137</R12><R20>0.015700</R20><R21>0.197018</R21><R22>0.980274</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX98"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.993300</R00><R01>-0.023731</R01><R02>-0.113105</R02><R10>0.023420</R10><R11>0.999717</R11><R12>-0.004072</R12><R20>0.113170</R20><R21>0.001395</R21><R22>0.993575</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX99"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000002</X><Y>-0.000001</Y><Z>-0.000000</Z><R00>0.996931</R00><R01>-0.078249</R01><R02>0.002471</R02><R10>0.077734</R10><R11>0.985642</R11><R12>-0.149889</R12><R20>0.009293</R20><R21>0.149621</R21><R22>0.988700</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX100"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>0.000001</Z><R00>0.997063</R00><R01>-0.015171</R01><R02>-0.075068</R02><R10>0.015830</R10><R11>0.999841</R11><R12>0.008197</R12><R20>0.074932</R20><R21>-0.009362</R21><R22>0.997145</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX101"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000003</Y><Z>-0.000000</Z><R00>0.999392</R00><R01>-0.034759</R01><R02>-0.002613</R02><R10>0.034849</R10><R11>0.994786</R11><R12>0.095845</R12><R20>-0.000732</R20><R21>-0.095878</R21><R22>0.995393</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX102"><Properties><string name="Name">Keyframe</string><float name="Time">0.208333</float></Properties>
+<Item class="Pose" referent="RBX103"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX104"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.142857</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX105"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX106"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX107"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.998321</R00><R01>0.000000</R01><R02>0.057923</R02><R10>0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>-0.057923</R20><R21>0.000000</R21><R22>0.998321</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX108"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX109"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX110"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.998250</R00><R01>0.000000</R01><R02>0.059140</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>-0.059140</R20><R21>-0.000000</R21><R22>0.998250</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX111"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>-0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>0.952334</R11><R12>0.305059</R12><R20>-0.000000</R20><R21>-0.305059</R21><R22>0.952334</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX112"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX113"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.999241</R00><R01>-0.005549</R01><R02>0.038558</R02><R10>0.006483</R10><R11>0.999687</R11><R12>-0.024143</R12><R20>-0.038412</R20><R21>0.024375</R21><R22>0.998965</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX114"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>-0.000001</Y><Z>-0.000000</Z><R00>0.998395</R00><R01>-0.056601</R01><R02>-0.002136</R02><R10>0.056584</R10><R11>0.994968</R11><R12>0.082690</R12><R20>-0.002555</R20><R21>-0.082678</R21><R22>0.996573</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX115"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX116"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>0.992736</R00><R01>-0.114287</R01><R02>0.037590</R02><R10>0.098619</R10><R11>0.951973</R11><R12>0.289864</R12><R20>-0.068912</R20><R21>-0.284052</R21><R22>0.956329</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX117"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000001</Y><Z>-0.000002</Z><R00>0.979489</R00><R01>-0.200830</R01><R02>0.016373</R02><R10>0.200487</R10><R11>0.963239</R11><R12>-0.178816</R12><R20>0.020140</R20><R21>0.178431</R21><R22>0.983746</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX118"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.984243</R00><R01>0.155884</R01><R02>-0.083463</R02><R10>-0.148840</R10><R11>0.985212</R11><R12>0.084875</R12><R20>0.095460</R20><R21>-0.071115</R21><R22>0.992890</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX119"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000002</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.998334</R00><R01>0.057468</R01><R02>-0.005226</R02><R10>-0.057698</R10><R11>0.992754</R11><R12>-0.105408</R12><R20>-0.000870</R20><R21>0.105534</R21><R22>0.994415</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX120"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>-0.000001</Y><Z>0.000001</Z><R00>0.998480</R00><R01>-0.019681</R01><R02>-0.051474</R02><R10>0.020303</R10><R11>0.999727</R11><R12>0.011586</R12><R20>0.051232</R20><R21>-0.012613</R21><R22>0.998607</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX121"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000002</X><Y>0.000002</Y><Z>-0.000000</Z><R00>0.999472</R00><R01>-0.032456</R01><R02>-0.001374</R02><R10>0.032476</R10><R11>0.997284</R11><R12>0.066103</R12><R20>-0.000775</R20><R21>-0.066113</R21><R22>0.997812</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX122"><Properties><string name="Name">Keyframe</string><float name="Time">0.250000</float></Properties>
+<Item class="Pose" referent="RBX123"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX124"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX125"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX126"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX127"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.998201</R00><R01>-0.000000</R01><R02>0.059964</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>-0.059964</R20><R21>0.000000</R21><R22>0.998201</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX128"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX129"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX130"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>-0.000001</Y><Z>-0.000000</Z><R00>0.999066</R00><R01>-0.000000</R01><R02>0.043211</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>-0.043211</R20><R21>-0.000000</R21><R22>0.999066</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX131"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>-0.000000</R02><R10>0.000000</R10><R11>0.968912</R11><R12>0.247404</R12><R20>0.000000</R20><R21>-0.247404</R21><R22>0.968912</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX132"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX133"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999719</R00><R01>0.009665</R01><R02>0.021623</R02><R10>-0.010320</R10><R11>0.999485</R11><R12>0.030395</R12><R20>-0.021318</R20><R21>-0.030609</R21><R22>0.999304</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX134"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000001</Z><R00>0.999833</R00><R01>-0.018288</R01><R02>-0.000293</R02><R10>0.018286</R10><R11>0.999084</R11><R12>0.038693</R12><R20>-0.000415</R20><R21>-0.038692</R21><R22>0.999251</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX135"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX136"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>0.000001</Z><R00>0.992874</R00><R01>-0.119143</R01><R02>-0.002478</R02><R10>0.112621</R10><R11>0.931311</R11><R12>0.346376</R12><R20>-0.038960</R20><R21>-0.344187</R21><R22>0.938092</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX137"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>0.000001</Z><R00>0.974208</R00><R01>-0.225078</R01><R02>0.016055</R02><R10>0.224942</R10><R11>0.963054</R11><R12>-0.148079</R12><R20>0.017867</R20><R21>0.147872</R21><R22>0.988845</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX138"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.947993</R00><R01>0.315711</R01><R02>-0.040443</R02><R10>-0.306029</R10><R11>0.939013</R11><R12>0.156845</R12><R20>0.087494</R20><R21>-0.136311</R21><R22>0.986795</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX139"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.985229</R00><R01>0.171191</R01><R02>-0.004264</R02><R10>-0.171151</R10><R11>0.983565</R11><R12>-0.057507</R12><R20>-0.005651</R20><R21>0.057387</R21><R22>0.998336</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX140"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000000</Y><Z>0.000001</Z><R00>0.999282</R00><R01>-0.026043</R01><R02>-0.027508</R02><R10>0.026454</R10><R11>0.999542</R11><R12>0.014703</R12><R20>0.027113</R20><R21>-0.015420</R21><R22>0.999513</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX141"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>-0.000000</Z><R00>0.999566</R00><R01>-0.029458</R01><R02>-0.000581</R02><R10>0.029459</R10><R11>0.998905</R11><R12>0.036333</R12><R20>-0.000489</R20><R21>-0.036334</R21><R22>0.999340</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX142"><Properties><string name="Name">Keyframe</string><float name="Time">0.291667</float></Properties>
+<Item class="Pose" referent="RBX143"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX144"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.142857</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX145"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX146"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX147"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.998321</R00><R01>0.000000</R01><R02>0.057923</R02><R10>0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>-0.057923</R20><R21>0.000000</R21><R22>0.998321</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX148"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX149"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX150"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999704</R00><R01>0.000000</R01><R02>0.024326</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>-0.024326</R20><R21>-0.000000</R21><R22>0.999704</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX151"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>0.000001</Z><R00>1.000000</R00><R01>0.000000</R01><R02>-0.000000</R02><R10>-0.000000</R10><R11>0.982004</R11><R12>0.188859</R12><R20>0.000000</R20><R21>-0.188859</R21><R22>0.982004</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX152"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX153"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>-0.000001</Z><R00>0.999676</R00><R01>0.024944</R01><R02>0.005012</R02><R10>-0.025264</R10><R11>0.996523</R11><R12>0.079400</R12><R20>-0.003014</R20><R21>-0.079501</R21><R22>0.996830</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX154"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>-0.000002</Y><Z>-0.000001</Z><R00>0.999855</R00><R01>0.017048</R01><R02>-0.000028</R02><R10>-0.017048</R10><R11>0.999846</R11><R12>-0.004187</R12><R20>-0.000043</R20><R21>0.004187</R21><R22>0.999991</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX155"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX156"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>0.000000</Z><R00>0.994017</R00><R01>-0.103596</R01><R02>-0.034618</R02><R10>0.109145</R10><R11>0.929824</R11><R12>0.351447</R12><R20>-0.004220</R20><R21>-0.353122</R21><R22>0.935568</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX157"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>0.000003</X><Y>-0.000002</Y><Z>-0.000003</Z><R00>0.975722</R00><R01>-0.218678</R01><R02>0.012139</R02><R10>0.218750</R10><R11>0.970326</R11><R12>-0.103036</R12><R20>0.010753</R20><R21>0.103190</R21><R22>0.994604</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX158"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.903228</R00><R01>0.428934</R01><R02>0.013940</R02><R10>-0.421687</R10><R11>0.880996</R11><R12>0.214537</R12><R20>0.079741</R20><R21>-0.199654</R21><R22>0.976616</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX159"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000002</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.966730</R00><R01>0.255799</R01><R02>0.000480</R02><R10>-0.255784</R10><R11>0.966689</R11><R12>-0.009325</R12><R20>-0.002849</R20><R21>0.008892</R21><R22>0.999956</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX160"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999615</R00><R01>-0.027509</R01><R02>-0.003485</R02><R10>0.027557</R10><R11>0.999513</R11><R12>0.014634</R12><R20>0.003081</R20><R21>-0.014725</R21><R22>0.999887</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX161"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.999773</R00><R01>-0.021286</R01><R02>-0.000067</R02><R10>0.021286</R10><R11>0.999754</R11><R12>0.006289</R12><R20>-0.000067</R20><R21>-0.006289</R21><R22>0.999980</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX162"><Properties><string name="Name">Keyframe</string><float name="Time">0.333333</float></Properties>
+<Item class="Pose" referent="RBX163"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX164"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.247436</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX165"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX166"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX167"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.998650</R00><R01>-0.000000</R01><R02>0.051938</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>-0.051938</R20><R21>0.000000</R21><R22>0.998650</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX168"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX169"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX170"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>-0.000000</Z><R00>0.999993</R00><R01>-0.000000</R01><R02>0.003774</R02><R10>0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>-0.003774</R20><R21>0.000000</R21><R22>0.999993</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX171"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>-0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>0.989350</R11><R12>0.145558</R12><R20>-0.000000</R20><R21>-0.145558</R21><R22>0.989350</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX172"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX173"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>-0.000001</Z><R00>0.999203</R00><R01>0.038075</R01><R02>-0.011986</R02><R10>-0.036422</R10><R11>0.992513</R11><R12>0.116586</R12><R20>0.016335</R20><R21>-0.116057</R21><R22>0.993108</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX174"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>-0.000001</Y><Z>-0.000000</Z><R00>0.998953</R00><R01>0.045746</R01><R02>-0.001046</R02><R10>-0.045748</R10><R11>0.997970</R11><R12>-0.044297</R12><R20>-0.000982</R20><R21>0.044299</R21><R22>0.999018</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX175"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX176"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>0.995166</R00><R01>-0.078895</R01><R02>-0.058480</R02><R10>0.092963</R10><R11>0.948759</R11><R12>0.302017</R12><R20>0.031656</R20><R21>-0.305994</R21><R22>0.951507</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX177"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.983253</R00><R01>-0.182171</R01><R02>0.005198</R02><R10>0.182222</R10><R11>0.982276</R11><R12>-0.043913</R12><R20>0.002894</R20><R21>0.044125</R21><R22>0.999022</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX178"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.877326</R00><R01>0.474795</R01><R02>0.069772</R02><R10>-0.475980</R10><R11>0.842391</R11><R12>0.252628</R12><R20>0.061171</R20><R21>-0.254847</R21><R22>0.965045</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX179"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.952446</R00><R01>0.304658</R01><R02>0.005558</R02><R10>-0.304645</R10><R11>0.951717</R11><R12>0.037766</R12><R20>0.006216</R20><R21>-0.037663</R21><R22>0.999271</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX180"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>-0.000000</Y><Z>-0.000000</Z><R00>0.999640</R00><R01>-0.017695</R01><R02>0.020151</R02><R10>0.017522</R10><R11>0.999808</R11><R12>0.008726</R12><R20>-0.020302</R20><R21>-0.008370</R21><R22>0.999759</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX181"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000003</X><Y>0.000001</Y><Z>-0.000001</Z><R00>0.999992</R00><R01>-0.003910</R01><R02>0.000067</R02><R10>0.003911</R10><R11>0.999702</R11><R12>-0.024100</R12><R20>0.000028</R20><R21>0.024100</R21><R22>0.999710</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX182"><Properties><string name="Name">Keyframe</string><float name="Time">0.375000</float></Properties>
+<Item class="Pose" referent="RBX183"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX184"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.285714</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX185"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX186"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX187"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.999100</R00><R01>-0.000000</R01><R02>0.042414</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>-0.042414</R20><R21>0.000000</R21><R22>0.999100</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX188"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX189"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX190"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.999855</R00><R01>-0.000000</R01><R02>-0.017036</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>0.017036</R20><R21>0.000000</R21><R22>0.999855</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX191"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>-0.000000</R01><R02>-0.000000</R02><R10>0.000000</R10><R11>0.991562</R11><R12>0.129634</R12><R20>0.000000</R20><R21>-0.129634</R21><R22>0.991562</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX192"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX193"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000001</Y><Z>0.000001</Z><R00>0.998453</R00><R01>0.046738</R01><R02>-0.030117</R02><R10>-0.042201</R10><R11>0.989695</R11><R12>0.136829</R12><R20>0.036202</R20><R21>-0.135347</R21><R22>0.990137</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX194"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>0.000002</X><Y>0.000000</Y><Z>-0.000003</Z><R00>0.997884</R00><R01>0.064962</R01><R02>-0.002751</R02><R10>-0.064973</R10><R11>0.994654</R11><R12>-0.080259</R12><R20>-0.002477</R20><R21>0.080268</R21><R22>0.996770</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX195"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX196"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.995623</R00><R01>-0.054252</R01><R02>-0.076104</R02><R10>0.068742</R10><R11>0.976760</R11><R12>0.203015</R12><R20>0.063321</R20><R21>-0.207357</R21><R22>0.976214</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX197"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>-0.000003</Y><Z>-0.000000</Z><R00>0.993062</R00><R01>-0.117569</R01><R02>-0.002380</R02><R10>0.117590</R10><R11>0.992675</R11><R12>0.027742</R12><R20>-0.000899</R20><R21>-0.027830</R21><R22>0.999612</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX198"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.888047</R00><R01>0.445926</R01><R02>0.111906</R02><R10>-0.459302</R10><R11>0.849703</R11><R12>0.258934</R12><R20>0.020379</R20><R21>-0.281344</R21><R22>0.959390</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX199"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.950318</R00><R01>0.311125</R01><R02>0.009853</R02><R10>-0.310835</R10><R11>0.946785</R11><R12>0.083543</R12><R20>0.016664</R20><R21>-0.082455</R21><R22>0.996455</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX200"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>-0.000000</Y><Z>-0.000000</Z><R00>0.999059</R00><R01>0.007435</R01><R02>0.042732</R02><R10>-0.007246</R10><R11>0.999963</R11><R12>-0.004580</R12><R20>-0.042764</R20><R21>0.004266</R21><R22>0.999076</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX201"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000002</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.999684</R00><R01>0.025122</R01><R02>-0.000515</R02><R10>-0.025113</R10><R11>0.998186</R11><R12>-0.054717</R12><R20>-0.000860</R20><R21>0.054713</R21><R22>0.998502</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX202"><Properties><string name="Name">Keyframe</string><float name="Time">0.416667</float></Properties>
+<Item class="Pose" referent="RBX203"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX204"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.247436</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX205"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX206"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX207"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.999550</R00><R01>0.000000</R01><R02>0.029995</R02><R10>0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>-0.029995</R20><R21>0.000000</R21><R22>0.999550</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX208"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX209"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX210"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999327</R00><R01>-0.000000</R01><R02>-0.036678</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>0.036678</R20><R21>0.000000</R21><R22>0.999327</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX211"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>-0.000000</R02><R10>-0.000000</R10><R11>0.989350</R11><R12>0.145558</R12><R20>0.000000</R20><R21>-0.145558</R21><R22>0.989350</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX212"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX213"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>-0.000001</Z><R00>0.997560</R00><R01>0.048970</R01><R02>-0.049756</R02><R10>-0.041707</R10><R11>0.989588</R11><R12>0.137754</R12><R20>0.055984</R20><R21>-0.135342</R21><R22>0.989216</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX214"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>0.000002</Z><R00>0.997295</R00><R01>0.073364</R01><R02>-0.004511</R02><R10>-0.073410</R10><R11>0.991070</R11><R12>-0.111318</R12><R20>-0.003697</R20><R21>0.111348</R21><R22>0.993775</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX215"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX216"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.995474</R00><R01>-0.023843</R01><R02>-0.091999</R02><R10>0.030109</R10><R11>0.997275</R11><R12>0.067344</R12><R20>0.090143</R20><R21>-0.069809</R21><R22>0.993479</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX217"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>0.000003</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.999646</R00><R01>-0.026403</R01><R02>-0.003427</R02><R10>0.026619</R10><R11>0.993731</R11><R12>0.108585</R12><R20>0.000539</R20><R21>-0.108637</R21><R22>0.994081</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX218"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.926471</R00><R01>0.352011</R01><R02>0.133194</R02><R10>-0.373927</R10><R11>0.901131</R11><R12>0.219412</R12><R20>-0.042790</R20><R21>-0.253084</R21><R22>0.966498</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX219"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000002</X><Y>-0.000001</Y><Z>-0.000001</Z><R00>0.962393</R00><R01>0.271302</R01><R02>0.013938</R02><R10>-0.270792</R10><R11>0.953958</R11><R12>0.128979</R12><R20>0.021695</R20><R21>-0.127903</R21><R22>0.991549</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX220"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>-0.000000</Y><Z>-0.000000</Z><R00>0.996815</R00><R01>0.048353</R01><R02>0.063414</R02><R10>-0.046831</R10><R11>0.998583</R11><R12>-0.025281</R12><R20>-0.064546</R20><R21>0.022231</R21><R22>0.997667</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX221"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000003</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.997809</R00><R01>0.066124</R01><R02>-0.002244</R02><R10>-0.066074</R10><R11>0.994159</R11><R12>-0.085330</R12><R20>-0.003411</R20><R21>0.085291</R21><R22>0.996350</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX222"><Properties><string name="Name">Keyframe</string><float name="Time">0.458333</float></Properties>
+<Item class="Pose" referent="RBX223"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX224"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.142857</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX225"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX226"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX227"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999879</R00><R01>-0.000000</R01><R02>0.015529</R02><R10>0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>-0.015529</R20><R21>0.000000</R21><R22>0.999879</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX228"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX229"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX230"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.998551</R00><R01>-0.000000</R01><R02>-0.053811</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>0.053811</R20><R21>0.000000</R21><R22>0.998551</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX231"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>-0.000000</R02><R10>0.000000</R10><R11>0.982004</R11><R12>0.188859</R12><R20>0.000000</R20><R21>-0.188859</R21><R22>0.982004</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX232"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX233"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>-0.000001</Z><R00>0.996543</R00><R01>0.043777</R01><R02>-0.070604</R02><R10>-0.035025</R10><R11>0.992065</R11><R12>0.120748</R12><R20>0.075330</R20><R21>-0.117858</R21><R22>0.990169</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX234"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000001</Y><Z>-0.000001</Z><R00>0.997422</R00><R01>0.071510</R01><R02>-0.005934</R02><R10>-0.071645</R10><R11>0.987892</R11><R12>-0.137607</R12><R20>-0.003978</R20><R21>0.137677</R21><R22>0.990469</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX235"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX236"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>0.000000</Z><R00>0.993913</R00><R01>0.009154</R01><R02>-0.109788</R02><R10>-0.019076</R10><R11>0.995789</R11><R12>-0.089669</R12><R20>0.108505</R20><R21>0.091218</R21><R22>0.989902</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX237"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>0.000003</X><Y>-0.000002</Y><Z>-0.000001</Z><R00>0.996208</R00><R01>0.086845</R01><R02>0.005331</R02><R10>-0.086202</R10><R11>0.976798</R11><R12>0.196049</R12><R20>0.011818</R20><R21>-0.195765</R21><R22>0.980580</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX238"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.965591</R00><R01>0.215728</R01><R02>0.145244</R02><R10>-0.235172</R10><R11>0.962742</R11><R12>0.133498</R12><R20>-0.111033</R20><R21>-0.163062</R21><R22>0.980348</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX239"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000001</Y><Z>-0.000001</Z><R00>0.981950</R00><R01>0.188380</R01><R02>0.016923</R02><R10>-0.188420</R10><R11>0.966496</R11><R12>0.174307</R12><R20>0.016480</R20><R21>-0.174349</R21><R22>0.984546</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX240"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.991443</R00><R01>0.101990</R01><R02>0.081473</R02><R10>-0.097978</R10><R11>0.993838</R11><R12>-0.051822</R12><R20>-0.086256</R20><R21>0.043396</R21><R22>0.995327</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX241"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000002</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.993084</R00><R01>0.117281</R01><R02>-0.005461</R02><R10>-0.117123</R10><R11>0.986354</R11><R12>-0.115702</R12><R20>-0.008183</R20><R21>0.115542</R21><R22>0.993269</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX242"><Properties><string name="Name">Keyframe</string><float name="Time">0.500000</float></Properties>
+<Item class="Pose" referent="RBX243"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX244"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX245"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX246"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX247"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>-0.000000</R01><R02>-0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX248"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX249"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX250"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.997735</R00><R01>-0.000000</R01><R02>-0.067267</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.067267</R20><R21>-0.000000</R21><R22>0.997735</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX251"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>-0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>0.968912</R11><R12>0.247404</R12><R20>-0.000000</R20><R21>-0.247404</R21><R22>0.968912</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX252"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX253"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>-0.000001</Y><Z>-0.000000</Z><R00>0.995275</R00><R01>0.031684</R01><R02>-0.091781</R02><R10>-0.023302</R10><R11>0.995578</R11><R12>0.090998</R12><R20>0.094258</R20><R21>-0.088429</R21><R22>0.991613</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX254"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000002</Y><Z>0.000001</Z><R00>0.998064</R00><R01>0.061794</R01><R02>-0.007020</R02><R10>-0.062120</R10><R11>0.985126</R11><R12>-0.160213</R12><R20>-0.002985</R20><R21>0.160339</R21><R22>0.987058</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX255"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX256"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.991182</R00><R01>0.032166</R01><R02>-0.128547</R02><R10>-0.064035</R10><R11>0.965570</R11><R12>-0.252138</R12><R20>0.116011</R20><R21>0.258146</R21><R22>0.959115</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX257"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>0.000001</Z><R00>0.976526</R00><R01>0.214141</R01><R02>0.023253</R02><R10>-0.211664</R10><R11>0.933967</R11><R12>0.287931</R12><R20>0.039941</R20><R21>-0.286094</R21><R22>0.957369</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX258"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.983963</R00><R01>0.073093</R01><R02>0.162706</R02><R10>-0.076331</R10><R11>0.996988</R11><R12>0.013733</R12><R20>-0.161212</R20><R21>-0.025933</R21><R22>0.986579</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX259"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.997097</R00><R01>0.073652</R01><R02>0.019324</R02><R10>-0.076103</R10><R11>0.972389</R11><R12>0.220607</R12><R20>-0.002542</R20><R21>-0.221437</R21><R22>0.975171</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX260"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000000</Y><Z>0.000001</Z><R00>0.981896</R00><R01>0.162879</R01><R02>0.096701</R02><R10>-0.155286</R10><R11>0.984503</R11><R12>-0.081490</R12><R20>-0.108476</R20><R21>0.064999</R21><R22>0.991972</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX261"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000000</Y><Z>0.000001</Z><R00>0.984493</R00><R01>0.175125</R01><R02>-0.010281</R02><R10>-0.174740</R10><R11>0.973775</R11><R12>-0.145703</R12><R20>-0.015504</R20><R21>0.145240</R21><R22>0.989275</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX262"><Properties><string name="Name">Keyframe</string><float name="Time">0.541667</float></Properties>
+<Item class="Pose" referent="RBX263"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX264"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.142857</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX265"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX266"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX267"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.999879</R00><R01>-0.000000</R01><R02>-0.015529</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>0.015529</R20><R21>0.000000</R21><R22>0.999879</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX268"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX269"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX270"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>0.000000</Z><R00>0.997097</R00><R01>-0.000000</R01><R02>-0.076137</R02><R10>0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>0.076137</R20><R21>-0.000000</R21><R22>0.997097</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX271"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>-0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>0.952334</R11><R12>0.305059</R12><R20>-0.000000</R20><R21>-0.305059</R21><R22>0.952334</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX272"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX273"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.993563</R00><R01>0.014808</R01><R02>-0.112312</R02><R10>-0.008513</R10><R11>0.998376</R11><R12>0.056324</R12><R20>0.112963</R20><R21>-0.055005</R21><R22>0.992075</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX274"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000003</Y><Z>0.000001</Z><R00>0.998819</R00><R01>0.047902</R01><R02>-0.008103</R02><R10>-0.048577</R10><R11>0.982282</R11><R12>-0.181002</R12><R20>-0.000711</R20><R21>0.181181</R21><R22>0.983449</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX275"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX276"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.993140</R00><R01>0.035634</R01><R02>-0.111371</R02><R10>-0.058932</R10><R11>0.975163</R11><R12>-0.213506</R12><R20>0.100997</R20><R21>0.218604</R21><R22>0.970573</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX277"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>0.000002</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.982154</R00><R01>0.187137</R01><R02>0.018822</R02><R10>-0.185890</R10><R11>0.950611</R11><R12>0.248562</R12><R20>0.028622</R20><R21>-0.247625</R21><R22>0.968433</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX278"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.988653</R00><R01>0.049140</R01><R02>0.141950</R02><R10>-0.051261</R10><R11>0.998621</R11><R12>0.011322</R12><R20>-0.141198</R20><R21>-0.018470</R21><R22>0.989809</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX279"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>-0.000001</Z><R00>0.998014</R00><R01>0.061674</R01><R02>0.012840</R02><R10>-0.062989</R10><R11>0.980117</R11><R12>0.188156</R12><R20>-0.000980</R20><R21>-0.188591</R21><R22>0.982055</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX280"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>-0.000001</Y><Z>0.000001</Z><R00>0.968195</R00><R01>0.224902</R01><R02>0.109629</R02><R10>-0.212913</R10><R11>0.970735</R11><R12>-0.111091</R12><R20>-0.131405</R20><R21>0.084216</R21><R22>0.987745</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX281"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000002</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.971767</R00><R01>0.235362</R01><R02>-0.016549</R02><R10>-0.234567</R10><R11>0.956154</R11><R12>-0.175352</R12><R20>-0.025448</R20><R21>0.174284</R21><R22>0.984367</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX282"><Properties><string name="Name">Keyframe</string><float name="Time">0.583333</float></Properties>
+<Item class="Pose" referent="RBX283"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX284"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.247436</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX285"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX286"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX287"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999550</R00><R01>0.000000</R01><R02>-0.029995</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>0.029995</R20><R21>0.000000</R21><R22>0.999550</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX288"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX289"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX290"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.996809</R00><R01>0.000000</R01><R02>-0.079826</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.079826</R20><R21>0.000000</R21><R22>0.996809</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX291"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000001</Z><R00>1.000000</R00><R01>-0.000000</R01><R02>-0.000000</R02><R10>0.000000</R10><R11>0.938020</R11><R12>0.346580</R12><R20>0.000000</R20><R21>-0.346580</R21><R22>0.938020</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX292"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX293"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.991290</R00><R01>-0.003734</R01><R02>-0.131647</R02><R10>0.007100</R10><R11>0.999659</R11><R12>0.025111</R12><R20>0.131509</R20><R21>-0.025826</R21><R22>0.990979</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX294"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999382</R00><R01>0.033805</R01><R02>-0.009674</R02><R10>-0.035063</R10><R11>0.978723</R11><R12>-0.202170</R12><R20>0.002634</R20><R21>0.202384</R21><R22>0.979303</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX295"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX296"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>0.000001</Z><R00>0.994970</R00><R01>0.035877</R01><R02>-0.093527</R02><R10>-0.051727</R10><R11>0.983565</R11><R12>-0.172989</R12><R20>0.085783</R20><R21>0.176957</R21><R22>0.980473</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX297"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.987077</R00><R01>0.159568</R01><R02>0.014745</R02><R10>-0.159104</R10><R11>0.964897</R11><R12>0.208949</R12><R20>0.019114</R20><R21>-0.208595</R21><R22>0.977815</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX298"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.992296</R00><R01>0.029346</R01><R02>0.120365</R02><R10>-0.030545</R10><R11>0.999500</R11><R12>0.008123</R12><R20>-0.120066</R20><R21>-0.011737</R21><R22>0.992696</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX299"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000003</Y><Z>-0.000000</Z><R00>0.998754</R00><R01>0.049268</R01><R02>0.007970</R02><R10>-0.049908</R10><R11>0.986400</R11><R12>0.156605</R12><R20>-0.000146</R20><R21>-0.156808</R21><R22>0.987629</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX300"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>0.000001</Z><R00>0.951262</R00><R01>0.283609</R01><R02>0.121107</R02><R10>-0.267429</R10><R11>0.954214</R11><R12>-0.134005</R12><R20>-0.153567</R20><R21>0.095087</R21><R22>0.983553</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX301"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.955566</R00><R01>0.293896</R01><R02>-0.022800</R02><R10>-0.292177</R10><R11>0.934040</R11><R12>-0.205432</R12><R20>-0.039080</R20><R21>0.202965</R21><R22>0.978406</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX302"><Properties><string name="Name">Keyframe</string><float name="Time">0.625000</float></Properties>
+<Item class="Pose" referent="RBX303"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX304"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.285714</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX305"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX306"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX307"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999100</R00><R01>0.000000</R01><R02>-0.042414</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.042414</R20><R21>0.000000</R21><R22>0.999100</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX308"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX309"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX310"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>0.000000</Z><R00>0.996947</R00><R01>0.000000</R01><R02>-0.078085</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.078085</R20><R21>-0.000000</R21><R22>0.996947</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX311"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>-0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>-0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>0.932327</R11><R12>0.361616</R12><R20>-0.000000</R20><R21>-0.361616</R21><R22>0.932327</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX312"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX313"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.992402</R00><R01>0.028575</R01><R02>-0.119671</R02><R10>-0.018773</R10><R11>0.996435</R11><R12>0.082251</R12><R20>0.121594</R20><R21>-0.079380</R21><R22>0.989401</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX314"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.996939</R00><R01>0.077314</R01><R02>-0.011628</R02><R10>-0.078043</R10><R11>0.975182</R11><R12>-0.207193</R12><R20>-0.004679</R20><R21>0.207466</R21><R22>0.978231</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX315"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX316"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000002</Y><Z>-0.000000</Z><R00>0.996782</R00><R01>0.029225</R01><R02>-0.074638</R02><R10>-0.038677</R10><R11>0.990953</R11><R12>-0.128517</R12><R20>0.070207</R20><R21>0.130990</R21><R22>0.988895</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX317"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000002</Z><R00>0.991605</R00><R01>0.128929</R01><R02>0.009821</R02><R10>-0.128733</R10><R11>0.977265</R11><R12>0.168464</R12><R20>0.012122</R20><R21>-0.168314</R21><R22>0.985659</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX318"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.995023</R00><R01>0.017651</R01><R02>0.098066</R02><R10>-0.018403</R10><R11>0.999808</R11><R12>0.006768</R12><R20>-0.097928</R20><R21>-0.008539</R21><R22>0.995157</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX319"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000002</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999193</R00><R01>0.039892</R01><R02>0.004668</R02><R10>-0.040162</R10><R11>0.991229</R11><R12>0.125903</R12><R20>0.000396</R20><R21>-0.125989</R21><R22>0.992032</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX320"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000000</Y><Z>0.000001</Z><R00>0.971023</R00><R01>0.203332</R01><R02>0.125577</R02><R10>-0.192254</R10><R11>0.976744</R11><R12>-0.094923</R12><R20>-0.141958</R20><R21>0.068030</R21><R22>0.987532</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX321"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>-0.000000</Z><R00>0.973956</R00><R01>0.226159</R01><R02>-0.016205</R02><R10>-0.225008</R10><R11>0.955233</R11><R12>-0.192096</R12><R20>-0.027965</R20><R21>0.190739</R21><R22>0.981242</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX322"><Properties><string name="Name">Keyframe</string><float name="Time">0.666667</float></Properties>
+<Item class="Pose" referent="RBX323"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX324"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.247436</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX325"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX326"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX327"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.998650</R00><R01>0.000000</R01><R02>-0.051938</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.051938</R20><R21>0.000000</R21><R22>0.998650</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX328"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX329"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX330"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>-0.000000</Z><R00>0.997474</R00><R01>0.000000</R01><R02>-0.071032</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.071032</R20><R21>0.000000</R21><R22>0.997474</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX331"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>0.938020</R11><R12>0.346580</R12><R20>-0.000000</R20><R21>-0.346580</R21><R22>0.938020</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX332"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX333"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>0.000001</Z><R00>0.993255</R00><R01>0.083217</R01><R02>-0.080741</R02><R10>-0.066158</R10><R11>0.978617</R11><R12>0.194761</R12><R20>0.095222</R20><R21>-0.188106</R21><R22>0.977522</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX334"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>0.000001</Z><R00>0.988720</R00><R01>0.149106</R01><R02>-0.014132</R02><R10>-0.148949</R10><R11>0.968995</R11><R12>-0.197137</R12><R20>-0.015700</R20><R21>0.197018</R21><R22>0.980274</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX335"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX336"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.998239</R00><R01>0.018903</R01><R02>-0.056219</R02><R10>-0.023290</R10><R11>0.996647</R11><R12>-0.078431</R12><R20>0.054548</R20><R21>0.079602</R21><R22>0.995333</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX337"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000001</Y><Z>-0.000001</Z><R00>0.995527</R00><R01>0.094325</R01><R02>0.005448</R02><R10>-0.094256</R10><R11>0.987506</R11><R12>0.126287</R12><R20>0.006532</R20><R21>-0.126235</R21><R22>0.991979</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX338"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.997063</R00><R01>0.015168</R01><R02>0.075068</R02><R10>-0.015828</R10><R11>0.999841</R11><R12>0.008196</R12><R20>-0.074932</R20><R21>-0.009360</R21><R22>0.997145</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX339"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999392</R00><R01>0.034757</R01><R02>0.002613</R02><R10>-0.034847</R10><R11>0.994786</R11><R12>0.095845</R12><R20>0.000732</R20><R21>-0.095878</R21><R22>0.995393</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX340"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>0.000001</Z><R00>0.993300</R00><R01>0.023728</R01><R02>0.113105</R02><R10>-0.023418</R10><R11>0.999717</R11><R12>-0.004070</R12><R20>-0.113170</R20><R21>0.001394</R21><R22>0.993575</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX341"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000002</X><Y>0.000002</Y><Z>-0.000001</Z><R00>0.996931</R00><R01>0.078246</R01><R02>-0.002471</R02><R10>-0.077732</R10><R11>0.985643</R11><R12>-0.149889</R12><R20>-0.009292</R20><R21>0.149621</R21><R22>0.988700</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX342"><Properties><string name="Name">Keyframe</string><float name="Time">0.708333</float></Properties>
+<Item class="Pose" referent="RBX343"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX344"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.142857</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX345"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX346"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX347"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.998321</R00><R01>0.000000</R01><R02>-0.057923</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>0.057923</R20><R21>0.000000</R21><R22>0.998321</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX348"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX349"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX350"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.998250</R00><R01>0.000000</R01><R02>-0.059140</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>0.059140</R20><R21>0.000000</R21><R22>0.998250</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX351"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>-0.000000</R02><R10>0.000000</R10><R11>0.952334</R11><R12>0.305059</R12><R20>0.000000</R20><R21>-0.305059</R21><R22>0.952334</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX352"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX353"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.992736</R00><R01>0.114287</R01><R02>-0.037590</R02><R10>-0.098619</R10><R11>0.951973</R11><R12>0.289864</R12><R20>0.068912</R20><R21>-0.284052</R21><R22>0.956329</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX354"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>-0.000001</Y><Z>0.000001</Z><R00>0.979489</R00><R01>0.200830</R01><R02>-0.016373</R02><R10>-0.200487</R10><R11>0.963239</R11><R12>-0.178816</R12><R20>-0.020140</R20><R21>0.178431</R21><R22>0.983746</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX355"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX356"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>0.000001</Z><R00>0.999241</R00><R01>0.005549</R01><R02>-0.038559</R02><R10>-0.006483</R10><R11>0.999687</R11><R12>-0.024144</R12><R20>0.038412</R20><R21>0.024375</R21><R22>0.998965</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX357"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>-0.000000</Z><R00>0.998395</R00><R01>0.056601</R01><R02>0.002136</R02><R10>-0.056584</R10><R11>0.994968</R11><R12>0.082690</R12><R20>0.002555</R20><R21>-0.082679</R21><R22>0.996573</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX358"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.998480</R00><R01>0.019678</R01><R02>0.051474</R02><R10>-0.020300</R10><R11>0.999727</R11><R12>0.011584</R12><R20>-0.051232</R20><R21>-0.012612</R21><R22>0.998607</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX359"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>-0.000001</Y><Z>-0.000000</Z><R00>0.999472</R00><R01>0.032454</R01><R02>0.001374</R02><R10>-0.032474</R10><R11>0.997284</R11><R12>0.066103</R12><R20>0.000775</R20><R21>-0.066113</R21><R22>0.997812</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX360"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>-0.000001</Y><Z>0.000001</Z><R00>0.984242</R00><R01>-0.155887</R01><R02>0.083463</R02><R10>0.148843</R10><R11>0.985212</R11><R12>0.084876</R12><R20>-0.095460</R20><R21>-0.071116</R21><R22>0.992890</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX361"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000002</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.998334</R00><R01>-0.057470</R01><R02>0.005226</R02><R10>0.057700</R10><R11>0.992754</R11><R12>-0.105408</R12><R20>0.000870</R20><R21>0.105534</R21><R22>0.994415</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX362"><Properties><string name="Name">Keyframe</string><float name="Time">0.750000</float></Properties>
+<Item class="Pose" referent="RBX363"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX364"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX365"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX366"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX367"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.998201</R00><R01>0.000000</R01><R02>-0.059964</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.059964</R20><R21>0.000000</R21><R22>0.998201</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX368"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX369"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX370"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>-0.000002</Y><Z>-0.000000</Z><R00>0.999066</R00><R01>-0.000000</R01><R02>-0.043211</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.043211</R20><R21>-0.000000</R21><R22>0.999066</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX371"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>0.968912</R11><R12>0.247404</R12><R20>-0.000000</R20><R21>-0.247404</R21><R22>0.968912</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX372"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX373"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>0.000001</Z><R00>0.992874</R00><R01>0.119144</R01><R02>0.002478</R02><R10>-0.112621</R10><R11>0.931311</R11><R12>0.346377</R12><R20>0.038960</R20><R21>-0.344188</R21><R22>0.938092</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX374"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>-0.000002</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.974208</R00><R01>0.225079</R01><R02>-0.016055</R02><R10>-0.224942</R10><R11>0.963054</R11><R12>-0.148080</R12><R20>-0.017867</R20><R21>0.147872</R21><R22>0.988845</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX375"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX376"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>-0.000002</X><Y>0.000000</Y><Z>0.000001</Z><R00>0.999719</R00><R01>-0.009665</R01><R02>-0.021623</R02><R10>0.010320</R10><R11>0.999485</R11><R12>0.030394</R12><R20>0.021318</R20><R21>-0.030608</R21><R22>0.999304</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX377"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.999833</R00><R01>0.018289</R01><R02>0.000293</R02><R10>-0.018286</R10><R11>0.999084</R11><R12>0.038693</R12><R20>0.000415</R20><R21>-0.038692</R21><R22>0.999251</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX378"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999282</R00><R01>0.026040</R01><R02>0.027508</R02><R10>-0.026451</R10><R11>0.999542</R11><R12>0.014701</R12><R20>-0.027113</R20><R21>-0.015418</R21><R22>0.999513</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX379"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>-0.000001</Y><Z>0.000002</Z><R00>0.999566</R00><R01>0.029456</R01><R02>0.000581</R02><R10>-0.029457</R10><R11>0.998905</R11><R12>0.036333</R12><R20>0.000489</R20><R21>-0.036334</R21><R22>0.999340</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX380"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000000</Y><Z>0.000001</Z><R00>0.947992</R00><R01>-0.315714</R01><R02>0.040443</R02><R10>0.306032</R10><R11>0.939012</R11><R12>0.156846</R12><R20>-0.087495</R20><R21>-0.136312</R21><R22>0.986795</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX381"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000002</Y><Z>0.000001</Z><R00>0.985228</R00><R01>-0.171194</R01><R02>0.004264</R02><R10>0.171153</R10><R11>0.983565</R11><R12>-0.057507</R12><R20>0.005651</R20><R21>0.057387</R21><R22>0.998336</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX382"><Properties><string name="Name">Keyframe</string><float name="Time">0.791667</float></Properties>
+<Item class="Pose" referent="RBX383"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX384"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.142857</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX385"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX386"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX387"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.998321</R00><R01>0.000000</R01><R02>-0.057923</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>0.057923</R20><R21>0.000000</R21><R22>0.998321</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX388"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX389"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX390"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999704</R00><R01>0.000000</R01><R02>-0.024326</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>0.024326</R20><R21>0.000000</R21><R22>0.999704</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX391"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>-0.000000</Y><Z>0.000001</Z><R00>1.000000</R00><R01>-0.000000</R01><R02>-0.000000</R02><R10>0.000000</R10><R11>0.982004</R11><R12>0.188859</R12><R20>0.000000</R20><R21>-0.188859</R21><R22>0.982004</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX392"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX393"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.994017</R00><R01>0.103596</R01><R02>0.034618</R02><R10>-0.109145</R10><R11>0.929824</R11><R12>0.351447</R12><R20>0.004220</R20><R21>-0.353123</R21><R22>0.935567</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX394"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.975722</R00><R01>0.218678</R01><R02>-0.012139</R02><R10>-0.218751</R10><R11>0.970326</R11><R12>-0.103037</R12><R20>-0.010753</R20><R21>0.103190</R21><R22>0.994603</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX395"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX396"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>0.000002</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999676</R00><R01>-0.024944</R01><R02>-0.005012</R02><R10>0.025264</R10><R11>0.996523</R11><R12>0.079399</R12><R20>0.003014</R20><R21>-0.079500</R21><R22>0.996830</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX397"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000002</Y><Z>-0.000000</Z><R00>0.999855</R00><R01>-0.017048</R01><R02>0.000028</R02><R10>0.017048</R10><R11>0.999846</R11><R12>-0.004186</R12><R20>0.000043</R20><R21>0.004186</R21><R22>0.999991</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX398"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999616</R00><R01>0.027506</R01><R02>0.003485</R02><R10>-0.027554</R10><R11>0.999513</R11><R12>0.014633</R12><R20>-0.003081</R20><R21>-0.014723</R21><R22>0.999887</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX399"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000002</Y><Z>-0.000001</Z><R00>0.999773</R00><R01>0.021283</R01><R02>0.000067</R02><R10>-0.021283</R10><R11>0.999754</R11><R12>0.006289</R12><R20>0.000067</R20><R21>-0.006289</R21><R22>0.999980</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX400"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.903227</R00><R01>-0.428937</R01><R02>-0.013940</R02><R10>0.421690</R10><R11>0.880994</R11><R12>0.214539</R12><R20>-0.079742</R20><R21>-0.199656</R21><R22>0.976616</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX401"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.966729</R00><R01>-0.255802</R01><R02>-0.000480</R02><R10>0.255786</R10><R11>0.966688</R11><R12>-0.009325</R12><R20>0.002849</R20><R21>0.008892</R21><R22>0.999956</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX402"><Properties><string name="Name">Keyframe</string><float name="Time">0.833333</float></Properties>
+<Item class="Pose" referent="RBX403"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX404"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.247436</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX405"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX406"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX407"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.998650</R00><R01>0.000000</R01><R02>-0.051938</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.051938</R20><R21>0.000000</R21><R22>0.998650</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX408"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX409"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX410"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999993</R00><R01>0.000000</R01><R02>-0.003774</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>0.003774</R20><R21>0.000000</R21><R22>0.999993</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX411"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>0.989350</R11><R12>0.145558</R12><R20>0.000000</R20><R21>-0.145558</R21><R22>0.989350</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX412"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX413"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000002</Y><Z>0.000001</Z><R00>0.995166</R00><R01>0.078895</R01><R02>0.058480</R02><R10>-0.092963</R10><R11>0.948759</R11><R12>0.302017</R12><R20>-0.031655</R20><R21>-0.305994</R21><R22>0.951507</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX414"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>0.000001</Z><R00>0.983253</R00><R01>0.182171</R01><R02>-0.005198</R02><R10>-0.182222</R10><R11>0.982276</R11><R12>-0.043914</R12><R20>-0.002894</R20><R21>0.044125</R21><R22>0.999022</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX415"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX416"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.999203</R00><R01>-0.038075</R01><R02>0.011986</R02><R10>0.036422</R10><R11>0.992513</R11><R12>0.116586</R12><R20>-0.016335</R20><R21>-0.116057</R21><R22>0.993108</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX417"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>-0.000000</Z><R00>0.998953</R00><R01>-0.045746</R01><R02>0.001046</R02><R10>0.045748</R10><R11>0.997970</R11><R12>-0.044297</R12><R20>0.000982</R20><R21>0.044299</R21><R22>0.999018</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX418"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999640</R00><R01>0.017692</R01><R02>-0.020151</R02><R10>-0.017519</R10><R11>0.999808</R11><R12>0.008724</R12><R20>0.020301</R20><R21>-0.008368</R21><R22>0.999759</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX419"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.999992</R00><R01>0.003908</R01><R02>-0.000067</R02><R10>-0.003908</R10><R11>0.999702</R11><R12>-0.024100</R12><R20>-0.000028</R20><R21>0.024100</R21><R22>0.999710</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX420"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>-0.000000</Y><Z>-0.000000</Z><R00>0.877325</R00><R01>-0.474798</R01><R02>-0.069773</R02><R10>0.475982</R10><R11>0.842389</R11><R12>0.252630</R12><R20>-0.061172</R20><R21>-0.254849</R21><R22>0.965044</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX421"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000002</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.952445</R00><R01>-0.304660</R01><R02>-0.005558</R02><R10>0.304648</R10><R11>0.951716</R11><R12>0.037766</R12><R20>-0.006216</R20><R21>-0.037663</R21><R22>0.999271</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX422"><Properties><string name="Name">Keyframe</string><float name="Time">0.875000</float></Properties>
+<Item class="Pose" referent="RBX423"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX424"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.285714</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX425"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX426"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX427"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.999100</R00><R01>0.000000</R01><R02>-0.042414</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.042414</R20><R21>0.000000</R21><R22>0.999100</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX428"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX429"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX430"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.999855</R00><R01>-0.000000</R01><R02>0.017036</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>-0.017036</R20><R21>0.000000</R21><R22>0.999855</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX431"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>-0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>0.991562</R11><R12>0.129634</R12><R20>-0.000000</R20><R21>-0.129634</R21><R22>0.991562</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX432"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX433"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>-0.000001</Y><Z>-0.000001</Z><R00>0.995623</R00><R01>0.054252</R01><R02>0.076104</R02><R10>-0.068742</R10><R11>0.976760</R11><R12>0.203015</R12><R20>-0.063321</R20><R21>-0.207358</R21><R22>0.976214</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX434"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000002</Y><Z>-0.000000</Z><R00>0.993062</R00><R01>0.117570</R01><R02>0.002380</R02><R10>-0.117591</R10><R11>0.992675</R11><R12>0.027742</R12><R20>0.000899</R20><R21>-0.027829</R21><R22>0.999612</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX435"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX436"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000001</Y><Z>0.000000</Z><R00>0.998453</R00><R01>-0.046738</R01><R02>0.030117</R02><R10>0.042201</R10><R11>0.989695</R11><R12>0.136829</R12><R20>-0.036202</R20><R21>-0.135346</R21><R22>0.990137</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX437"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>-0.000001</Y><Z>-0.000000</Z><R00>0.997884</R00><R01>-0.064962</R01><R02>0.002751</R02><R10>0.064973</R10><R11>0.994654</R11><R12>-0.080259</R12><R20>0.002477</R20><R21>0.080268</R21><R22>0.996770</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX438"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999059</R00><R01>-0.007437</R01><R02>-0.042731</R02><R10>0.007248</R10><R11>0.999963</R11><R12>-0.004581</R12><R20>0.042764</R20><R21>0.004267</R21><R22>0.999076</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX439"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999684</R00><R01>-0.025125</R01><R02>0.000515</R02><R10>0.025115</R10><R11>0.998186</R11><R12>-0.054717</R12><R20>0.000860</R20><R21>0.054713</R21><R22>0.998502</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX440"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>-0.000000</Y><Z>-0.000000</Z><R00>0.888045</R00><R01>-0.445929</R01><R02>-0.111907</R02><R10>0.459304</R10><R11>0.849701</R11><R12>0.258936</R12><R20>-0.020380</R20><R21>-0.281346</R21><R22>0.959390</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX441"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>-0.000001</Z><R00>0.950317</R00><R01>-0.311128</R01><R02>-0.009853</R02><R10>0.310837</R10><R11>0.946784</R11><R12>0.083543</R12><R20>-0.016664</R20><R21>-0.082455</R21><R22>0.996455</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX442"><Properties><string name="Name">Keyframe</string><float name="Time">0.916667</float></Properties>
+<Item class="Pose" referent="RBX443"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX444"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.247436</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX445"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX446"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX447"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.999550</R00><R01>0.000000</R01><R02>-0.029995</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>0.029995</R20><R21>0.000000</R21><R22>0.999550</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX448"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX449"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX450"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999327</R00><R01>-0.000000</R01><R02>0.036678</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>-0.036678</R20><R21>0.000000</R21><R22>0.999327</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX451"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>-0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>0.989350</R11><R12>0.145558</R12><R20>-0.000000</R20><R21>-0.145558</R21><R22>0.989350</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX452"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX453"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.995474</R00><R01>0.023843</R01><R02>0.091999</R02><R10>-0.030110</R10><R11>0.997275</R11><R12>0.067344</R12><R20>-0.090142</R20><R21>-0.069810</R21><R22>0.993479</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX454"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000003</Y><Z>-0.000002</Z><R00>0.999645</R00><R01>0.026403</R01><R02>0.003427</R02><R10>-0.026619</R10><R11>0.993731</R11><R12>0.108584</R12><R20>-0.000539</R20><R21>-0.108637</R21><R22>0.994081</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX455"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX456"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.997560</R00><R01>-0.048970</R01><R02>0.049756</R02><R10>0.041708</R10><R11>0.989588</R11><R12>0.137753</R12><R20>-0.055984</R20><R21>-0.135342</R21><R22>0.989216</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX457"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>0.000002</X><Y>-0.000001</Y><Z>0.000002</Z><R00>0.997295</R00><R01>-0.073364</R01><R02>0.004510</R02><R10>0.073410</R10><R11>0.991070</R11><R12>-0.111318</R12><R20>0.003697</R20><R21>0.111348</R21><R22>0.993775</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX458"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.996815</R00><R01>-0.048356</R01><R02>-0.063414</R02><R10>0.046833</R10><R11>0.998583</R11><R12>-0.025283</R12><R20>0.064546</R20><R21>0.022232</R21><R22>0.997667</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX459"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000002</X><Y>0.000000</Y><Z>-0.000002</Z><R00>0.997809</R00><R01>-0.066126</R01><R02>0.002244</R02><R10>0.066076</R10><R11>0.994159</R11><R12>-0.085330</R12><R20>0.003412</R20><R21>0.085292</R21><R22>0.996350</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX460"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>-0.000000</Y><Z>-0.000000</Z><R00>0.926470</R00><R01>-0.352013</R01><R02>-0.133194</R02><R10>0.373929</R10><R11>0.901130</R11><R12>0.219414</R12><R20>0.042789</R20><R21>-0.253086</R21><R22>0.966497</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX461"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000003</X><Y>0.000002</Y><Z>0.000001</Z><R00>0.962393</R00><R01>-0.271304</R01><R02>-0.013938</R02><R10>0.270794</R10><R11>0.953958</R11><R12>0.128978</R12><R20>-0.021696</R20><R21>-0.127902</R21><R22>0.991549</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX462"><Properties><string name="Name">Keyframe</string><float name="Time">0.958333</float></Properties>
+<Item class="Pose" referent="RBX463"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX464"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.142857</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX465"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX466"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX467"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.999879</R00><R01>-0.000000</R01><R02>-0.015529</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>-0.000000</R12><R20>0.015529</R20><R21>0.000000</R21><R22>0.999879</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX468"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX469"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX470"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.998551</R00><R01>-0.000000</R01><R02>0.053811</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>-0.053811</R20><R21>0.000000</R21><R22>0.998551</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX471"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>0.000001</Z><R00>1.000000</R00><R01>-0.000000</R01><R02>-0.000000</R02><R10>0.000000</R10><R11>0.982004</R11><R12>0.188859</R12><R20>-0.000000</R20><R21>-0.188859</R21><R22>0.982004</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX472"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX473"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>-0.000001</Y><Z>-0.000001</Z><R00>0.993913</R00><R01>-0.009154</R01><R02>0.109788</R02><R10>0.019076</R10><R11>0.995789</R11><R12>-0.089669</R12><R20>-0.108505</R20><R21>0.091217</R21><R22>0.989902</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX474"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>-0.000001</X><Y>0.000003</Y><Z>0.000001</Z><R00>0.996208</R00><R01>-0.086845</R01><R02>-0.005331</R02><R10>0.086202</R10><R11>0.976798</R11><R12>0.196048</R12><R20>-0.011818</R20><R21>-0.195764</R21><R22>0.980580</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX475"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX476"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000001</Y><Z>-0.000001</Z><R00>0.996543</R00><R01>-0.043777</R01><R02>0.070604</R02><R10>0.035025</R10><R11>0.992065</R11><R12>0.120747</R12><R20>-0.075330</R20><R21>-0.117857</R21><R22>0.990169</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX477"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000003</Y><Z>-0.000000</Z><R00>0.997422</R00><R01>-0.071509</R01><R02>0.005934</R02><R10>0.071645</R10><R11>0.987892</R11><R12>-0.137607</R12><R20>0.003978</R20><R21>0.137677</R21><R22>0.990469</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX478"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.991443</R00><R01>-0.101993</R01><R02>-0.081473</R02><R10>0.097981</R10><R11>0.993838</R11><R12>-0.051823</R12><R20>0.086256</R20><R21>0.043397</R21><R22>0.995327</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX479"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000001</Y><Z>-0.000000</Z><R00>0.993083</R00><R01>-0.117284</R01><R02>0.005462</R02><R10>0.117125</R10><R11>0.986354</R11><R12>-0.115703</R12><R20>0.008183</R20><R21>0.115542</R21><R22>0.993269</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX480"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.965590</R00><R01>-0.215730</R01><R02>-0.145244</R02><R10>0.235174</R10><R11>0.962741</R11><R12>0.133500</R12><R20>0.111033</R20><R21>-0.163064</R21><R22>0.980348</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX481"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.981950</R00><R01>-0.188383</R01><R02>-0.016923</R02><R10>0.188422</R10><R11>0.966496</R11><R12>0.174307</R12><R20>-0.016481</R20><R21>-0.174349</R21><R22>0.984546</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Keyframe" referent="RBX482"><Properties><string name="Name">Keyframe</string><float name="Time">1.000000</float></Properties>
+<Item class="Pose" referent="RBX483"><Properties><string name="Name">Body</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX484"><Properties><string name="Name">Root</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>-0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX485"><Properties><string name="Name">Hips</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX486"><Properties><string name="Name">Spine</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX487"><Properties><string name="Name">Chest</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>-0.000000</R01><R02>-0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>-0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX488"><Properties><string name="Name">Neck1</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX489"><Properties><string name="Name">Neck2</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX490"><Properties><string name="Name">Head</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.997735</R00><R01>-0.000000</R01><R02>0.067267</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>-0.067267</R20><R21>0.000000</R21><R22>0.997735</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX491"><Properties><string name="Name">Jaw</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>-0.000000</Z><R00>1.000000</R00><R01>-0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>0.968912</R11><R12>0.247404</R12><R20>-0.000000</R20><R21>-0.247404</R21><R22>0.968912</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX492"><Properties><string name="Name">Shoulder.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX493"><Properties><string name="Name">UpperArm.L</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>-0.000001</Y><Z>-0.000000</Z><R00>0.991182</R00><R01>-0.032166</R01><R02>0.128547</R02><R10>0.064035</R10><R11>0.965571</R11><R12>-0.252137</R12><R20>-0.116011</R20><R21>0.258145</R21><R22>0.959116</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX494"><Properties><string name="Name">LowerArm.L</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.976526</R00><R01>-0.214140</R01><R02>-0.023252</R02><R10>0.211663</R10><R11>0.933967</R11><R12>0.287930</R12><R20>-0.039940</R20><R21>-0.286093</R21><R22>0.957369</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX495"><Properties><string name="Name">Shoulder.R</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>0.000000</Z><R00>1.000000</R00><R01>0.000000</R01><R02>0.000000</R02><R10>0.000000</R10><R11>1.000000</R11><R12>0.000000</R12><R20>0.000000</R20><R21>0.000000</R21><R22>1.000000</R22></CoordinateFrame><float name="Weight">0</float></Properties>
+<Item class="Pose" referent="RBX496"><Properties><string name="Name">UpperArm.R</string><CoordinateFrame name="CFrame"><X>0.000001</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.995275</R00><R01>-0.031683</R01><R02>0.091781</R02><R10>0.023302</R10><R11>0.995578</R11><R12>0.090997</R12><R20>-0.094258</R20><R21>-0.088429</R21><R22>0.991613</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX497"><Properties><string name="Name">LowerArm.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000000</Y><Z>-0.000001</Z><R00>0.998064</R00><R01>-0.061794</R01><R02>0.007020</R02><R10>0.062120</R10><R11>0.985126</R11><R12>-0.160212</R12><R20>0.002984</R20><R21>0.160338</R21><R22>0.987058</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX498"><Properties><string name="Name">Thigh.L</string><CoordinateFrame name="CFrame"><X>0.000000</X><Y>0.000000</Y><Z>-0.000000</Z><R00>0.981895</R00><R01>-0.162881</R01><R02>-0.096701</R02><R10>0.155288</R10><R11>0.984502</R11><R12>-0.081492</R12><R20>0.108476</R20><R21>0.065000</R21><R22>0.991972</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX499"><Properties><string name="Name">Shin.L</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>0.000001</Y><Z>-0.000000</Z><R00>0.984492</R00><R01>-0.175127</R01><R02>0.010281</R02><R10>0.174742</R10><R11>0.973774</R11><R12>-0.145703</R12><R20>0.015505</R20><R21>0.145240</R21><R22>0.989275</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+<Item class="Pose" referent="RBX500"><Properties><string name="Name">Thigh.R</string><CoordinateFrame name="CFrame"><X>-0.000000</X><Y>-0.000000</Y><Z>0.000001</Z><R00>0.983963</R00><R01>-0.073095</R01><R02>-0.162706</R02><R10>0.076334</R10><R11>0.996988</R11><R12>0.013735</R12><R20>0.161212</R20><R21>-0.025935</R21><R22>0.986579</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+<Item class="Pose" referent="RBX501"><Properties><string name="Name">Shin.R</string><CoordinateFrame name="CFrame"><X>-0.000002</X><Y>0.000002</Y><Z>-0.000000</Z><R00>0.997097</R00><R01>-0.073654</R01><R02>-0.019324</R02><R10>0.076105</R10><R11>0.972389</R11><R12>0.220607</R12><R20>0.002542</R20><R21>-0.221437</R21><R22>0.975171</R22></CoordinateFrame><float name="Weight">1</float></Properties>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</Item>
+</roblox>
