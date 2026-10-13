@@ -112,24 +112,31 @@ local function makeReflection(m, character: Model)
 		end
 	end
 
-	local pairs_ = {}
-	local sources, copies = {}, {}
+	-- delen koppelen op pad (bv. "Head", "BrownCap/Handle"); na Clone() is de volgorde niet altijd gelijk
+	local function pathOf(part: Instance, root: Instance): string
+		local names = {}
+		local x = part
+		while x and x ~= root do
+			table.insert(names, 1, x.Name)
+			x = x.Parent
+		end
+		return table.concat(names, "/")
+	end
+	local sourceByPath = {}
 	for _, d in character:GetDescendants() do
 		if d:IsA("BasePart") then
-			table.insert(sources, d)
+			sourceByPath[pathOf(d, character)] = d
 		end
 	end
-	for _, d in copy:GetDescendants() do
-		if d:IsA("BasePart") then
-			table.insert(copies, d)
-		end
-	end
-	for i, source in sources do
-		local c = copies[i]
-		if c then
-			c.Anchored = true
-			c.LocalTransparencyModifier = 0
-			table.insert(pairs_, { source = source, copy = c })
+	local pairs_ = {}
+	for _, c in copy:GetDescendants() do
+		if c:IsA("BasePart") then
+			local source = sourceByPath[pathOf(c, copy)]
+			if source then
+				c.Anchored = true
+				c.LocalTransparencyModifier = 0
+				table.insert(pairs_, { source = source, copy = c })
+			end
 		end
 	end
 	-- de enge mond: een onzichtbaar plaatje met de decal vóór het gezicht (een decal direct op een
