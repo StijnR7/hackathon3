@@ -6,11 +6,55 @@
       "Shared": { "$path": "src/shared" }
     },
     "ServerScriptService": {
-      "Server": { "$path": "src/server" }
+      "Server": { "$path": "src/server" },
+      "Common": { "$path": "src/common/server" }
     },
     "StarterPlayer": {
       "StarterPlayerScripts": {
         "Client": { "$path": "src/client" }
+      }
+    },
+    "Workspace": {
+      "Hospital": { "$path": "maps/Hospital.model.json" }
+    },
+    "Lighting": {
+      "$properties": {
+        "ClockTime": 0,
+        "Brightness": 0,
+        "Ambient": [0.03, 0.035, 0.04],
+        "OutdoorAmbient": [0.04, 0.045, 0.06],
+        "EnvironmentDiffuseScale": 0.15,
+        "EnvironmentSpecularScale": 0.4,
+        "GlobalShadows": true,
+        "ExposureCompensation": 0.2
+      },
+      "Atmosphere": {
+        "$className": "Atmosphere",
+        "$properties": {
+          "Density": 0.35,
+          "Offset": 0,
+          "Color": [0.12, 0.13, 0.14],
+          "Decay": [0.05, 0.06, 0.06],
+          "Glare": 0,
+          "Haze": 1.5
+        }
+      },
+      "ColorCorrection": {
+        "$className": "ColorCorrectionEffect",
+        "$properties": {
+          "Brightness": 0,
+          "Contrast": 0.2,
+          "Saturation": -0.35,
+          "TintColor": [0.86, 0.94, 0.88]
+        }
+      },
+      "Bloom": {
+        "$className": "BloomEffect",
+        "$properties": {
+          "Intensity": 0.8,
+          "Size": 24,
+          "Threshold": 1.2
+        }
       }
     }
   }

@@ -12,6 +12,11 @@ Gedeeld logboek tussen Andy en Stijn (en hun Claude-sessies). Nieuwste bovenaan.
 - **Team Create + Rojo**: in de gedeelde place `hackathon3` (Team Create) bouwen we samen map/models. Scripts test ieder met Rojo in een eigen lokale Baseplate. In de gedeelde place wordt alleen `main` via Rojo gesynct, door één persoon tegelijk.
 
 ## Updates
+- **2026-10-13 – Andy**: Eerste game-map: **verlaten ziekenhuis** + lobby/game gesplitst.
+  - **Twee Rojo-projecten**: `default.project.json` = game (jouw Crawler + de map), `lobby.project.json` = lobby. Mijn lobby-scripts staan nu in `src/lobby/`, `Flicker` in `src/common/server/`. Jouw bestanden heb ik niet verplaatst.
+  - **Map**: `maps/Hospital.model.json` (gegenereerd door `tools/maps/hospital.py`) wordt door Rojo direct in Workspace gezet. Receptie (voordeur vastgeketend), hoofdgang + dwarsgang, kamers 101–104, verpleegpost, toiletten, zaal B (6 bedden), OK, **mortuarium met `CrawlerSpawn`**, archief, opslag, kantoor, ingestort trappenhuis. Flikkerende tl-lampen, noodlampjes, maanlicht door dichtgetimmerde ramen, ingestorte plafondtegels, bloed en teksten op de muren.
+  - **@stijn**: alle deuren zijn 6–8 studs breed, plafond 14 studs. De Crawler spawnt in het mortuarium (17, 0.5, -62). Zie de plattegrond met `tools/maps/preview.py`.
+  - **Speler**: `src/client/Flashlight.client.luau` (zaklamp, F), `src/client/HospitalAmbience.client.luau` + `src/shared/HospitalSounds.luau` (geluid).
 - **2026-10-12 – Andy (einde dag)**: Alles staat op `main`. Volgende stap: lobby en game splitsen in twee places (nu draaien alle scripts, ook de Crawler, in dezelfde Rojo-project/place). Daarna game-place maken en `GamePlaceId` invullen.
 - **2026-10-12 – Stijn**: Crawler aangepast voor een huis/appartement. Hij is nu zo groot als een speler (`Scale = 0.35` in `CrawlerConfig`) en gebruikt PathfindingService op de vloer (door deuren, om meubels heen). Bij een onbereikbare speler sluipt hij rond, verder springt hij of klimt hij via de muur. Poten gaan niet meer door blokken: een poot die ergens in komt stapt in z'n eentje op het blok, de rest blijft staan. **Let op @andy**: deuren moeten minstens 4 studs breed zijn, anders vindt de padvinding geen route.
 - **2026-10-12 – Andy**: Workflow aangepast: geen PR's meer, iedereen pusht direct naar `main` (zie Afspraken + `CLAUDE.md`). Lobby + queues staan nu op `main`.

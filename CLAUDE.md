@@ -14,10 +14,17 @@ Twee mensen werken hier tegelijk aan, elk met een eigen Claude Code-sessie. Houd
 - Test: druk op Play, in Output moeten `[Server] started` en `[Client] started` staan.
 
 ## Structuur (Rojo)
-- `src/server/` → ServerScriptService.Server (server scripts, `*.server.luau`)
-- `src/client/` → StarterPlayerScripts.Client (client scripts, `*.client.luau`)
-- `src/shared/` → ReplicatedStorage.Shared (ModuleScripts, `*.luau`)
+Twee places, elk een eigen Rojo-project:
+- **Game** = `default.project.json` (`rojo serve`, poort 34872): de map + het monster.
+  - `src/server/` → ServerScriptService.Server (`*.server.luau`)
+  - `src/client/` → StarterPlayerScripts.Client (`*.client.luau`)
+  - `maps/Hospital.model.json` → Workspace.Hospital (gegenereerd door `tools/maps/hospital.py`, niet met de hand aanpassen)
+  - Lighting-instellingen van de game staan in `default.project.json`.
+- **Lobby** = `lobby.project.json` (`rojo serve lobby.project.json`, poort 34873): queues, lobby-UI.
+  - `src/lobby/server/`, `src/lobby/client/`; de lobby-map zelf bouw je met `tools/build_lobby.luau` (command bar).
+- Gedeeld door beide: `src/shared/` → ReplicatedStorage.Shared, `src/common/server/` → ServerScriptService.Common (bv. `Flicker`).
 - Code staat alleen in deze bestanden, nooit direct in Studio aanpassen.
+- Map aanpassen: wijzig `tools/maps/hospital.py`, run `python tools/maps/hospital.py`. Preview zonder Studio: `blender --background --python tools/maps/preview.py -- maps/Hospital.model.json <map> plan|shots`.
 - Gedeelde Team Create-place `hackathon3`: alleen voor map/models. Scripts test je met Rojo in een eigen lokale Baseplate; in de gedeelde place alleen `main` syncen (zie Afspraken in `LOG.md`).
 
 ## Werkwijze

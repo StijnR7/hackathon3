@@ -1,0 +1,19 @@
+{
+  "name": "hackathon3-lobby",
+  "servePort": 34873,
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Shared": { "$path": "src/shared" }
+    },
+    "ServerScriptService": {
+      "Lobby": { "$path": "src/lobby/server" },
+      "Common": { "$path": "src/common/server" }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "Lobby": { "$path": "src/lobby/client" }
+      }
+    }
+  }
+}
