@@ -691,7 +691,8 @@ part(g, "StallWall", [0.2, 7, 6], [8 + 4 * 4.2 - 2.1, 3.6, -16.5], (110, 120, 11
 for i in range(3):
     x = 9 + i * 5
     part(g, "Sink", [2.2, 0.6, 1.6], [x, 3.2, -5.9], (190, 190, 185), "Marble")
-    part(g, "Mirror", [2.6, 3, 0.1], [x, 6.3, -5.55], (30, 35, 40) if R.random() < 0.6 else (160, 170, 175), "Glass", transparency=0.1, collide=False)
+    part(g, "Mirror", [2.6, 3, 0.1], [x, 6.3, -5.55], (30, 35, 40) if R.random() < 0.6 else (160, 170, 175), "Glass", transparency=0.1, collide=False,
+         tags=["Mirror"])  # tag: src/client/Mirror.client.luau maakt er een spiegel van
 blood(decor, 14, 0, -9, 2, 4)
 writing(decor, "IT HEARS YOU", [14, 9.5, -5.45], 180, 10, 2.5)
 
@@ -830,6 +831,22 @@ writing(decor, "HELP US", [40, 7, -29.4], 0, 9, 2.5)
 # sleepspoor van bloed richting mortuarium
 for k in range(10):
     blood(decor, R.uniform(-1, 1) + 0.4 * k / 10, 0, -30 - k * 2.6, 0.9, 2.2)
+
+# ---------------------------------------------------------------- ronde (Stijn): zekeringen, stroomkast, uitgang
+# Gebruikt door src/server/Round.server.luau. Geen R-aanroepen hier, zodat de willekeurige
+# inrichting van de rest van de map hetzelfde blijft.
+FUSE_SPAWNS = [
+    (52, -55), (-27, -66), (-57, -57), (-28, -3), (38, -3), (27, -34),
+    (-57, -3), (57, -17), (20, 2), (23, -10), (-22, 8), (-22, -17),
+]
+for x, z in FUSE_SPAWNS:
+    part(markers, "FuseSpawn", [1, 1, 1], [x, 0.6, z], (255, 200, 0), transparency=1, collide=False, tags=["FuseSpawn"])
+g = props.sub("FuseBox")
+part(g, "FuseBox", [3, 4, 0.8], [-9, 4.5, 39.0], METAL_DARK, "Metal", tags=["FuseBox"],
+     children=[text_gui("POWER", "Front", (200, 190, 120), "SpecialElite", 1)])
+part(g, "FuseBoxConduit", [0.4, H - 6.5, 0.4], [-9, 6.5 + (H - 6.5) / 2, 39.2], RUST, "Metal")
+# uitgang: wie hier staat als de voordeur open is, is ontsnapt
+part(markers, "ExitZone", [10, 10, 3], [0, 5, 37.5], (0, 255, 0), transparency=1, collide=False, tags=["ExitZone"])
 
 # ---------------------------------------------------------------- spawn
 spawn_props = {

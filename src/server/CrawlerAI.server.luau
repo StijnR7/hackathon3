@@ -382,8 +382,13 @@ end
 
 local crawler
 
--- Workspace-attribuut "CrawlerEnabled" gaat vóór Config.Enabled (handig om zonder monster te testen)
+-- Workspace-attributen:
+--   "CrawlerDisabled" = true → nooit een Crawler (testschakelaar, wint altijd)
+--   "CrawlerEnabled" → wordt door de ronde gezet (Round.server.luau); gaat vóór Config.Enabled
 local function isEnabled(): boolean
+	if workspace:GetAttribute("CrawlerDisabled") == true then
+		return false
+	end
 	local override = workspace:GetAttribute("CrawlerEnabled")
 	if typeof(override) == "boolean" then
 		return override
@@ -405,7 +410,9 @@ local function applyEnabled()
 end
 
 workspace:GetAttributeChangedSignal("CrawlerEnabled"):Connect(applyEnabled)
-applyEnabled()
+workspace:GetAttributeChangedSignal("CrawlerDisabled"):Connect(applyEnabled)
+-- heel even wachten zodat een ronde-script eerst CrawlerEnabled = false kan zetten
+task.delay(0.5, applyEnabled)
 
 RunService.Heartbeat:Connect(function(dt)
 	if crawler then

@@ -6,6 +6,8 @@ local NAMES = {
 	"QueueState", -- server → client: lijst met alle queues
 	"QueueAction", -- client → server: "Sync" | "Leave" | "SetMax" | "Start" | "Cancel"
 	"QueueNotice", -- server → client: korte melding (string)
+	"RoundState", -- server → client: stand van de ronde (fase, zekeringen, wie leeft/dood/ontsnapt)
+	"RoundMessage", -- server → client: grote melding in beeld (tekst, soort)
 }
 
 local folder
