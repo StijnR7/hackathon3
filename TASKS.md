@@ -7,11 +7,11 @@ Claim een taak door je naam erachter te zetten en te pushen **vóór** je begint
 - Stijn: monster "Crawler" (model, animatie, AI) → `src/server/Crawler*`, `src/client/Crawler*`, `src/shared/Monsters/`, `src/shared/CrawlerConfig.luau`
 
 ## Open
-- [ ] Game-idee en core loop vastleggen (horror, 1–4 spelers per groep)
-- [ ] Game-place maken en `GamePlaceId` invullen in `src/shared/GameConfig.luau`
 - [ ] Definitieve gamenaam (nu werktitel `THE CRYPTS` in `GameConfig.GameName`)
 
 ## Bezig
+- [ ] MVP-ronde: 3 zekeringen zoeken → stroomkast bij receptie → voordeur open → ontsnappen; gepakt = dood + meekijken; einde → terug naar lobby — @stijn (`src/server/Round.server.luau`, `src/client/RoundUI.client.luau`, `src/shared/RoundConfig.luau`, markers in `tools/maps/hospital.py`)
+- [ ] Publiceren: lobby = startplace van de bestaande experience, game = tweede place, place-ids in `GameConfig` — @stijn
 
 ## Klaar
 - [x] Spiegel: elk part met tag `Mirror` toont je reflectie (met de kamer erachter), maar met een enge grijns — @stijn

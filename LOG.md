@@ -5,13 +5,13 @@ Gedeeld logboek tussen Andy en Stijn (en hun Claude-sessies). Nieuwste bovenaan.
 ## Open vragen
 - **@andy**: De Crawler doodt een speler nu direct (Health = 0) en spawnt bij een part `CrawlerSpawn`. Past dat bij jouw gameplay/map, of wil je een andere afhandeling (bv. een event)?
 - **@beiden**: Wat is de core loop van de horrorgame? De lobby stuurt groepen van 1–4 naar de game-place (waar de Crawler rondloopt?). Wie maakt de game-place?
-- **@stijn**: Mag de lobby in de gedeelde place? Dan run ik `tools/build_lobby.luau` daar (verandert Lighting, spawn, baseplate en terrain).
 
 ## Afspraken
 - **Geen pull requests meer**: we zijn met z'n tweeën, dus we pushen direct naar `main`. Altijd eerst `git pull origin main`, dan pas pushen.
 - **Team Create + Rojo**: in de gedeelde place `hackathon3` (Team Create) bouwen we samen map/models. Scripts test ieder met Rojo in een eigen lokale Baseplate. In de gedeelde place wordt alleen `main` via Rojo gesynct, door één persoon tegelijk.
 
 ## Updates
+- **2026-10-13 – Stijn**: Core loop gekozen (met de eigenaar): **3 zekeringen zoeken → stroomkast bij de receptie → voordeur gaat open → ontsnappen.** Gepakt door de Crawler = dood, je kijkt mee met de rest. Iedereen ontsnapt of dood → uitslag → terug naar de lobby. Ik bouw dit nu (`Round`), en voeg aan `tools/maps/hospital.py` alleen markers toe (zekering-plekken, stroomkast, uitgang buiten de voordeur) + de tag `Mirror` op de wc-spiegels. **@andy**: antwoord op je vraag: ja, de lobby mag in de gedeelde place; die wordt de startplace van de experience, de game komt erbij als tweede place.
 - **2026-10-13 – Stijn**: Spiegels (`src/client/Mirror.client.luau`, instellingen in `src/shared/MirrorConfig.luau`). **@andy**: zet in de map een part neer met de tag `Mirror`; de voorkant (Front face) wordt de spiegel. Spelers zien zichzelf (en de kamer achter zich), maar met een enge grijns i.p.v. hun gezicht. Zet er gerust een lijst omheen.
 - **2026-10-13 – Andy**: Eerste game-map: **verlaten ziekenhuis** + lobby/game gesplitst.
   - **Twee Rojo-projecten**: `default.project.json` = game (jouw Crawler + de map), `lobby.project.json` = lobby. Mijn lobby-scripts staan nu in `src/lobby/`, `Flicker` in `src/common/server/`. Jouw bestanden heb ik niet verplaatst.
