@@ -3,6 +3,11 @@
 return {
 	Tag = "Crawler", -- CollectionService-tag op elk Crawler-model in Workspace
 
+	-- Aan/uit. Voor testen zonder monster kan het ook per place, zonder code te wijzigen:
+	-- geef Workspace een boolean-attribuut "CrawlerEnabled" (vinkje uit = geen Crawler).
+	-- Dat attribuut gaat vóór deze waarde en werkt ook tijdens het spelen.
+	Enabled = true,
+
 	-- Grootte t.o.v. het originele model (1 = ~14 studs hoog). 0.35 ≈ zo hoog als een speler,
 	-- past door deuren en onder plafonds van een appartement.
 	Scale = 0.35,

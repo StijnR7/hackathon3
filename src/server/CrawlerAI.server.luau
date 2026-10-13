@@ -380,13 +380,36 @@ local function spawnCFrame(): CFrame
 	return CFrame.new(0, 5, -40)
 end
 
-refreshFilter()
-local crawler = Crawler.new(spawnCFrame())
-crawler.spawnPos = crawler.pos
+local crawler
+
+-- Workspace-attribuut "CrawlerEnabled" gaat vóór Config.Enabled (handig om zonder monster te testen)
+local function isEnabled(): boolean
+	local override = workspace:GetAttribute("CrawlerEnabled")
+	if typeof(override) == "boolean" then
+		return override
+	end
+	return Config.Enabled
+end
+
+local function applyEnabled()
+	if isEnabled() and not crawler then
+		refreshFilter()
+		crawler = Crawler.new(spawnCFrame())
+		crawler.spawnPos = crawler.pos
+		print("[Server] Crawler gespawnd")
+	elseif not isEnabled() and crawler then
+		crawler.model:Destroy()
+		crawler = nil
+		print("[Server] Crawler uitgezet")
+	end
+end
+
+workspace:GetAttributeChangedSignal("CrawlerEnabled"):Connect(applyEnabled)
+applyEnabled()
 
 RunService.Heartbeat:Connect(function(dt)
-	refreshFilter()
-	crawler:update(math.min(dt, 0.1))
+	if crawler then
+		refreshFilter()
+		crawler:update(math.min(dt, 0.1))
+	end
 end)
-
-print("[Server] Crawler gespawnd")
