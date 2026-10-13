@@ -11,6 +11,7 @@ Gedeeld logboek tussen Andy en Stijn (en hun Claude-sessies). Nieuwste bovenaan.
 - **Team Create + Rojo**: in de gedeelde place `hackathon3` (Team Create) bouwen we samen map/models. Scripts test ieder met Rojo in een eigen lokale Baseplate. In de gedeelde place wordt alleen `main` via Rojo gesynct, door één persoon tegelijk.
 
 ## Updates
+- **2026-10-13 – Stijn**: Crawler iets langzamer dan de speler (jagen 11, speler loopt 12 / sprint 20). Ziet hij je en ben je verder dan 15 studs, dan gaat hij vaker via de muur en het plafond en laat zich op je vallen. Hij kruipt nooit meer door de ruimte boven het tegelplafond. `DetectRange` naar 1000 (de map is groter dan 150 studs, daardoor jaagde hij soms niet). Game-place opnieuw gepubliceerd.
 - **2026-10-13 – Stijn**: **MVP staat live in de experience `hackathon3`** (privé; universe 10770513665).
   - **Lobby** = startplace `hackathon3` (134559509231211): gebouwd met `tools/build_lobby.luau` + `lobby.project.json` via Rojo, gepubliceerd.
   - **Game** = tweede place (124517980036287): `default.project.json` (ziekenhuis + Crawler + spiegels + first-person + ronde), gepubliceerd. Team Create staat voor de hele experience aan.
