@@ -379,65 +379,87 @@ def outside(lab):
     return lab is None or KIND.get(lab) == "yard"
 
 
-def wall_piece(axis, line, a, b, y0, y1, material="Plaster", color=PLASTER, name="Wall", ext=0.5):
-    length = b - a + 2 * ext
-    mid = (a + b) / 2
-    h = y1 - y0
+def strip(axis, line, a, b, off, thick, y0, y1, name, color, material, shadow=True):
+    """Plaat evenwijdig aan een muur: van a tot b langs de muur, op afstand `off` van de muurlijn."""
+    length, mid, h = b - a, (a + b) / 2, y1 - y0
+    if length <= 0.05:
+        return
     if axis == "z":
-        part(walls, name, [1, h, length], [line, y0 + h / 2, mid], color, material)
+        part(walls, name, [thick, h, length], [line + off, y0 + h / 2, mid], color, material, shadow=shadow)
     else:
-        part(walls, name, [length, h, 1], [mid, y0 + h / 2, line], color, material)
+        part(walls, name, [length, h, thick], [mid, y0 + h / 2, line + off], color, material, shadow=shadow)
 
 
-for axis, line, a, b, sa, sb in segments:
+def wall_piece(axis, line, a, b, y0, y1, material="Plaster", color=PLASTER, name="Wall"):
+    strip(axis, line, a, b, 0, 1, y0, y1, name, color, material)
+
+
+# Om flikkeren (z-fighting) te voorkomen mogen muren elkaar nooit met een vlak overlappen:
+# een muureinde loopt alleen door (0.45) als er een dwarsmuur staat en de muur niet rechtdoor verder gaat.
+SEG_BY_LINE = {}
+for s in segments:
+    SEG_BY_LINE.setdefault((s[0], s[1]), []).append(s)
+OTHER = {"x": "z", "z": "x"}
+
+
+def collinear(axis, line, p, me):
+    return any(s is not me and (s[2] == p or s[3] == p) for s in SEG_BY_LINE.get((axis, line), []))
+
+
+def perpendicular(axis, line, p, side=0):
+    """Staat er een dwarsmuur op punt p? side=+1/-1: alleen als die dwarsmuur aan die kant van de muur loopt."""
+    for s in SEG_BY_LINE.get((OTHER[axis], p), []):
+        if s[2] <= line <= s[3]:
+            if side == 0 or (side > 0 and s[3] > line) or (side < 0 and s[2] < line):
+                return True
+    return False
+
+
+for seg in segments:
+    axis, line, a, b, sa, sb = seg
     col = tint(PLASTER if R.random() < 0.6 else PLASTER_DIRTY)
-    wall_piece(axis, line, a, b, 0, H, color=col)
-    length = b - a
-    mid = (a + b) / 2
+    ext_a = 0.45 if perpendicular(axis, line, a) and not collinear(axis, line, a, seg) else 0
+    ext_b = 0.45 if perpendicular(axis, line, b) and not collinear(axis, line, b, seg) else 0
+    wall_piece(axis, line, a - ext_a, b + ext_b, 0, H, color=col)
     for side, lab in ((-1, sa), (1, sb)):
         if outside(lab):
-            if axis == "z":
-                part(walls, "Brick", [0.3, H + 2, length + 1.6], [line + side * 0.65, H / 2 + 1, mid], BRICK, "Brick")
-            else:
-                part(walls, "Brick", [length + 1.6, H + 2, 0.3], [mid, H / 2 + 1, line + side * 0.65], BRICK, "Brick")
+            # bakstenen schil aan de buitenkant; op hoeken iets doorlopen zodat er geen kier is
+            ba = a - (0.79 if ext_a else 0)
+            bb = b + (0.79 if ext_b else 0)
+            strip(axis, line, ba, bb, side * 0.65, 0.3, 0, H + (2 if axis == "x" else 1.97), "Brick", BRICK, "Brick")
             continue
+
+        def trim(p, amount, sign):
+            # inkorten tot de dwarsmuur aan deze kant (anders overlappen de tegels in de hoek)
+            return p + sign * amount if perpendicular(axis, line, p, side) else p
         kind = KIND[lab]
         tile = WAINSCOT.get(kind)
         if kind == "cell":
-            # gecapitonneerde muren
-            off = line + side * 0.8
-            if axis == "z":
-                part(walls, "Padding", [0.6, H - 1, length], [off, (H - 1) / 2, mid], (200, 195, 180), "Fabric")
-            else:
-                part(walls, "Padding", [length, H - 1, 0.6], [mid, (H - 1) / 2, off], (200, 195, 180), "Fabric")
+            t = 1.1 if axis == "x" else 0.5
+            strip(axis, line, trim(a, t, 1), trim(b, t, -1), side * 0.8, 0.6, 0, H - 1, "Padding", (200, 195, 180), "Fabric")
             continue
-        if tile and length > 0.6:
-            off = line + side * 0.58
-            if axis == "z":
-                part(walls, "Wainscot", [0.16, 4.2, length], [off, 2.1, mid], tint(tile, 0.9, 1.05), "CeramicTiles", shadow=False)
-            else:
-                part(walls, "Wainscot", [length, 4.2, 0.16], [mid, 2.1, off], tint(tile, 0.9, 1.05), "CeramicTiles", shadow=False)
-        if lab in CORRIDORS and lab != "reception" and length > 2:
-            off = line + side * 0.85
-            if axis == "z":
-                part(walls, "Handrail", [0.3, 0.3, length - 0.6], [off, 3.4, mid], METAL, "Metal", shadow=False)
-            else:
-                part(walls, "Handrail", [length - 0.6, 0.3, 0.3], [mid, 3.4, off], METAL, "Metal", shadow=False)
+        if tile:
+            t = 0.66 if axis == "x" else 0.5
+            strip(axis, line, trim(a, t, 1), trim(b, t, -1), side * 0.58, 0.16, 0, 4.2, "Wainscot", tint(tile, 0.9, 1.05), "CeramicTiles", shadow=False)
+        if lab in CORRIDORS and lab != "reception" and b - a > 2:
+            ra = trim(a, 1.0, 1) if perpendicular(axis, line, a, side) else (a if collinear(axis, line, a, seg) else a + 0.3)
+            rb = trim(b, 1.0, -1) if perpendicular(axis, line, b, side) else (b if collinear(axis, line, b, seg) else b - 0.3)
+            strip(axis, line, ra, rb, side * 0.85, 0.3, 3.25, 3.55, "Handrail", METAL, "Metal", shadow=False)
 
 # deurposten, bovenstuk, bordjes, deurbladen
 for dx, dz, ax, w, sign in DOORS:
     if ax == "z":
-        wall_piece("z", dx, dz - w / 2, dz + w / 2, DOOR_H, H, color=PLASTER_DIRTY, name="DoorHeader", ext=0)
+        wall_piece("z", dx, dz - w / 2, dz + w / 2, DOOR_H, H, color=PLASTER_DIRTY, name="DoorHeader")
         for s in (-1, 1):
             part(walls, "DoorFrame", [1.3, DOOR_H, 0.35], [dx, DOOR_H / 2, dz + s * (w / 2 - 0.17)], FRAME, "Metal")
-        part(walls, "DoorFrame", [1.3, 0.35, w], [dx, DOOR_H - 0.17, dz], FRAME, "Metal")
+        part(walls, "DoorFrame", [1.34, 0.35, w], [dx, DOOR_H - 0.17, dz], FRAME, "Metal")
         cells = [(dx - 1, dz), (dx, dz)]
         U, N = (0, 1), (1, 0)
     else:
-        wall_piece("x", dz, dx - w / 2, dx + w / 2, DOOR_H, H, color=PLASTER_DIRTY, name="DoorHeader", ext=0)
+        wall_piece("x", dz, dx - w / 2, dx + w / 2, DOOR_H, H, color=PLASTER_DIRTY, name="DoorHeader")
         for s in (-1, 1):
             part(walls, "DoorFrame", [0.35, DOOR_H, 1.3], [dx + s * (w / 2 - 0.17), DOOR_H / 2, dz], FRAME, "Metal")
-        part(walls, "DoorFrame", [w, 0.35, 1.3], [dx, DOOR_H - 0.17, dz], FRAME, "Metal")
+        part(walls, "DoorFrame", [w, 0.35, 1.34], [dx, DOOR_H - 0.17, dz], FRAME, "Metal")
         cells = [(dx, dz - 1), (dx, dz)]
         U, N = (1, 0), (0, 1)
     labs = [label(*c) for c in cells]
@@ -498,7 +520,7 @@ for name, x1, z1, x2, z2, kind in AREAS:
                     holes.append((tx, tz, tw, td))
                     continue
                 part(ceilings, "CeilingTile", [tw, 0.6, td], [tx, H + 0.3, tz], tint((140, 140, 132), 0.8, 1.0), "Plaster")
-        part(ceilings, "Plenum", [w + 1, 1, d + 1], [cx, H + 6.5, cz], (40, 40, 40), "Concrete")
+        part(ceilings, "Plenum", [w, 1, d], [cx, H + 6.5, cz], (40, 40, 40), "Concrete")
 part(floors, "Ground", [700, 2, 600], [0, -2, -70], (40, 38, 34), "Ground")
 
 for tx, tz, tw, td in holes:
@@ -517,7 +539,13 @@ for tx, tz, tw, td in holes:
 FLICKER = ["Flicker"]
 
 
+PLACED_LIGHTS = []
+
+
 def fluorescent(x, z, along_x=True, state=None):
+    if any(abs(x - px) < 4 and abs(z - pz) < 4 for px, pz in PLACED_LIGHTS):
+        return
+    PLACED_LIGHTS.append((x, z))
     state = state or R.choices(["on", "flicker", "dead"], weights=[3, 4, 3.5])[0]
     size = [5, 0.35, 1.4] if along_x else [1.4, 0.35, 5]
     part(lights_g, "LightHousing", [size[0] + 0.4, 0.3, size[2] + 0.4], [x, H - 0.15, z], (110, 112, 105), "Metal")
@@ -578,6 +606,8 @@ for axis, line, a, b, sa, sb in segments:
     inside = sb if outside(sa) else sa
     if KIND.get(inside) in NO_WINDOWS:
         continue
+    if inside == "reception" and axis == "x" and line == 40:
+        continue
     s_in = 1 if outside(sa) else -1
     length = b - a
     if length < 8:
@@ -613,8 +643,8 @@ def bed(g, x, z, yaw, wrecked=False, body=False):
         return part(g, name, size, local(base, m, off), col, mat, m=m, **kw)
     p("BedFrame", [3.4, 0.35, 7.2], [0, 2.1, 0], METAL)
     p("Mattress", [3.1, 0.6, 6.6], [0, 2.6, 0], FABRIC_DIRTY if R.random() < 0.6 else FABRIC, "Fabric")
-    p("Headboard", [3.4, 2.6, 0.25], [0, 3.1, -3.5], METAL)
-    p("Footboard", [3.4, 1.6, 0.25], [0, 2.6, 3.5], METAL)
+    p("Headboard", [3.46, 2.6, 0.25], [0, 3.1, -3.5], METAL)
+    p("Footboard", [3.46, 1.6, 0.25], [0, 2.6, 3.5], METAL)
     for sx in (-1.5, 1.5):
         for sz in (-3.3, 3.3):
             p("BedLeg", [0.2, 2, 0.2], [sx, 1, sz], METAL_DARK)
@@ -623,7 +653,7 @@ def bed(g, x, z, yaw, wrecked=False, body=False):
         p("Pillow", [2.2, 0.5, 1.2], [0, 3.1, -2.6], FABRIC, "Fabric")
     if body or R.random() < 0.2:
         p("SheetBody", [1.6, 0.8, 5.2], [0, 3.2, 0.4], SHEET, "Fabric")
-        p("SheetHead", [1.1, 0.8, 1.1], [0, 3.25, -2.3], SHEET, "Fabric")
+        p("SheetHead", [1.1, 0.8, 1.1], [0, 3.27, -2.3], SHEET, "Fabric")
     if R.random() < 0.3:
         p("BloodStain", [1.6, 0.05, 1.8], [R.uniform(-0.6, 0.6), 2.92, R.uniform(-1, 1)], BLOOD, "SmoothPlastic", collide=False, shadow=False)
     if R.random() < 0.15:
@@ -675,19 +705,19 @@ def cabinet(g, x, z, yaw, w=3, h=7, d=1.6, col=(130, 140, 135), open_door=False)
 
 def papers(g, x, z, n, spread=4):
     for _ in range(n):
-        part(g, "Paper", [0.85, 0.03, 1.1], [x + R.uniform(-spread, spread), 0.03, z + R.uniform(-spread, spread)],
+        part(g, "Paper", [0.85, 0.02, 1.1], [x + R.uniform(-spread, spread), R.uniform(0.02, 0.09), z + R.uniform(-spread, spread)],
              (200, 195, 175), "SmoothPlastic", m=rot(yaw=R.uniform(0, 360)), collide=False, shadow=False)
 
 
 def blood(g, x, z, w, d):
-    part(g, "Blood", [w, 0.04, d], [x, 0.03, z], BLOOD, "SmoothPlastic", m=rot(yaw=R.uniform(0, 360)), collide=False, shadow=False)
+    part(g, "Blood", [w, 0.03, d], [x, R.uniform(0.016, 0.06), z], BLOOD, "SmoothPlastic", m=rot(yaw=R.uniform(0, 360)), collide=False, shadow=False)
 
 
 def chair(g, x, z, yaw, fallen=False, col=(60, 90, 110)):
     m = rot(yaw=yaw, roll=90 if fallen else 0)
     base = [x, 1.0 if fallen else 0, z]
     part(g, "ChairSeat", [1.8, 0.25, 1.8], local(base, m, [0, 1.8, 0]), col, "Plastic", m=m)
-    part(g, "ChairBack", [1.8, 1.8, 0.2], local(base, m, [0, 2.8, 0.8]), col, "Plastic", m=m)
+    part(g, "ChairBack", [1.76, 1.8, 0.2], local(base, m, [0, 2.8, 0.83]), col, "Plastic", m=m)
     for sx in (-0.8, 0.8):
         part(g, "ChairLeg", [0.12, 1.8, 0.12], local(base, m, [sx, 0.9, 0]), METAL_DARK, "Metal", m=m)
 
@@ -799,7 +829,7 @@ def fill_office(rm):
     cx, cz = rm.p(rm.W / 2, rm.D * 0.6 + 2.5)
     chair(rm.g, cx, cz, rm.back + 180, fallen=R.random() < 0.5, col=(50, 40, 35))
     for k in range(int(rm.W // 4)):
-        x, z = rm.p(2 + k * 3.4, rm.D - 1)
+        x, z = rm.p(2 + k * 3.4, rm.D - 1.35)
         if 2 + k * 3.4 < rm.W - 1.5:
             cabinet(rm.g, x, z, rm.face_door, 3, R.choice((6, 7)), 1.6, open_door=R.random() < 0.3)
     x, z = rm.p(rm.W / 2 + 2, rm.D * 0.6)
@@ -813,7 +843,7 @@ def fill_nurse(rm):
     part(rm.g, "Counter", [rm.W * 0.7, 3.6, 2], [x, 1.8, z], (120, 125, 118), "Plastic", m=m)
     part(rm.g, "CounterTop", [rm.W * 0.7 + 0.6, 0.3, 2.6], [x, 3.75, z], (90, 95, 90), "Plastic", m=m)
     for k in range(3):
-        cx, cz = rm.p(2 + k * 3.2, rm.D - 1)
+        cx, cz = rm.p(2 + k * 3.2, rm.D - 1.35)
         cabinet(rm.g, cx, cz, rm.face_door, 2.8, 6, 1.6, open_door=k == 1)
     cx, cz = rm.p(rm.W / 2, rm.D * 0.5 + 2.5)
     chair(rm.g, cx, cz, rm.back, fallen=True)
@@ -825,16 +855,16 @@ def fill_bath(rm):
         u = 1.5 + 4.2 * (i + 0.5)
         if u > rm.W - 1:
             break
-        x, z = rm.p(u - 2.1, rm.D - 3)
-        part(rm.g, "StallWall", [0.2, 7, 6], [x, 3.6, z], (110, 120, 115), "Plastic", m=rot(yaw=rm.back))
-        x, z = rm.p(u, rm.D - 1.2)
+        x, z = rm.p(u - 2.1, rm.D - 3.3)
+        part(rm.g, "StallWall", [0.2, 7, 5.5], [x, 3.6, z], (110, 120, 115), "Plastic", m=rot(yaw=rm.back))
+        x, z = rm.p(u, rm.D - 1.7)
         part(rm.g, "Toilet", [1.6, 1.6, 2.2], [x, 0.8, z], (190, 190, 185), "Marble", m=rot(yaw=rm.back))
         if R.random() < 0.7:
             x, z = rm.p(u, rm.D - 6.1)
             part(rm.g, "StallDoor", [3.6, 6, 0.15], [x, 3.4, z], (110, 120, 115), "Plastic", m=rot(yaw=rm.back + R.uniform(-70, 0)))
     for k in range(int((rm.D - 8) // 5)):
         v = 3 + k * 5
-        x, z = rm.p(0.9, v)
+        x, z = rm.p(1.75, v)
         part(rm.g, "Sink", [1.6, 0.6, 2.2], [x, 3.2, z], (190, 190, 185), "Marble", m=rot(yaw=rm.left))
         mx, mz = rm.p(0.56, v)
         # Front-kant van de spiegel kijkt de kamer in (tag Mirror: Stijns spiegel-script)
@@ -844,12 +874,12 @@ def fill_bath(rm):
 
 def fill_storage(rm):
     for k in range(int((rm.W - 2) // 3.2)):
-        x, z = rm.p(1.8 + k * 3.2, rm.D - 1.8)
+        x, z = rm.p(1.8 + k * 3.2, rm.D - 2.1)
         part(rm.g, "Crate", [3, 3, 3], [x, 1.5, z], (110, 85, 60), "WoodPlanks", m=rot(yaw=R.uniform(-8, 8)))
         if R.random() < 0.5:
             part(rm.g, "Crate", [3, 3, 3], [x, 4.5, z], (110, 85, 60), "WoodPlanks", m=rot(yaw=R.uniform(-8, 8)))
     for v in range(3, int(rm.D) - 4, 3):
-        x, z = rm.p(1, v)
+        x, z = rm.p(1.5, v)
         part(rm.g, "Shelf", [1.6, 8, 2.8], [x, 4, z], (90, 92, 88), "Metal", m=rot(yaw=rm.left))
         for lvl in range(3):
             if R.random() < 0.7:
@@ -875,7 +905,7 @@ def fill_records(rm):
 
 def fill_lab(rm):
     for side in (0, 1):
-        u = 1.5 if side == 0 else rm.W - 1.5
+        u = 1.9 if side == 0 else rm.W - 1.9
         x, z = rm.p(u, rm.D * 0.55)
         part(rm.g, "LabBench", [2.6, 3.4, rm.D - 8], [x, 1.7, z], (60, 62, 60), "Slate", m=rot(yaw=rm.back))
         for k in range(int((rm.D - 9) // 1.6)):
@@ -924,7 +954,7 @@ def fill_dayroom(rm):
     x, z = rm.p(rm.W / 2, rm.D - 1.5)
     part(rm.g, "TVStand", [4, 3, 1.8], [x, 1.5, z], WOOD, "WoodPlanks", m=rot(yaw=rm.back))
     part(rm.g, "TV", [3, 2.4, 1.6], [x, 4.2, z], (30, 30, 30), "SmoothPlastic", m=rot(yaw=rm.back))
-    sx, sz = rm.p(rm.W / 2, rm.D - 2.32)
+    sx, sz = rm.p(rm.W / 2, rm.D - 2.37)
     part(rm.g, "TVStatic", [2.4, 1.8, 0.05], [sx, 4.2, sz], (180, 185, 190), "Neon", m=rot(yaw=rm.back), tags=FLICKER, collide=False,
          children=[light("PointLight", (180, 200, 255), 0.6, 12, shadows=False)])
     rx, rz = rm.p(2.5, 3)
@@ -1045,7 +1075,7 @@ def fill_morgue(rm):
 def fill_passage(rm):
     # doorgang naar de binnenplaats: midden vrij houden
     for side in (0, 1):
-        u = 1.2 if side == 0 else rm.W - 1.2
+        u = 1.35 if side == 0 else rm.W - 1.35
         for k in range(int((rm.D - 4) // 3)):
             x, z = rm.p(u, 2.5 + k * 3)
             cabinet(rm.g, x, z, rm.left + 180 if side == 0 else rm.right + 180, 2.6, 7, 1.4, (95, 110, 105), open_door=R.random() < 0.3)
@@ -1085,8 +1115,8 @@ for r in rooms:
 rec = props.sub("Reception")
 part(rec, "Desk", [16, 3.6, 2], [0, 1.8, 18], WOOD, "WoodPlanks")
 part(rec, "DeskTop", [16.6, 0.3, 2.6], [0, 3.75, 18], (60, 50, 42), "Wood")
-part(rec, "DeskSide", [2, 3.6, 7], [-8, 1.8, 15.5], WOOD, "WoodPlanks")
-part(rec, "DeskSide", [2, 3.6, 7], [8, 1.8, 15.5], WOOD, "WoodPlanks")
+part(rec, "DeskSide", [2, 3.58, 7], [-8, 1.8, 15.5], WOOD, "WoodPlanks")
+part(rec, "DeskSide", [2, 3.58, 7], [8, 1.8, 15.5], WOOD, "WoodPlanks")
 for x in (-4, 3):
     part(rec, "Monitor", [2, 1.6, 0.3], [x, 4.8, 17.6], (30, 30, 32), "SmoothPlastic", m=rot(yaw=R.uniform(-15, 15)))
     part(rec, "MonitorStand", [0.4, 0.8, 0.4], [x, 4.2, 17.7], (30, 30, 32), "SmoothPlastic")
@@ -1163,10 +1193,10 @@ for name, x1, z1, x2, z2, _ in corridor_rects:
         t = R.uniform(0.1, 0.9)
         side = R.choice((-1, 1))
         if along_x:
-            x, z = x1 + (x2 - x1) * t, (z1 + z2) / 2 + side * 3.4
+            x, z = x1 + (x2 - x1) * t, (z1 + z2) / 2 + side * 2.6
             yaw = 90 + R.uniform(-10, 10)
         else:
-            x, z = (x1 + x2) / 2 + side * 3.4, z1 + (z2 - z1) * t
+            x, z = (x1 + x2) / 2 + side * 2.6, z1 + (z2 - z1) * t
             yaw = R.uniform(-10, 10)
         roll = R.random()
         if roll < 0.35:
