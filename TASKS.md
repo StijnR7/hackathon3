@@ -10,6 +10,10 @@ Claim een taak door je naam erachter te zetten en te pushen **vóór** je begint
 - [ ] Definitieve gamenaam (nu werktitel `THE CRYPTS` in `GameConfig.GameName`)
 
 ## Bezig
+- [ ] Lift bij de receptie als uitgang (zekeringen geven de lift stroom, voordeur blijft dicht) — @stijn
+- [ ] Kluisjes om je in te verstoppen (Crawler stopt met jagen en loopt weg) — @stijn
+- [ ] Sprint-uithoudingsvermogen + Crawler jaagt op 21 — @stijn
+- [ ] Muziek (sfeer + achtervolging), geluidseffecten, voice-over (gevangene/proefkonijn), gevangenisoutfit — @stijn
 
 ## Klaar
 - [x] MVP-ronde: 3 zekeringen → stroomkast → voordeur open → ontsnappen; gepakt = dood + meekijken; einde → terug naar lobby — @stijn
